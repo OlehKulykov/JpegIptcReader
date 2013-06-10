@@ -1,0 +1,73 @@
+<refentry id="iptc-libjpeg" revision="6 Sep 2005">
+<refmeta>
+	<refentrytitle>libjpeg Interoperability</refentrytitle>
+	<manvolnum>3</manvolnum>
+	<refmiscinfo>libiptcdata Library</refmiscinfo>
+</refmeta>
+
+<refnamediv>
+	<refname>libjpeg Interoperability</refname>
+	<refpurpose>an example of using libiptcdata together with libjpeg</refpurpose>
+</refnamediv>
+
+<refsect1 id="i18n">
+	<title>Reading IPTC data from a file parsed with libjpeg</title>
+
+	<para>
+	 libjpeg is a popular library for parsing jpeg files because
+	 it is free, fast, and widely available on many platforms.  It
+	 is easy to combine libiptcdata with code that already uses
+	 libjpeg to decompress a jpeg file.  The following example shows
+	 how to extract IPTC data while a file is being parsed by libjpeg:
+	</para>
+
+	<programlisting>
+IptcData *d;
+struct jpeg_decompress_struct cinfo;
+struct jpeg_error_mgr jerr;
+FILE * infile;
+int ps3_pos = 0, ps3_len;
+jpeg_saved_marker_ptr marker;
+
+infile = fopen (path, "r");
+if (!infile)
+	return -1;
+
+/* decompress the jpeg */
+cinfo.err = jpeg_std_error (&amp;jerr);
+jpeg_create_decompress (&amp;cinfo);
+jpeg_stdio_src (&amp;cinfo, infile);
+/* be sure to save the APP13 header, which might contain IPTC data */
+jpeg_save_markers (&amp;cinfo, JPEG_APP0+13, 0xffff);
+jpeg_read_header (&amp;cinfo, TRUE);
+
+/* look for an IPTC header */
+marker = cinfo.marker_list;
+while (marker) {
+	if (marker->marker == JPEG_APP0+13) {
+		ps3_pos = iptc_jpeg_ps3_find_iptc (marker-&gt;data,
+				marker-&gt;data_length, &amp;ps3_len);
+		if (ps3_pos &gt; 0)
+			break;
+	}
+	marker = marker-&gt;next;
+
+}
+
+if (!marker) {
+	/* clean up if we don't find IPTC data */
+	jpeg_destroy_decompress (&amp;cinfo);
+	fclose (infile);
+	return 0;
+}
+
+/* parse the IPTC data */
+d = iptc_data_new_from_data (marker-&gt;data + ps3_pos, ps3_len);
+
+/* clean up */
+jpeg_destroy_decompress (&amp;cinfo);
+fclose (infile);
+	</programlisting>
+</refsect1>
+
+</refentry>

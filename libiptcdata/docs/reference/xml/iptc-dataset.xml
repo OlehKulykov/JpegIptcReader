@@ -1,0 +1,611 @@
+<?xml version="1.0"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN" 
+               "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
+<!ENTITY iptc-overview SYSTEM "overview.sgml">
+<!ENTITY iptc-about SYSTEM "about.sgml">
+<!ENTITY iptc-commandline SYSTEM "commandline.sgml">
+<!ENTITY iptc-i18n SYSTEM "i18n.sgml">
+<!ENTITY iptc-libjpeg SYSTEM "libjpeg.sgml">
+<!ENTITY version SYSTEM "version.xml">
+]>
+<refentry id="libiptcdata-dataset">
+<refmeta>
+<refentrytitle role="top_of_page" id="libiptcdata-dataset.top_of_page">Datasets</refentrytitle>
+<manvolnum>3</manvolnum>
+<refmiscinfo>LIBIPTCDATA Library</refmiscinfo>
+</refmeta>
+
+<refnamediv>
+<refname>Datasets</refname>
+<refpurpose>manipulating a tag identifier and its associated value</refpurpose>
+<!--[<xref linkend="desc" endterm="desc.title"/>]-->
+</refnamediv>
+
+<refsynopsisdiv id="libiptcdata-dataset.synopsis" role="synopsis">
+<title role="synopsis.title">Synopsis</title>
+
+<synopsis>
+                    <link linkend="IptcDataSet">IptcDataSet</link>;
+<link linkend="IptcDataSet">IptcDataSet</link>*        <link linkend="iptc-dataset-new">iptc_dataset_new</link>                    (void);
+<link linkend="IptcDataSet">IptcDataSet</link>*        <link linkend="iptc-dataset-new-mem">iptc_dataset_new_mem</link>                (<link linkend="IptcMem">IptcMem</link> *mem);
+<link linkend="IptcDataSet">IptcDataSet</link>*        <link linkend="iptc-dataset-copy">iptc_dataset_copy</link>                   (<link linkend="IptcDataSet">IptcDataSet</link> *dataset);
+<link linkend="void">void</link>                <link linkend="iptc-dataset-ref">iptc_dataset_ref</link>                    (<link linkend="IptcDataSet">IptcDataSet</link> *dataset);
+<link linkend="void">void</link>                <link linkend="iptc-dataset-unref">iptc_dataset_unref</link>                  (<link linkend="IptcDataSet">IptcDataSet</link> *dataset);
+<link linkend="void">void</link>                <link linkend="iptc-dataset-free">iptc_dataset_free</link>                   (<link linkend="IptcDataSet">IptcDataSet</link> *dataset);
+
+<link linkend="IptcFormat">IptcFormat</link>          <link linkend="iptc-dataset-get-format">iptc_dataset_get_format</link>             (<link linkend="IptcDataSet">IptcDataSet</link> *dataset);
+<link linkend="int">int</link>                 <link linkend="iptc-dataset-get-data">iptc_dataset_get_data</link>               (<link linkend="IptcDataSet">IptcDataSet</link> *dataset,
+                                                         unsigned <link linkend="char">char</link> *buf,
+                                                         unsigned <link linkend="int">int</link> size);
+unsigned <link linkend="int">int</link>        <link linkend="iptc-dataset-get-value">iptc_dataset_get_value</link>              (<link linkend="IptcDataSet">IptcDataSet</link> *dataset);
+<link linkend="int">int</link>                 <link linkend="iptc-dataset-get-date">iptc_dataset_get_date</link>               (<link linkend="IptcDataSet">IptcDataSet</link> *dataset,
+                                                         <link linkend="int">int</link> *year,
+                                                         <link linkend="int">int</link> *month,
+                                                         <link linkend="int">int</link> *day);
+<link linkend="int">int</link>                 <link linkend="iptc-dataset-get-time">iptc_dataset_get_time</link>               (<link linkend="IptcDataSet">IptcDataSet</link> *dataset,
+                                                         <link linkend="int">int</link> *hour,
+                                                         <link linkend="int">int</link> *min,
+                                                         <link linkend="int">int</link> *sec,
+                                                         <link linkend="int">int</link> *tz);
+
+<link linkend="void">void</link>                <link linkend="iptc-dataset-set-tag">iptc_dataset_set_tag</link>                (<link linkend="IptcDataSet">IptcDataSet</link> *dataset,
+                                                         <link linkend="IptcRecord">IptcRecord</link> record,
+                                                         <link linkend="IptcTag">IptcTag</link> tag);
+enum                <link linkend="IptcValidate">IptcValidate</link>;
+<link linkend="int">int</link>                 <link linkend="iptc-dataset-set-data">iptc_dataset_set_data</link>               (<link linkend="IptcDataSet">IptcDataSet</link> *dataset,
+                                                         unsigned <link linkend="char">char</link> *buf,
+                                                         unsigned <link linkend="int">int</link> size,
+                                                         <link linkend="IptcValidate">IptcValidate</link> validate);
+<link linkend="int">int</link>                 <link linkend="iptc-dataset-set-value">iptc_dataset_set_value</link>              (<link linkend="IptcDataSet">IptcDataSet</link> *dataset,
+                                                         unsigned <link linkend="int">int</link> value,
+                                                         <link linkend="IptcValidate">IptcValidate</link> validate);
+<link linkend="int">int</link>                 <link linkend="iptc-dataset-set-date">iptc_dataset_set_date</link>               (<link linkend="IptcDataSet">IptcDataSet</link> *dataset,
+                                                         <link linkend="int">int</link> year,
+                                                         <link linkend="int">int</link> month,
+                                                         <link linkend="int">int</link> day,
+                                                         <link linkend="IptcValidate">IptcValidate</link> validate);
+<link linkend="int">int</link>                 <link linkend="iptc-dataset-set-time">iptc_dataset_set_time</link>               (<link linkend="IptcDataSet">IptcDataSet</link> *dataset,
+                                                         <link linkend="int">int</link> hour,
+                                                         <link linkend="int">int</link> min,
+                                                         <link linkend="int">int</link> sec,
+                                                         <link linkend="int">int</link> tz,
+                                                         <link linkend="IptcValidate">IptcValidate</link> validate);
+
+const <link linkend="char">char</link>*         <link linkend="iptc-dataset-get-as-str">iptc_dataset_get_as_str</link>             (<link linkend="IptcDataSet">IptcDataSet</link> *dataset,
+                                                         <link linkend="char">char</link> *buf,
+                                                         unsigned <link linkend="int">int</link> size);
+<link linkend="void">void</link>                <link linkend="iptc-dataset-dump">iptc_dataset_dump</link>                   (<link linkend="IptcDataSet">IptcDataSet</link> *dataset,
+                                                         unsigned <link linkend="int">int</link> indent);
+</synopsis>
+</refsynopsisdiv>
+
+
+
+
+
+
+
+
+
+<refsect1 id="libiptcdata-dataset.description" role="desc">
+<title role="desc.title">Description</title>
+<para>
+The <link linkend="IptcDataSet"><type>IptcDataSet</type></link> object contains a record number, dataset number, and
+data.  The record and dataset (tag) number uniquely define the purpose of
+the dataset according to the IPTC IIM specification.  The data is the
+contents of the tag.
+</para>
+</refsect1>
+
+<refsect1 id="libiptcdata-dataset.details" role="details">
+<title role="details.title">Details</title>
+<refsect2 id="IptcDataSet" role="struct">
+<title>IptcDataSet</title>
+<indexterm zone="IptcDataSet"><primary>IptcDataSet</primary></indexterm><programlisting>typedef struct {
+	IptcRecord record;
+        IptcTag tag;
+        const IptcTagInfo * info;
+
+        unsigned char *data;
+        unsigned int size;
+
+	/* Data containing this dataset */
+	IptcData *parent;
+
+	IptcDataSetPrivate *priv;
+} IptcDataSet;
+</programlisting>
+<para>
+An IPTC dataset, which associates a record/tag pair with a value.
+</para><variablelist role="struct">
+<varlistentry>
+<term><link linkend="IptcRecord">IptcRecord</link>&nbsp;<structfield>record</structfield>;</term>
+<listitem><simpara>the record number
+</simpara></listitem>
+</varlistentry>
+<varlistentry>
+<term><link linkend="IptcTag">IptcTag</link>&nbsp;<structfield>tag</structfield>;</term>
+<listitem><simpara>the dataset number
+</simpara></listitem>
+</varlistentry>
+<varlistentry>
+<term>const&nbsp;<link linkend="IptcTagInfo">IptcTagInfo</link>&nbsp;*<structfield>info</structfield>;</term>
+<listitem><simpara>information about the tag from the IPTC IIM specification
+</simpara></listitem>
+</varlistentry>
+<varlistentry>
+<term>unsigned&nbsp;<link linkend="char">char</link>&nbsp;*<structfield>data</structfield>;</term>
+<listitem><simpara>the value of the tag
+</simpara></listitem>
+</varlistentry>
+<varlistentry>
+<term>unsigned&nbsp;<link linkend="int">int</link>&nbsp;<structfield>size</structfield>;</term>
+<listitem><simpara>the length of <parameter>data</parameter> in bytes
+</simpara></listitem>
+</varlistentry>
+<varlistentry>
+<term><link linkend="IptcData">IptcData</link>&nbsp;*<structfield>parent</structfield>;</term>
+<listitem><simpara>the <link linkend="IptcData"><type>IptcData</type></link> object that contains this dataset or NULL
+if it is not contained
+</simpara></listitem>
+</varlistentry>
+<varlistentry>
+<term><link linkend="IptcDataSetPrivate">IptcDataSetPrivate</link>&nbsp;*<structfield>priv</structfield>;</term>
+<listitem><simpara>private data
+
+</simpara></listitem>
+</varlistentry>
+</variablelist></refsect2>
+<refsect2 id="iptc-dataset-new" role="function">
+<title>iptc_dataset_new ()</title>
+<indexterm zone="iptc-dataset-new"><primary>iptc_dataset_new</primary></indexterm><programlisting><link linkend="IptcDataSet">IptcDataSet</link>*        iptc_dataset_new                    (void);</programlisting>
+<para>
+Allocates a new dataset, which is initialized to be empty (undefined tag and
+empty value).  The default memory allocation functions (malloc, etc.) are
+used.  If you need custom memory management functions, use
+<link linkend="iptc-dataset-new-mem"><function>iptc_dataset_new_mem()</function></link> instead.  This allocation will set the <link linkend="IptcDataSet"><type>IptcDataSet</type></link>
+refcount to 1, so use <link linkend="iptc-dataset-unref"><function>iptc_dataset_unref()</function></link> when finished with the pointer.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> pointer to the new <link linkend="IptcDataSet"><type>IptcDataSet</type></link> object, NULL on error
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="iptc-dataset-new-mem" role="function">
+<title>iptc_dataset_new_mem ()</title>
+<indexterm zone="iptc-dataset-new-mem"><primary>iptc_dataset_new_mem</primary></indexterm><programlisting><link linkend="IptcDataSet">IptcDataSet</link>*        iptc_dataset_new_mem                (<link linkend="IptcMem">IptcMem</link> *mem);</programlisting>
+<para>
+Allocates a new dataset, which is initialized to be empty (undefined tag and
+empty value), using custom memory management functions.  This allocation
+will set the <link linkend="IptcDataSet"><type>IptcDataSet</type></link> refcount to 1, so use <link linkend="iptc-dataset-unref"><function>iptc_dataset_unref()</function></link> when
+finished with the pointer.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>mem</parameter>&nbsp;:</term>
+<listitem><simpara> Pointer to an <link linkend="IptcMem"><type>IptcMem</type></link> object that defines custom memory managment
+functions.  The refcount of <parameter>mem</parameter> will be incremented.  It is decremented
+when the returned <link linkend="IptcDataSet"><type>IptcDataSet</type></link> object is freed.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> pointer to the new <link linkend="IptcDataSet"><type>IptcDataSet</type></link> object, NULL on error
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="iptc-dataset-copy" role="function">
+<title>iptc_dataset_copy ()</title>
+<indexterm zone="iptc-dataset-copy"><primary>iptc_dataset_copy</primary></indexterm><programlisting><link linkend="IptcDataSet">IptcDataSet</link>*        iptc_dataset_copy                   (<link linkend="IptcDataSet">IptcDataSet</link> *dataset);</programlisting>
+<para>
+Allocates a new dataset and copies the contents of an existing dataset
+into the new one.  Copied data includes record, tag, and the data payload.
+This is a "deep copy" so that a new copy of the data payload is created,
+not just a pointer duplication.  The new dataset has no parent collection,
+regardless of the parent of the copied dataset.  This allocation will set
+the <link linkend="IptcDataSet"><type>IptcDataSet</type></link> refcount to 1, so use <link linkend="iptc-dataset-unref"><function>iptc_dataset_unref()</function></link> when finished
+with the pointer.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>dataset</parameter>&nbsp;:</term>
+<listitem><simpara> the dataset to duplicate
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> pointer to the new <link linkend="IptcDataSet"><type>IptcDataSet</type></link> object, NULL on error
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="iptc-dataset-ref" role="function">
+<title>iptc_dataset_ref ()</title>
+<indexterm zone="iptc-dataset-ref"><primary>iptc_dataset_ref</primary></indexterm><programlisting><link linkend="void">void</link>                iptc_dataset_ref                    (<link linkend="IptcDataSet">IptcDataSet</link> *dataset);</programlisting>
+<para>
+Increments the reference count of an <link linkend="IptcDataSet"><type>IptcDataSet</type></link> object.  This function
+should be called whenever a copy of a pointer is made by the application.
+<link linkend="iptc-dataset-unref"><function>iptc_dataset_unref()</function></link> can then be used when the pointer is no longer needed
+to ensure that the object is freed once the object is completely unused.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>dataset</parameter>&nbsp;:</term>
+<listitem><simpara> the referenced pointer
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="iptc-dataset-unref" role="function">
+<title>iptc_dataset_unref ()</title>
+<indexterm zone="iptc-dataset-unref"><primary>iptc_dataset_unref</primary></indexterm><programlisting><link linkend="void">void</link>                iptc_dataset_unref                  (<link linkend="IptcDataSet">IptcDataSet</link> *dataset);</programlisting>
+<para>
+Decrements the reference count of an <link linkend="IptcDataSet"><type>IptcDataSet</type></link> object.  The object will
+automatically be freed when the count reaches 0.  This function should
+be called whenever a pointer is no longer needed by an application.  It
+is also good practice to set the local copy of the pointer to NULL to
+shield against accidently reusing the value.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>dataset</parameter>&nbsp;:</term>
+<listitem><simpara> the unreferenced pointer
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="iptc-dataset-free" role="function">
+<title>iptc_dataset_free ()</title>
+<indexterm zone="iptc-dataset-free"><primary>iptc_dataset_free</primary></indexterm><programlisting><link linkend="void">void</link>                iptc_dataset_free                   (<link linkend="IptcDataSet">IptcDataSet</link> *dataset);</programlisting>
+<para>
+Frees an <link linkend="IptcDataSet"><type>IptcDataSet</type></link> object and its contained data.  This function should
+be used only for error handling since <link linkend="iptc-dataset-unref"><function>iptc_dataset_unref()</function></link> provides a
+safer mechanism for freeing that allows multiple components to have access
+to an object.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>dataset</parameter>&nbsp;:</term>
+<listitem><simpara> the object to free
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="iptc-dataset-get-format" role="function">
+<title>iptc_dataset_get_format ()</title>
+<indexterm zone="iptc-dataset-get-format"><primary>iptc_dataset_get_format</primary></indexterm><programlisting><link linkend="IptcFormat">IptcFormat</link>          iptc_dataset_get_format             (<link linkend="IptcDataSet">IptcDataSet</link> *dataset);</programlisting>
+<para>
+Retrieves the data format of a dataset tag according to the IPTC
+specification.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>dataset</parameter>&nbsp;:</term>
+<listitem><simpara> pointer to an <link linkend="IptcDataSet"><type>IptcDataSet</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> the format of the tag which will be <link linkend="IPTC-FORMAT-UNKNOWN:CAPS"><literal>IPTC_FORMAT_UNKNOWN</literal></link> if the tag
+number has not been set or the tag is not in the specification
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="iptc-dataset-get-data" role="function">
+<title>iptc_dataset_get_data ()</title>
+<indexterm zone="iptc-dataset-get-data"><primary>iptc_dataset_get_data</primary></indexterm><programlisting><link linkend="int">int</link>                 iptc_dataset_get_data               (<link linkend="IptcDataSet">IptcDataSet</link> *dataset,
+                                                         unsigned <link linkend="char">char</link> *buf,
+                                                         unsigned <link linkend="int">int</link> size);</programlisting>
+<para>
+Copies the value of a dataset into a buffer.  If the buffer has extra
+space, the data will be NULL-terminated to assist in dealing with
+strings.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>dataset</parameter>&nbsp;:</term>
+<listitem><simpara> pointer to an <link linkend="IptcDataSet"><type>IptcDataSet</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>buf</parameter>&nbsp;:</term>
+<listitem><simpara> buffer to which the data will be copied
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>size</parameter>&nbsp;:</term>
+<listitem><simpara> maximum size of the buffer
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> the number of bytes copied, or -1 on failure
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="iptc-dataset-get-value" role="function">
+<title>iptc_dataset_get_value ()</title>
+<indexterm zone="iptc-dataset-get-value"><primary>iptc_dataset_get_value</primary></indexterm><programlisting>unsigned <link linkend="int">int</link>        iptc_dataset_get_value              (<link linkend="IptcDataSet">IptcDataSet</link> *dataset);</programlisting>
+<para>
+Gets the value of a dataset as an unsigned integer.  This function is meant
+to be used when the format of a tag is a byte, short, or long.  Undefined
+results occur when this function is used on a tag containing data in another
+format.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>dataset</parameter>&nbsp;:</term>
+<listitem><simpara> pointer to an <link linkend="IptcDataSet"><type>IptcDataSet</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> value contained in the dataset
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="iptc-dataset-get-date" role="function">
+<title>iptc_dataset_get_date ()</title>
+<indexterm zone="iptc-dataset-get-date"><primary>iptc_dataset_get_date</primary></indexterm><programlisting><link linkend="int">int</link>                 iptc_dataset_get_date               (<link linkend="IptcDataSet">IptcDataSet</link> *dataset,
+                                                         <link linkend="int">int</link> *year,
+                                                         <link linkend="int">int</link> *month,
+                                                         <link linkend="int">int</link> *day);</programlisting>
+<para>
+Interprets the contents of the dataset as an IPTC date and parses
+the year, month, and day into the given output variables.  If any
+variable is NULL, that value is skipped.  IPTC dates are stored as
+a string in the format YYYYMMDD.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>dataset</parameter>&nbsp;:</term>
+<listitem><simpara> pointer to an <link linkend="IptcDataSet"><type>IptcDataSet</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>year</parameter>&nbsp;:</term>
+<listitem><simpara> output variable to store the year (0-9999)
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>month</parameter>&nbsp;:</term>
+<listitem><simpara> output variable to store the month (1-12)
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>day</parameter>&nbsp;:</term>
+<listitem><simpara> output variable to store the day of the month (1-31)
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> 0 on success; -1 on failure
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="iptc-dataset-get-time" role="function">
+<title>iptc_dataset_get_time ()</title>
+<indexterm zone="iptc-dataset-get-time"><primary>iptc_dataset_get_time</primary></indexterm><programlisting><link linkend="int">int</link>                 iptc_dataset_get_time               (<link linkend="IptcDataSet">IptcDataSet</link> *dataset,
+                                                         <link linkend="int">int</link> *hour,
+                                                         <link linkend="int">int</link> *min,
+                                                         <link linkend="int">int</link> *sec,
+                                                         <link linkend="int">int</link> *tz);</programlisting>
+<para>
+Interprets the contents of the dataset as an IPTC time and parses
+the hour, minute, second, and timezone into the given output variables.
+If any variable is NULL, that value is skipped.  IPTC times are stored as
+a string in the format HHMMSS&plusmn;HHMM.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>dataset</parameter>&nbsp;:</term>
+<listitem><simpara> pointer to an <link linkend="IptcDataSet"><type>IptcDataSet</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>hour</parameter>&nbsp;:</term>
+<listitem><simpara> output variable to store the hour (0-23)
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>min</parameter>&nbsp;:</term>
+<listitem><simpara> output variable to store the minute (0-59)
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>sec</parameter>&nbsp;:</term>
+<listitem><simpara> output variable to store the second (0-59)
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>tz</parameter>&nbsp;:</term>
+<listitem><simpara> output variable to store the timezone (offset in minutes from GMT)
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> 0 on success; -1 on failure
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="iptc-dataset-set-tag" role="function">
+<title>iptc_dataset_set_tag ()</title>
+<indexterm zone="iptc-dataset-set-tag"><primary>iptc_dataset_set_tag</primary></indexterm><programlisting><link linkend="void">void</link>                iptc_dataset_set_tag                (<link linkend="IptcDataSet">IptcDataSet</link> *dataset,
+                                                         <link linkend="IptcRecord">IptcRecord</link> record,
+                                                         <link linkend="IptcTag">IptcTag</link> tag);</programlisting>
+<para>
+Sets the record and tag number for a dataset object.  Each record/tag pair
+is assigned a specific meaning by the IPTC IIM specification.  This function
+allows any value to be set for the dataset object, regardless of its
+meaning.  This function can also be used to change the record/tag number in
+place even if it has been already set.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>dataset</parameter>&nbsp;:</term>
+<listitem><simpara> dataset for which the record/tag numbers should be set
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>record</parameter>&nbsp;:</term>
+<listitem><simpara> record number of the dataset
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>tag</parameter>&nbsp;:</term>
+<listitem><simpara> tag (dataset number) of the dataset
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="IptcValidate" role="enum">
+<title>enum IptcValidate</title>
+<indexterm zone="IptcValidate"><primary>IptcValidate</primary></indexterm><programlisting>typedef enum {
+	IPTC_DONT_VALIDATE = 0,
+	IPTC_VALIDATE      = 1
+} IptcValidate;
+</programlisting>
+<para>
+Whether the value of a dataset should be validated to meet the IPTC
+IIM specification.
+</para><variablelist role="enum">
+<varlistentry id="IPTC-DONT-VALIDATE:CAPS" role="constant">
+<term><literal>IPTC_DONT_VALIDATE</literal></term>
+<listitem><simpara>do not check the value against the specification
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="IPTC-VALIDATE:CAPS" role="constant">
+<term><literal>IPTC_VALIDATE</literal></term>
+<listitem><simpara>check the value against the specification
+
+</simpara></listitem>
+</varlistentry>
+</variablelist></refsect2>
+<refsect2 id="iptc-dataset-set-data" role="function">
+<title>iptc_dataset_set_data ()</title>
+<indexterm zone="iptc-dataset-set-data"><primary>iptc_dataset_set_data</primary></indexterm><programlisting><link linkend="int">int</link>                 iptc_dataset_set_data               (<link linkend="IptcDataSet">IptcDataSet</link> *dataset,
+                                                         unsigned <link linkend="char">char</link> *buf,
+                                                         unsigned <link linkend="int">int</link> size,
+                                                         <link linkend="IptcValidate">IptcValidate</link> validate);</programlisting>
+<para>
+Copies bytes from a buffer as the new value for a dataset.  This is the
+correct method for setting a dataset value to a string or raw binary
+sequence.  The length of a string should be specified without the trailing
+NULL.  New memory is allocated for the value and <parameter>size</parameter> bytes are copied
+from <parameter>buf</parameter> into this new memory (which is freed when the dataset is freed or
+when a new value is set).  If <parameter>validate</parameter> is set to <link linkend="IPTC-VALIDATE:CAPS"><literal>IPTC_VALIDATE</literal></link>, the buffer
+will only be copied if the size does not violate the IPTC specification (it
+must not be too long or too short).  This check is ignored if the dataset's
+tag is undefined or no information from the specification is available for
+that tag.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>dataset</parameter>&nbsp;:</term>
+<listitem><simpara> dataset for which the value should be set
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>buf</parameter>&nbsp;:</term>
+<listitem><simpara> buffer containing the value
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>size</parameter>&nbsp;:</term>
+<listitem><simpara> number of bytes to copy
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>validate</parameter>&nbsp;:</term>
+<listitem><simpara> whether or not the passed value should be validated against
+the IPTC specification for this dataset's tag.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> -1 on error, 0 if validation failed, the number of bytes copied
+on success
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="iptc-dataset-set-value" role="function">
+<title>iptc_dataset_set_value ()</title>
+<indexterm zone="iptc-dataset-set-value"><primary>iptc_dataset_set_value</primary></indexterm><programlisting><link linkend="int">int</link>                 iptc_dataset_set_value              (<link linkend="IptcDataSet">IptcDataSet</link> *dataset,
+                                                         unsigned <link linkend="int">int</link> value,
+                                                         <link linkend="IptcValidate">IptcValidate</link> validate);</programlisting>
+<para>
+Sets the value of a dataset as an integer.  This is the correct method for
+setting a dataset value with type byte, short, or long.  If <parameter>validate</parameter> is
+set to <link linkend="IPTC-VALIDATE:CAPS"><literal>IPTC_VALIDATE</literal></link>, the value will only be set if the tag has type
+byte, short, or long according the IPTC specification.  This check is
+ignored if the dataset's tag is undefined or no information from the
+specification is available for that tag.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>dataset</parameter>&nbsp;:</term>
+<listitem><simpara> dataset for which the value should be set
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>value</parameter>&nbsp;:</term>
+<listitem><simpara> value for the dataset
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>validate</parameter>&nbsp;:</term>
+<listitem><simpara> whether or not the passed value should be validated against
+the IPTC specification for this dataset's tag.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> -1 on error, 0 if validation failed, the number of bytes copied
+on success
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="iptc-dataset-set-date" role="function">
+<title>iptc_dataset_set_date ()</title>
+<indexterm zone="iptc-dataset-set-date"><primary>iptc_dataset_set_date</primary></indexterm><programlisting><link linkend="int">int</link>                 iptc_dataset_set_date               (<link linkend="IptcDataSet">IptcDataSet</link> *dataset,
+                                                         <link linkend="int">int</link> year,
+                                                         <link linkend="int">int</link> month,
+                                                         <link linkend="int">int</link> day,
+                                                         <link linkend="IptcValidate">IptcValidate</link> validate);</programlisting>
+<para>
+Sets the contents of the dataset to be a date with the specified value.
+IPTC dates are stored as a string in the format YYYYMMDD.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>dataset</parameter>&nbsp;:</term>
+<listitem><simpara> pointer to an <link linkend="IptcDataSet"><type>IptcDataSet</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>year</parameter>&nbsp;:</term>
+<listitem><simpara> the year (0-9999)
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>month</parameter>&nbsp;:</term>
+<listitem><simpara> the month (1-12)
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>day</parameter>&nbsp;:</term>
+<listitem><simpara> the day of the month (1-31)
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>validate</parameter>&nbsp;:</term>
+<listitem><simpara> if set to <link linkend="IPTC-VALIDATE:CAPS"><literal>IPTC_VALIDATE</literal></link>, the dataset date will only be set if
+the IPTC specification says it is of type date.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> the number of bytes written on success (always 8 in this case); 0
+if validation fails; -1 for other failures
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="iptc-dataset-set-time" role="function">
+<title>iptc_dataset_set_time ()</title>
+<indexterm zone="iptc-dataset-set-time"><primary>iptc_dataset_set_time</primary></indexterm><programlisting><link linkend="int">int</link>                 iptc_dataset_set_time               (<link linkend="IptcDataSet">IptcDataSet</link> *dataset,
+                                                         <link linkend="int">int</link> hour,
+                                                         <link linkend="int">int</link> min,
+                                                         <link linkend="int">int</link> sec,
+                                                         <link linkend="int">int</link> tz,
+                                                         <link linkend="IptcValidate">IptcValidate</link> validate);</programlisting>
+<para>
+Sets the contents of the dataset to be a time with the specified value.
+IPTC times are stored as a string in the format HHMMSS&plusmn;HHMM.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>dataset</parameter>&nbsp;:</term>
+<listitem><simpara> pointer to an <link linkend="IptcDataSet"><type>IptcDataSet</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>hour</parameter>&nbsp;:</term>
+<listitem><simpara> the hour (0-23)
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>min</parameter>&nbsp;:</term>
+<listitem><simpara> the minutes (0-59)
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>sec</parameter>&nbsp;:</term>
+<listitem><simpara> the seconds (0-61)
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>tz</parameter>&nbsp;:</term>
+<listitem><simpara> the timezone expressed as the number of minutes offset from GMT.
+For example, EST is -300 (-5 hours).
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>validate</parameter>&nbsp;:</term>
+<listitem><simpara> if set to <link linkend="IPTC-VALIDATE:CAPS"><literal>IPTC_VALIDATE</literal></link>, the dataset time will only be set if
+the IPTC specification says it is of type time.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> the number of bytes written on success (always 11 in this case); 0
+if validation fails; -1 for other failures
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="iptc-dataset-get-as-str" role="function">
+<title>iptc_dataset_get_as_str ()</title>
+<indexterm zone="iptc-dataset-get-as-str"><primary>iptc_dataset_get_as_str</primary></indexterm><programlisting>const <link linkend="char">char</link>*         iptc_dataset_get_as_str             (<link linkend="IptcDataSet">IptcDataSet</link> *dataset,
+                                                         <link linkend="char">char</link> *buf,
+                                                         unsigned <link linkend="int">int</link> size);</programlisting>
+<para>
+Copies the value of a dataset into a buffer as a printable, NULL-terminated
+string.  For tags of type byte, short, or long, the value will be formatted
+as a string.  For tags of type string (including dates and times), the
+string will simply be copied into the output buffer.  For tags containing
+binary data, the data will be formatted as a string in hexidecimal.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>dataset</parameter>&nbsp;:</term>
+<listitem><simpara> pointer to an <link linkend="IptcDataSet"><type>IptcDataSet</type></link>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>buf</parameter>&nbsp;:</term>
+<listitem><simpara> buffer to which the string will be copied
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>size</parameter>&nbsp;:</term>
+<listitem><simpara> maximum size of the buffer
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> the output string on success, or NULL on failure
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="iptc-dataset-dump" role="function">
+<title>iptc_dataset_dump ()</title>
+<indexterm zone="iptc-dataset-dump"><primary>iptc_dataset_dump</primary></indexterm><programlisting><link linkend="void">void</link>                iptc_dataset_dump                   (<link linkend="IptcDataSet">IptcDataSet</link> *dataset,
+                                                         unsigned <link linkend="int">int</link> indent);</programlisting>
+<para>
+A debugging aid that prints out the contents of a dataset to
+standard output.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>dataset</parameter>&nbsp;:</term>
+<listitem><simpara> dataset to print
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>indent</parameter>&nbsp;:</term>
+<listitem><simpara> indentation level of the printout
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+
+</refsect1>
+
+
+
+
+</refentry>

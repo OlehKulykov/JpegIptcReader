@@ -1,0 +1,270 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>JPEG</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.74.0">
+<link rel="home" href="index.html" title="libiptcdata Reference Manual">
+<link rel="up" href="ch02.html" title="Format-specific Functions">
+<link rel="prev" href="ch02.html" title="Format-specific Functions">
+<link rel="next" href="ch03.html" title="Helper Functions">
+<meta name="generator" content="GTK-Doc V1.10 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+<link rel="chapter" href="ch01.html" title="IPTC Data Manipulation">
+<link rel="chapter" href="ch02.html" title="Format-specific Functions">
+<link rel="chapter" href="ch03.html" title="Helper Functions">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
+<tr valign="middle">
+<td><a accesskey="p" href="ch02.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="ch02.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">libiptcdata Reference Manual</th>
+<td><a accesskey="n" href="ch03.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+</tr>
+<tr><td colspan="5" class="shortcuts"><nobr><a href="#libiptcdata-jpeg.synopsis" class="shortcut">Top</a>
+                   | 
+                  <a href="#libiptcdata-jpeg.description" class="shortcut">Description</a></nobr></td></tr>
+</table>
+<div class="refentry" lang="en">
+<a name="libiptcdata-jpeg"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2><span class="refentrytitle"><a name="libiptcdata-jpeg.top_of_page"></a>JPEG</span></h2>
+<p>JPEG — functions for loading and saving IPTC data from JPEG files</p>
+</td>
+<td valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsynopsisdiv">
+<a name="libiptcdata-jpeg.synopsis"></a><h2>Synopsis</h2>
+<pre class="synopsis">
+int                 <a class="link" href="libiptcdata-jpeg.html#iptc-jpeg-read-ps3" title="iptc_jpeg_read_ps3 ()">iptc_jpeg_read_ps3</a>                  (FILE *infile,
+                                                         unsigned char *buf,
+                                                         unsigned int size);
+int                 <a class="link" href="libiptcdata-jpeg.html#iptc-jpeg-ps3-find-iptc" title="iptc_jpeg_ps3_find_iptc ()">iptc_jpeg_ps3_find_iptc</a>             (unsigned char *ps3,
+                                                         unsigned int ps3_size,
+                                                         unsigned int *iptc_len);
+int                 <a class="link" href="libiptcdata-jpeg.html#iptc-jpeg-ps3-save-iptc" title="iptc_jpeg_ps3_save_iptc ()">iptc_jpeg_ps3_save_iptc</a>             (unsigned char *ps3,
+                                                         unsigned int ps3_size,
+                                                         unsigned char *iptc,
+                                                         unsigned int iptc_size,
+                                                         unsigned char *buf,
+                                                         unsigned int size);
+int                 <a class="link" href="libiptcdata-jpeg.html#iptc-jpeg-save-with-ps3" title="iptc_jpeg_save_with_ps3 ()">iptc_jpeg_save_with_ps3</a>             (FILE *infile,
+                                                         FILE *outfile,
+                                                         unsigned char *ps3,
+                                                         unsigned int ps3_size);
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="libiptcdata-jpeg.description"></a><h2>Description</h2>
+<p>
+Convenience functions for loading and saving IPTC data blocks from JPEG files.
+</p>
+</div>
+<div class="refsect1" lang="en">
+<a name="libiptcdata-jpeg.details"></a><h2>Details</h2>
+<div class="refsect2" lang="en">
+<a name="iptc-jpeg-read-ps3"></a><h3>iptc_jpeg_read_ps3 ()</h3>
+<pre class="programlisting">int                 iptc_jpeg_read_ps3                  (FILE *infile,
+                                                         unsigned char *buf,
+                                                         unsigned int size);</pre>
+<p>
+Scans the headers of a JPEG file looking for a "Photoshop 3.0" header, and if
+found, stores the raw contents of this header in the <em class="parameter"><code>buf</code></em> buffer.  The Photoshop
+3.0 header is a series of records found in the APP13 section of a JPEG file.
+If a JPEG file contains IPTC metadata, the metadata is stored in one of the
+Photoshop 3.0 records.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>infile</code></em> :</span></p></td>
+<td> an open JPEG file with the current position set to the start of the file
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>buf</code></em> :</span></p></td>
+<td> an output buffer to store the Photoshop 3.0 data
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>size</code></em> :</span></p></td>
+<td> the size of the output buffer
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> the number of bytes stored on success, 0 if the PS3 header was
+not found, or -1 if an error occurred.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="iptc-jpeg-ps3-find-iptc"></a><h3>iptc_jpeg_ps3_find_iptc ()</h3>
+<pre class="programlisting">int                 iptc_jpeg_ps3_find_iptc             (unsigned char *ps3,
+                                                         unsigned int ps3_size,
+                                                         unsigned int *iptc_len);</pre>
+<p>
+Parses a "Photoshop 3.0" header in search of IPTC metadata.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>ps3</code></em> :</span></p></td>
+<td> the data of a Photoshop 3.0 header to search
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>ps3_size</code></em> :</span></p></td>
+<td> size in bytes of <em class="parameter"><code>ps3</code></em>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>iptc_len</code></em> :</span></p></td>
+<td> output parameter, the size in bytes of any found IPTC data
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> the offset in bytes from the start of <em class="parameter"><code>ps3</code></em> where a block
+of IPTC metadata begins, 0 if no IPTC metadata was found, -1 on error.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="iptc-jpeg-ps3-save-iptc"></a><h3>iptc_jpeg_ps3_save_iptc ()</h3>
+<pre class="programlisting">int                 iptc_jpeg_ps3_save_iptc             (unsigned char *ps3,
+                                                         unsigned int ps3_size,
+                                                         unsigned char *iptc,
+                                                         unsigned int iptc_size,
+                                                         unsigned char *buf,
+                                                         unsigned int size);</pre>
+<p>
+Takes a Photoshop 3.0 header, <em class="parameter"><code>ps3</code></em>, removes any existing IPTC data inside
+that header, and inserts the new IPTC data from <em class="parameter"><code>iptc</code></em>.  Any other non-IPTC
+portions of <em class="parameter"><code>ps3</code></em> are left unmodified.  If <em class="parameter"><code>ps3</code></em> is NULL, a blank PS3 header
+is created.  If <em class="parameter"><code>iptc</code></em> is NULL, the output PS3 header will contain no IPTC
+data, even if <em class="parameter"><code>ps3</code></em> originally contained some.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>ps3</code></em> :</span></p></td>
+<td> a template PS3 header in which to insert the
+new iptc data.  Any non-IPTC data in this template will be preserved
+in the output Photoshop 3.0 header.  If NULL, a PS3 header will be
+generated from scratch.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>ps3_size</code></em> :</span></p></td>
+<td> size in bytes of <em class="parameter"><code>ps3</code></em>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>iptc</code></em> :</span></p></td>
+<td> the IPTC bytestream to be encapsulated in the PS3 output.  The IPTC
+bytestream can be generated with <a class="link" href="libiptcdata-data.html#iptc-data-save" title="iptc_data_save ()"><code class="function">iptc_data_save()</code></a>.  If
+NULL, the output will still be a valid PS3 header, but without any
+contained IPTC data.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>iptc_size</code></em> :</span></p></td>
+<td> size in bytes of <em class="parameter"><code>iptc</code></em>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>buf</code></em> :</span></p></td>
+<td> output buffer for the generated PS3 header
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>size</code></em> :</span></p></td>
+<td> size in bytes of <em class="parameter"><code>buf</code></em>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> the number of bytes written to <em class="parameter"><code>buf</code></em>; -1 on error.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="iptc-jpeg-save-with-ps3"></a><h3>iptc_jpeg_save_with_ps3 ()</h3>
+<pre class="programlisting">int                 iptc_jpeg_save_with_ps3             (FILE *infile,
+                                                         FILE *outfile,
+                                                         unsigned char *ps3,
+                                                         unsigned int ps3_size);</pre>
+<p>
+Takes an existing JPEG file, <em class="parameter"><code>infile</code></em>, removes any existing Photoshop
+3.0 header from it, and adds a new PS3 header, writing the output
+to <em class="parameter"><code>outfile</code></em>.  <em class="parameter"><code>infile</code></em> must be open for reading and is expected to point
+to the beginning of the JPEG file, which should be different from <em class="parameter"><code>outfile</code></em>,
+which must be open for writing.  If <em class="parameter"><code>ps3</code></em> is NULL, the output will contain
+no PS3 header.  PS3 headers reside in the APP13 section of the JPEG file,
+which is created if necessary.  All other headers and data will be copied
+directly from <em class="parameter"><code>infile</code></em> without modification.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>infile</code></em> :</span></p></td>
+<td> the file stream from which the image data is copied
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>outfile</code></em> :</span></p></td>
+<td> the output file stream
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>ps3</code></em> :</span></p></td>
+<td> the Photoshop 3.0 header to add to the output file
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>ps3_size</code></em> :</span></p></td>
+<td> size in bytes of <em class="parameter"><code>ps3</code></em>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> 0 on success, -1 on error.  Note that even in error, some data
+may have been written to <em class="parameter"><code>outfile</code></em>, and its contents should be considered
+undefined.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+</div>
+<div class="footer">
+<hr>
+          Generated by GTK-Doc V1.10</div>
+</body>
+</html>

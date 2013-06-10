@@ -1,0 +1,279 @@
+<?xml version="1.0"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN" 
+               "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
+<!ENTITY iptc-overview SYSTEM "overview.sgml">
+<!ENTITY iptc-about SYSTEM "about.sgml">
+<!ENTITY iptc-commandline SYSTEM "commandline.sgml">
+<!ENTITY iptc-i18n SYSTEM "i18n.sgml">
+<!ENTITY iptc-libjpeg SYSTEM "libjpeg.sgml">
+<!ENTITY version SYSTEM "version.xml">
+]>
+<refentry id="libiptcdata-log">
+<refmeta>
+<refentrytitle role="top_of_page" id="libiptcdata-log.top_of_page">Error logging</refentrytitle>
+<manvolnum>3</manvolnum>
+<refmiscinfo>LIBIPTCDATA Library</refmiscinfo>
+</refmeta>
+
+<refnamediv>
+<refname>Error logging</refname>
+<refpurpose>Hooks for defining your own log-handling functions</refpurpose>
+<!--[<xref linkend="desc" endterm="desc.title"/>]-->
+</refnamediv>
+
+<refsynopsisdiv id="libiptcdata-log.synopsis" role="synopsis">
+<title role="synopsis.title">Synopsis</title>
+
+<synopsis>
+                    <link linkend="IptcLog">IptcLog</link>;
+<link linkend="IptcLog">IptcLog</link>*            <link linkend="iptc-log-new">iptc_log_new</link>                        (void);
+<link linkend="IptcLog">IptcLog</link>*            <link linkend="iptc-log-new-mem">iptc_log_new_mem</link>                    (<link linkend="IptcMem">IptcMem</link> *);
+<link linkend="void">void</link>                <link linkend="iptc-log-ref">iptc_log_ref</link>                        (<link linkend="IptcLog">IptcLog</link> *log);
+<link linkend="void">void</link>                <link linkend="iptc-log-unref">iptc_log_unref</link>                      (<link linkend="IptcLog">IptcLog</link> *log);
+<link linkend="void">void</link>                <link linkend="iptc-log-free">iptc_log_free</link>                       (<link linkend="IptcLog">IptcLog</link> *log);
+enum                <link linkend="IptcLogCode">IptcLogCode</link>;
+const <link linkend="char">char</link>*         <link linkend="iptc-log-code-get-title">iptc_log_code_get_title</link>             (<link linkend="IptcLogCode">IptcLogCode</link> );
+const <link linkend="char">char</link>*         <link linkend="iptc-log-code-get-message">iptc_log_code_get_message</link>           (<link linkend="IptcLogCode">IptcLogCode</link> );
+<link linkend="void">void</link>                (<link linkend="IptcLogFunc">*IptcLogFunc</link>)                      (<link linkend="IptcLog">IptcLog</link> *log,
+                                                         <link linkend="IptcLogCode">IptcLogCode</link> ,
+                                                         const <link linkend="char">char</link> *domain,
+                                                         const <link linkend="char">char</link> *format,
+                                                         <link linkend="va-list">va_list</link> args,
+                                                         <link linkend="void">void</link> *data);
+<link linkend="void">void</link>                <link linkend="iptc-log-set-func">iptc_log_set_func</link>                   (<link linkend="IptcLog">IptcLog</link> *log,
+                                                         <link linkend="IptcLogFunc">IptcLogFunc</link> func,
+                                                         <link linkend="void">void</link> *data);
+<link linkend="void">void</link>                <link linkend="iptc-log">iptc_log</link>                            (<link linkend="IptcLog">IptcLog</link> *log,
+                                                         <link linkend="IptcLogCode">IptcLogCode</link> ,
+                                                         const <link linkend="char">char</link> *domain,
+                                                         const <link linkend="char">char</link> *format);
+#define             <link linkend="IPTC-LOG-NO-MEMORY:CAPS">IPTC_LOG_NO_MEMORY</link>                  (l,d,s)
+</synopsis>
+</refsynopsisdiv>
+
+
+
+
+
+
+
+
+
+<refsect1 id="libiptcdata-log.description" role="desc">
+<title role="desc.title">Description</title>
+<para>
+
+</para>
+</refsect1>
+
+<refsect1 id="libiptcdata-log.details" role="details">
+<title role="details.title">Details</title>
+<refsect2 id="IptcLog" role="struct">
+<title>IptcLog</title>
+<indexterm zone="IptcLog"><primary>IptcLog</primary></indexterm><programlisting>typedef struct _IptcLog IptcLog;</programlisting>
+<para>
+
+</para></refsect2>
+<refsect2 id="iptc-log-new" role="function">
+<title>iptc_log_new ()</title>
+<indexterm zone="iptc-log-new"><primary>iptc_log_new</primary></indexterm><programlisting><link linkend="IptcLog">IptcLog</link>*            iptc_log_new                        (void);</programlisting>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara>
+
+
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="iptc-log-new-mem" role="function">
+<title>iptc_log_new_mem ()</title>
+<indexterm zone="iptc-log-new-mem"><primary>iptc_log_new_mem</primary></indexterm><programlisting><link linkend="IptcLog">IptcLog</link>*            iptc_log_new_mem                    (<link linkend="IptcMem">IptcMem</link> *);</programlisting>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>Param1</parameter>&nbsp;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara>
+
+
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="iptc-log-ref" role="function">
+<title>iptc_log_ref ()</title>
+<indexterm zone="iptc-log-ref"><primary>iptc_log_ref</primary></indexterm><programlisting><link linkend="void">void</link>                iptc_log_ref                        (<link linkend="IptcLog">IptcLog</link> *log);</programlisting>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>log</parameter>&nbsp;:</term>
+<listitem><simpara>
+
+
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="iptc-log-unref" role="function">
+<title>iptc_log_unref ()</title>
+<indexterm zone="iptc-log-unref"><primary>iptc_log_unref</primary></indexterm><programlisting><link linkend="void">void</link>                iptc_log_unref                      (<link linkend="IptcLog">IptcLog</link> *log);</programlisting>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>log</parameter>&nbsp;:</term>
+<listitem><simpara>
+
+
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="iptc-log-free" role="function">
+<title>iptc_log_free ()</title>
+<indexterm zone="iptc-log-free"><primary>iptc_log_free</primary></indexterm><programlisting><link linkend="void">void</link>                iptc_log_free                       (<link linkend="IptcLog">IptcLog</link> *log);</programlisting>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>log</parameter>&nbsp;:</term>
+<listitem><simpara>
+
+
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="IptcLogCode" role="enum">
+<title>enum IptcLogCode</title>
+<indexterm zone="IptcLogCode"><primary>IptcLogCode</primary></indexterm><programlisting>typedef enum {
+	IPTC_LOG_CODE_NONE,
+	IPTC_LOG_CODE_DEBUG,
+	IPTC_LOG_CODE_NO_MEMORY,
+	IPTC_LOG_CODE_CORRUPT_DATA
+} IptcLogCode;
+</programlisting>
+<para>
+
+</para></refsect2>
+<refsect2 id="iptc-log-code-get-title" role="function">
+<title>iptc_log_code_get_title ()</title>
+<indexterm zone="iptc-log-code-get-title"><primary>iptc_log_code_get_title</primary></indexterm><programlisting>const <link linkend="char">char</link>*         iptc_log_code_get_title             (<link linkend="IptcLogCode">IptcLogCode</link> );</programlisting>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>Param1</parameter>&nbsp;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara>
+
+
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="iptc-log-code-get-message" role="function">
+<title>iptc_log_code_get_message ()</title>
+<indexterm zone="iptc-log-code-get-message"><primary>iptc_log_code_get_message</primary></indexterm><programlisting>const <link linkend="char">char</link>*         iptc_log_code_get_message           (<link linkend="IptcLogCode">IptcLogCode</link> );</programlisting>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>Param1</parameter>&nbsp;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara>
+
+
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="IptcLogFunc" role="function">
+<title>IptcLogFunc ()</title>
+<indexterm zone="IptcLogFunc"><primary>IptcLogFunc</primary></indexterm><programlisting><link linkend="void">void</link>                (*IptcLogFunc)                      (<link linkend="IptcLog">IptcLog</link> *log,
+                                                         <link linkend="IptcLogCode">IptcLogCode</link> ,
+                                                         const <link linkend="char">char</link> *domain,
+                                                         const <link linkend="char">char</link> *format,
+                                                         <link linkend="va-list">va_list</link> args,
+                                                         <link linkend="void">void</link> *data);</programlisting>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>log</parameter>&nbsp;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>Param2</parameter>&nbsp;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>domain</parameter>&nbsp;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>format</parameter>&nbsp;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>args</parameter>&nbsp;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>data</parameter>&nbsp;:</term>
+<listitem><simpara>
+
+
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="iptc-log-set-func" role="function">
+<title>iptc_log_set_func ()</title>
+<indexterm zone="iptc-log-set-func"><primary>iptc_log_set_func</primary></indexterm><programlisting><link linkend="void">void</link>                iptc_log_set_func                   (<link linkend="IptcLog">IptcLog</link> *log,
+                                                         <link linkend="IptcLogFunc">IptcLogFunc</link> func,
+                                                         <link linkend="void">void</link> *data);</programlisting>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>log</parameter>&nbsp;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>func</parameter>&nbsp;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>data</parameter>&nbsp;:</term>
+<listitem><simpara>
+
+
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="iptc-log" role="function">
+<title>iptc_log ()</title>
+<indexterm zone="iptc-log"><primary>iptc_log</primary></indexterm><programlisting><link linkend="void">void</link>                iptc_log                            (<link linkend="IptcLog">IptcLog</link> *log,
+                                                         <link linkend="IptcLogCode">IptcLogCode</link> ,
+                                                         const <link linkend="char">char</link> *domain,
+                                                         const <link linkend="char">char</link> *format);</programlisting>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>log</parameter>&nbsp;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>Param2</parameter>&nbsp;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>domain</parameter>&nbsp;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>format</parameter>&nbsp;:</term>
+<listitem><simpara>
+
+
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="IPTC-LOG-NO-MEMORY:CAPS" role="macro">
+<title>IPTC_LOG_NO_MEMORY()</title>
+<indexterm zone="IPTC-LOG-NO-MEMORY:CAPS"><primary>IPTC_LOG_NO_MEMORY</primary></indexterm><programlisting>#define IPTC_LOG_NO_MEMORY(l,d,s) iptc_log (l, IPTC_LOG_CODE_NO_MEMORY, d, "Could not allocate %i byte(s).", s)
+</programlisting>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>l</parameter>&nbsp;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>d</parameter>&nbsp;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>s</parameter>&nbsp;:</term>
+<listitem><simpara>
+
+
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+
+</refsect1>
+
+
+
+
+</refentry>

@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE book PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "">
+<book xmlns="http://www.devhelp.net/book" title="libiptcdata Reference Manual" link="index.html" author="David Moore" name="libiptcdata" version="2">
+  <chapters>
+    <sub name="About libiptcdata" link="iptc-about.html"/>
+    <sub name="The IPTC Command-Line Utility" link="iptc-commandline.html"/>
+    <sub name="libiptcdata Overview" link="iptc-overview.html"/>
+    <sub name="libjpeg Interoperability" link="iptc-libjpeg.html"/>
+    <sub name="Internationalization" link="iptc-i18n.html"/>
+    <sub name="IPTC Data Manipulation" link="ch01.html">
+      <sub name="IPTC Data" link="libiptcdata-data.html"/>
+      <sub name="Datasets" link="libiptcdata-dataset.html"/>
+      <sub name="Tag Specifications" link="libiptcdata-tag.html"/>
+    </sub>
+    <sub name="Format-specific Functions" link="ch02.html">
+      <sub name="JPEG" link="libiptcdata-jpeg.html"/>
+    </sub>
+    <sub name="Helper Functions" link="ch03.html">
+      <sub name="Byte ordering" link="libiptcdata-utils.html"/>
+      <sub name="Memory managment" link="libiptcdata-mem.html"/>
+      <sub name="Error logging" link="libiptcdata-log.html"/>
+    </sub>
+  </chapters>
+  <functions>
+    <keyword type="struct" name="IptcData" link="libiptcdata-data.html#IptcData"/>
+    <keyword type="function" name="iptc_data_new ()" link="libiptcdata-data.html#iptc-data-new"/>
+    <keyword type="function" name="iptc_data_new_mem ()" link="libiptcdata-data.html#iptc-data-new-mem"/>
+    <keyword type="function" name="iptc_data_ref ()" link="libiptcdata-data.html#iptc-data-ref"/>
+    <keyword type="function" name="iptc_data_unref ()" link="libiptcdata-data.html#iptc-data-unref"/>
+    <keyword type="function" name="iptc_data_free ()" link="libiptcdata-data.html#iptc-data-free"/>
+    <keyword type="function" name="iptc_data_new_from_jpeg ()" link="libiptcdata-data.html#iptc-data-new-from-jpeg"/>
+    <keyword type="function" name="iptc_data_new_from_data ()" link="libiptcdata-data.html#iptc-data-new-from-data"/>
+    <keyword type="function" name="iptc_data_load ()" link="libiptcdata-data.html#iptc-data-load"/>
+    <keyword type="function" name="iptc_data_save ()" link="libiptcdata-data.html#iptc-data-save"/>
+    <keyword type="function" name="iptc_data_free_buf ()" link="libiptcdata-data.html#iptc-data-free-buf"/>
+    <keyword type="function" name="iptc_data_get_dataset ()" link="libiptcdata-data.html#iptc-data-get-dataset"/>
+    <keyword type="function" name="iptc_data_get_next_dataset ()" link="libiptcdata-data.html#iptc-data-get-next-dataset"/>
+    <keyword type="function" name="iptc_data_add_dataset ()" link="libiptcdata-data.html#iptc-data-add-dataset"/>
+    <keyword type="function" name="iptc_data_add_dataset_before ()" link="libiptcdata-data.html#iptc-data-add-dataset-before"/>
+    <keyword type="function" name="iptc_data_add_dataset_after ()" link="libiptcdata-data.html#iptc-data-add-dataset-after"/>
+    <keyword type="function" name="iptc_data_remove_dataset ()" link="libiptcdata-data.html#iptc-data-remove-dataset"/>
+    <keyword type="function" name="IptcDataForeachDataSetFunc ()" link="libiptcdata-data.html#IptcDataForeachDataSetFunc"/>
+    <keyword type="function" name="iptc_data_foreach_dataset ()" link="libiptcdata-data.html#iptc-data-foreach-dataset"/>
+    <keyword type="function" name="iptc_data_sort ()" link="libiptcdata-data.html#iptc-data-sort"/>
+    <keyword type="enum" name="enum IptcEncoding" link="libiptcdata-data.html#IptcEncoding"/>
+    <keyword type="function" name="iptc_data_get_encoding ()" link="libiptcdata-data.html#iptc-data-get-encoding"/>
+    <keyword type="function" name="iptc_data_set_encoding_utf8 ()" link="libiptcdata-data.html#iptc-data-set-encoding-utf8"/>
+    <keyword type="macro" name="IPTC_IIM_VERSION" link="libiptcdata-data.html#IPTC-IIM-VERSION:CAPS"/>
+    <keyword type="function" name="iptc_data_set_version ()" link="libiptcdata-data.html#iptc-data-set-version"/>
+    <keyword type="function" name="iptc_data_add_dataset_with_value ()" link="libiptcdata-data.html#iptc-data-add-dataset-with-value"/>
+    <keyword type="function" name="iptc_data_add_dataset_with_contents ()" link="libiptcdata-data.html#iptc-data-add-dataset-with-contents"/>
+    <keyword type="function" name="iptc_data_dump ()" link="libiptcdata-data.html#iptc-data-dump"/>
+    <keyword type="function" name="iptc_data_log ()" link="libiptcdata-data.html#iptc-data-log"/>
+    <keyword type="struct" name="IptcDataSet" link="libiptcdata-dataset.html#IptcDataSet"/>
+    <keyword type="function" name="iptc_dataset_new ()" link="libiptcdata-dataset.html#iptc-dataset-new"/>
+    <keyword type="function" name="iptc_dataset_new_mem ()" link="libiptcdata-dataset.html#iptc-dataset-new-mem"/>
+    <keyword type="function" name="iptc_dataset_copy ()" link="libiptcdata-dataset.html#iptc-dataset-copy"/>
+    <keyword type="function" name="iptc_dataset_ref ()" link="libiptcdata-dataset.html#iptc-dataset-ref"/>
+    <keyword type="function" name="iptc_dataset_unref ()" link="libiptcdata-dataset.html#iptc-dataset-unref"/>
+    <keyword type="function" name="iptc_dataset_free ()" link="libiptcdata-dataset.html#iptc-dataset-free"/>
+    <keyword type="function" name="iptc_dataset_get_format ()" link="libiptcdata-dataset.html#iptc-dataset-get-format"/>
+    <keyword type="function" name="iptc_dataset_get_data ()" link="libiptcdata-dataset.html#iptc-dataset-get-data"/>
+    <keyword type="function" name="iptc_dataset_get_value ()" link="libiptcdata-dataset.html#iptc-dataset-get-value"/>
+    <keyword type="function" name="iptc_dataset_get_date ()" link="libiptcdata-dataset.html#iptc-dataset-get-date"/>
+    <keyword type="function" name="iptc_dataset_get_time ()" link="libiptcdata-dataset.html#iptc-dataset-get-time"/>
+    <keyword type="function" name="iptc_dataset_set_tag ()" link="libiptcdata-dataset.html#iptc-dataset-set-tag"/>
+    <keyword type="enum" name="enum IptcValidate" link="libiptcdata-dataset.html#IptcValidate"/>
+    <keyword type="function" name="iptc_dataset_set_data ()" link="libiptcdata-dataset.html#iptc-dataset-set-data"/>
+    <keyword type="function" name="iptc_dataset_set_value ()" link="libiptcdata-dataset.html#iptc-dataset-set-value"/>
+    <keyword type="function" name="iptc_dataset_set_date ()" link="libiptcdata-dataset.html#iptc-dataset-set-date"/>
+    <keyword type="function" name="iptc_dataset_set_time ()" link="libiptcdata-dataset.html#iptc-dataset-set-time"/>
+    <keyword type="function" name="iptc_dataset_get_as_str ()" link="libiptcdata-dataset.html#iptc-dataset-get-as-str"/>
+    <keyword type="function" name="iptc_dataset_dump ()" link="libiptcdata-dataset.html#iptc-dataset-dump"/>
+    <keyword type="enum" name="enum IptcRecord" link="libiptcdata-tag.html#IptcRecord"/>
+    <keyword type="enum" name="enum IptcTag" link="libiptcdata-tag.html#IptcTag"/>
+    <keyword type="struct" name="IptcTagInfo" link="libiptcdata-tag.html#IptcTagInfo"/>
+    <keyword type="enum" name="enum IptcFormat" link="libiptcdata-tag.html#IptcFormat"/>
+    <keyword type="enum" name="enum IptcMandatory" link="libiptcdata-tag.html#IptcMandatory"/>
+    <keyword type="enum" name="enum IptcRepeatable" link="libiptcdata-tag.html#IptcRepeatable"/>
+    <keyword type="function" name="iptc_tag_get_name ()" link="libiptcdata-tag.html#iptc-tag-get-name"/>
+    <keyword type="function" name="iptc_tag_get_title ()" link="libiptcdata-tag.html#iptc-tag-get-title"/>
+    <keyword type="function" name="iptc_tag_get_description ()" link="libiptcdata-tag.html#iptc-tag-get-description"/>
+    <keyword type="function" name="iptc_tag_get_info ()" link="libiptcdata-tag.html#iptc-tag-get-info"/>
+    <keyword type="function" name="iptc_format_get_name ()" link="libiptcdata-tag.html#iptc-format-get-name"/>
+    <keyword type="function" name="iptc_tag_find_by_name ()" link="libiptcdata-tag.html#iptc-tag-find-by-name"/>
+    <keyword type="function" name="iptc_jpeg_read_ps3 ()" link="libiptcdata-jpeg.html#iptc-jpeg-read-ps3"/>
+    <keyword type="function" name="iptc_jpeg_ps3_find_iptc ()" link="libiptcdata-jpeg.html#iptc-jpeg-ps3-find-iptc"/>
+    <keyword type="function" name="iptc_jpeg_ps3_save_iptc ()" link="libiptcdata-jpeg.html#iptc-jpeg-ps3-save-iptc"/>
+    <keyword type="function" name="iptc_jpeg_save_with_ps3 ()" link="libiptcdata-jpeg.html#iptc-jpeg-save-with-ps3"/>
+    <keyword type="enum" name="enum IptcByteOrder" link="libiptcdata-utils.html#IptcByteOrder"/>
+    <keyword type="typedef" name="IptcByte" link="libiptcdata-utils.html#IptcByte"/>
+    <keyword type="typedef" name="IptcShort" link="libiptcdata-utils.html#IptcShort"/>
+    <keyword type="typedef" name="IptcLong" link="libiptcdata-utils.html#IptcLong"/>
+    <keyword type="typedef" name="IptcSLong" link="libiptcdata-utils.html#IptcSLong"/>
+    <keyword type="function" name="iptc_get_short ()" link="libiptcdata-utils.html#iptc-get-short"/>
+    <keyword type="function" name="iptc_get_long ()" link="libiptcdata-utils.html#iptc-get-long"/>
+    <keyword type="function" name="iptc_get_slong ()" link="libiptcdata-utils.html#iptc-get-slong"/>
+    <keyword type="function" name="iptc_set_short ()" link="libiptcdata-utils.html#iptc-set-short"/>
+    <keyword type="function" name="iptc_set_long ()" link="libiptcdata-utils.html#iptc-set-long"/>
+    <keyword type="function" name="iptc_set_slong ()" link="libiptcdata-utils.html#iptc-set-slong"/>
+    <keyword type="macro" name="MIN()" link="libiptcdata-utils.html#MIN:CAPS"/>
+    <keyword type="macro" name="IPTC_TAG_SUBSEC_TIME" link="libiptcdata-utils.html#IPTC-TAG-SUBSEC-TIME:CAPS"/>
+    <keyword type="function" name="IptcMemAllocFunc ()" link="libiptcdata-mem.html#IptcMemAllocFunc"/>
+    <keyword type="function" name="IptcMemReallocFunc ()" link="libiptcdata-mem.html#IptcMemReallocFunc"/>
+    <keyword type="function" name="IptcMemFreeFunc ()" link="libiptcdata-mem.html#IptcMemFreeFunc"/>
+    <keyword type="struct" name="IptcMem" link="libiptcdata-mem.html#IptcMem"/>
+    <keyword type="function" name="iptc_mem_new ()" link="libiptcdata-mem.html#iptc-mem-new"/>
+    <keyword type="function" name="iptc_mem_ref ()" link="libiptcdata-mem.html#iptc-mem-ref"/>
+    <keyword type="function" name="iptc_mem_unref ()" link="libiptcdata-mem.html#iptc-mem-unref"/>
+    <keyword type="function" name="iptc_mem_alloc ()" link="libiptcdata-mem.html#iptc-mem-alloc"/>
+    <keyword type="function" name="iptc_mem_realloc ()" link="libiptcdata-mem.html#iptc-mem-realloc"/>
+    <keyword type="function" name="iptc_mem_free ()" link="libiptcdata-mem.html#iptc-mem-free"/>
+    <keyword type="function" name="iptc_mem_new_default ()" link="libiptcdata-mem.html#iptc-mem-new-default"/>
+    <keyword type="struct" name="IptcLog" link="libiptcdata-log.html#IptcLog"/>
+    <keyword type="function" name="iptc_log_new ()" link="libiptcdata-log.html#iptc-log-new"/>
+    <keyword type="function" name="iptc_log_new_mem ()" link="libiptcdata-log.html#iptc-log-new-mem"/>
+    <keyword type="function" name="iptc_log_ref ()" link="libiptcdata-log.html#iptc-log-ref"/>
+    <keyword type="function" name="iptc_log_unref ()" link="libiptcdata-log.html#iptc-log-unref"/>
+    <keyword type="function" name="iptc_log_free ()" link="libiptcdata-log.html#iptc-log-free"/>
+    <keyword type="enum" name="enum IptcLogCode" link="libiptcdata-log.html#IptcLogCode"/>
+    <keyword type="function" name="iptc_log_code_get_title ()" link="libiptcdata-log.html#iptc-log-code-get-title"/>
+    <keyword type="function" name="iptc_log_code_get_message ()" link="libiptcdata-log.html#iptc-log-code-get-message"/>
+    <keyword type="function" name="IptcLogFunc ()" link="libiptcdata-log.html#IptcLogFunc"/>
+    <keyword type="function" name="iptc_log_set_func ()" link="libiptcdata-log.html#iptc-log-set-func"/>
+    <keyword type="function" name="iptc_log ()" link="libiptcdata-log.html#iptc-log"/>
+    <keyword type="macro" name="IPTC_LOG_NO_MEMORY()" link="libiptcdata-log.html#IPTC-LOG-NO-MEMORY:CAPS"/>
+  </functions>
+</book>

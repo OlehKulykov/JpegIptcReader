@@ -1,0 +1,664 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Tag Specifications</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.74.0">
+<link rel="home" href="index.html" title="libiptcdata Reference Manual">
+<link rel="up" href="ch01.html" title="IPTC Data Manipulation">
+<link rel="prev" href="libiptcdata-dataset.html" title="Datasets">
+<link rel="next" href="ch02.html" title="Format-specific Functions">
+<meta name="generator" content="GTK-Doc V1.10 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+<link rel="chapter" href="ch01.html" title="IPTC Data Manipulation">
+<link rel="chapter" href="ch02.html" title="Format-specific Functions">
+<link rel="chapter" href="ch03.html" title="Helper Functions">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
+<tr valign="middle">
+<td><a accesskey="p" href="libiptcdata-dataset.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="ch01.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">libiptcdata Reference Manual</th>
+<td><a accesskey="n" href="ch02.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+</tr>
+<tr><td colspan="5" class="shortcuts"><nobr><a href="#libiptcdata-tag.synopsis" class="shortcut">Top</a>
+                   | 
+                  <a href="#libiptcdata-tag.description" class="shortcut">Description</a></nobr></td></tr>
+</table>
+<div class="refentry" lang="en">
+<a name="libiptcdata-tag"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2><span class="refentrytitle"><a name="libiptcdata-tag.top_of_page"></a>Tag Specifications</span></h2>
+<p>Tag Specifications — querying tag usage information from the IPTC IIM specification</p>
+</td>
+<td valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsynopsisdiv">
+<a name="libiptcdata-tag.synopsis"></a><h2>Synopsis</h2>
+<pre class="synopsis">
+enum                <a class="link" href="libiptcdata-tag.html#IptcRecord" title="enum IptcRecord">IptcRecord</a>;
+enum                <a class="link" href="libiptcdata-tag.html#IptcTag" title="enum IptcTag">IptcTag</a>;
+
+                    <a class="link" href="libiptcdata-tag.html#IptcTagInfo" title="IptcTagInfo">IptcTagInfo</a>;
+enum                <a class="link" href="libiptcdata-tag.html#IptcFormat" title="enum IptcFormat">IptcFormat</a>;
+enum                <a class="link" href="libiptcdata-tag.html#IptcMandatory" title="enum IptcMandatory">IptcMandatory</a>;
+enum                <a class="link" href="libiptcdata-tag.html#IptcRepeatable" title="enum IptcRepeatable">IptcRepeatable</a>;
+
+const char*         <a class="link" href="libiptcdata-tag.html#iptc-tag-get-name" title="iptc_tag_get_name ()">iptc_tag_get_name</a>                   (<a class="link" href="libiptcdata-tag.html#IptcRecord" title="enum IptcRecord">IptcRecord</a> record,
+                                                         <a class="link" href="libiptcdata-tag.html#IptcTag" title="enum IptcTag">IptcTag</a> tag);
+char*               <a class="link" href="libiptcdata-tag.html#iptc-tag-get-title" title="iptc_tag_get_title ()">iptc_tag_get_title</a>                  (<a class="link" href="libiptcdata-tag.html#IptcRecord" title="enum IptcRecord">IptcRecord</a> record,
+                                                         <a class="link" href="libiptcdata-tag.html#IptcTag" title="enum IptcTag">IptcTag</a> tag);
+char*               <a class="link" href="libiptcdata-tag.html#iptc-tag-get-description" title="iptc_tag_get_description ()">iptc_tag_get_description</a>            (<a class="link" href="libiptcdata-tag.html#IptcRecord" title="enum IptcRecord">IptcRecord</a> record,
+                                                         <a class="link" href="libiptcdata-tag.html#IptcTag" title="enum IptcTag">IptcTag</a> tag);
+const <a class="link" href="libiptcdata-tag.html#IptcTagInfo" title="IptcTagInfo">IptcTagInfo</a>*  <a class="link" href="libiptcdata-tag.html#iptc-tag-get-info" title="iptc_tag_get_info ()">iptc_tag_get_info</a>                   (<a class="link" href="libiptcdata-tag.html#IptcRecord" title="enum IptcRecord">IptcRecord</a> record,
+                                                         <a class="link" href="libiptcdata-tag.html#IptcTag" title="enum IptcTag">IptcTag</a> tag);
+char*               <a class="link" href="libiptcdata-tag.html#iptc-format-get-name" title="iptc_format_get_name ()">iptc_format_get_name</a>                (<a class="link" href="libiptcdata-tag.html#IptcFormat" title="enum IptcFormat">IptcFormat</a> format);
+int                 <a class="link" href="libiptcdata-tag.html#iptc-tag-find-by-name" title="iptc_tag_find_by_name ()">iptc_tag_find_by_name</a>               (const char *name,
+                                                         <a class="link" href="libiptcdata-tag.html#IptcRecord" title="enum IptcRecord">IptcRecord</a> *record,
+                                                         <a class="link" href="libiptcdata-tag.html#IptcTag" title="enum IptcTag">IptcTag</a> *tag);
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="libiptcdata-tag.description"></a><h2>Description</h2>
+<p>
+These functions allow queries to the <a class="ulink" href="http://www.iptc.org/IIM" target="_top">IPTC IIM
+specification</a> which contains information about the purpose of each IPTC
+tag, along with any requirements such as maximum/minimum data length, data type,
+repeatability and whether the tag is mandatory.
+</p>
+</div>
+<div class="refsect1" lang="en">
+<a name="libiptcdata-tag.details"></a><h2>Details</h2>
+<div class="refsect2" lang="en">
+<a name="IptcRecord"></a><h3>enum IptcRecord</h3>
+<pre class="programlisting">typedef enum {
+	IPTC_RECORD_OBJECT_ENV		= 1,
+	IPTC_RECORD_APP_2		= 2,
+	IPTC_RECORD_APP_3		= 3,
+	IPTC_RECORD_APP_4		= 4,
+	IPTC_RECORD_APP_5		= 5,
+	IPTC_RECORD_APP_6		= 6,
+	IPTC_RECORD_PREOBJ_DATA		= 7,
+	IPTC_RECORD_OBJ_DATA		= 8,
+	IPTC_RECORD_POSTOBJ_DATA	= 9
+} IptcRecord;
+</pre>
+<p>
+The record number that, together with the tag number (<a class="link" href="libiptcdata-tag.html#IptcTag" title="enum IptcTag"><span class="type">IptcTag</span></a>),
+uniquely identifies the purpose of a tag.
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><a name="IPTC-RECORD-OBJECT-ENV:CAPS"></a><span class="term"><code class="literal">IPTC_RECORD_OBJECT_ENV</code></span></p></td>
+<td>the record used for file information such
+as file format, version, unique identifier, etc.  This is often
+not used for photo-management applications.
+</td>
+</tr>
+<tr>
+<td><p><a name="IPTC-RECORD-APP-2:CAPS"></a><span class="term"><code class="literal">IPTC_RECORD_APP_2</code></span></p></td>
+<td>the record used for application-specific tags
+such as Caption, Keywords, etc.
+</td>
+</tr>
+<tr>
+<td><p><a name="IPTC-RECORD-APP-3:CAPS"></a><span class="term"><code class="literal">IPTC_RECORD_APP_3</code></span></p></td>
+<td>application-specific tags
+</td>
+</tr>
+<tr>
+<td><p><a name="IPTC-RECORD-APP-4:CAPS"></a><span class="term"><code class="literal">IPTC_RECORD_APP_4</code></span></p></td>
+<td>application-specific tags
+</td>
+</tr>
+<tr>
+<td><p><a name="IPTC-RECORD-APP-5:CAPS"></a><span class="term"><code class="literal">IPTC_RECORD_APP_5</code></span></p></td>
+<td>application-specific tags
+</td>
+</tr>
+<tr>
+<td><p><a name="IPTC-RECORD-APP-6:CAPS"></a><span class="term"><code class="literal">IPTC_RECORD_APP_6</code></span></p></td>
+<td>application-specific tags
+</td>
+</tr>
+<tr>
+<td><p><a name="IPTC-RECORD-PREOBJ-DATA:CAPS"></a><span class="term"><code class="literal">IPTC_RECORD_PREOBJ_DATA</code></span></p></td>
+<td>contains information about an encapsulated file
+</td>
+</tr>
+<tr>
+<td><p><a name="IPTC-RECORD-OBJ-DATA:CAPS"></a><span class="term"><code class="literal">IPTC_RECORD_OBJ_DATA</code></span></p></td>
+<td>the encapsulated file data (usually not used)
+</td>
+</tr>
+<tr>
+<td><p><a name="IPTC-RECORD-POSTOBJ-DATA:CAPS"></a><span class="term"><code class="literal">IPTC_RECORD_POSTOBJ_DATA</code></span></p></td>
+<td>followup information about an encapsulated file
+
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="IptcTag"></a><h3>enum IptcTag</h3>
+<pre class="programlisting">typedef enum {
+	IPTC_TAG_MODEL_VERSION		= 0,	/* Begin record 1 tags */
+	IPTC_TAG_DESTINATION		= 5,
+	IPTC_TAG_FILE_FORMAT		= 20,
+	IPTC_TAG_FILE_VERSION		= 22,
+	IPTC_TAG_SERVICE_ID		= 30,
+	IPTC_TAG_ENVELOPE_NUM		= 40,
+	IPTC_TAG_PRODUCT_ID		= 50,
+	IPTC_TAG_ENVELOPE_PRIORITY	= 60,
+	IPTC_TAG_DATE_SENT		= 70,
+	IPTC_TAG_TIME_SENT		= 80,
+	IPTC_TAG_CHARACTER_SET		= 90,
+	IPTC_TAG_UNO			= 100,
+	IPTC_TAG_ARM_ID			= 120,
+	IPTC_TAG_ARM_VERSION		= 122,	/* End record 1 tags */
+	IPTC_TAG_RECORD_VERSION		= 0,	/* Begin record 2 tags */
+	IPTC_TAG_OBJECT_TYPE		= 3,
+	IPTC_TAG_OBJECT_ATTRIBUTE	= 4,
+	IPTC_TAG_OBJECT_NAME		= 5,
+	IPTC_TAG_EDIT_STATUS		= 7,
+	IPTC_TAG_EDITORIAL_UPDATE	= 8,
+	IPTC_TAG_URGENCY		= 10,
+	IPTC_TAG_SUBJECT_REFERENCE	= 12,
+	IPTC_TAG_CATEGORY		= 15,
+	IPTC_TAG_SUPPL_CATEGORY		= 20,
+	IPTC_TAG_FIXTURE_ID		= 22,
+	IPTC_TAG_KEYWORDS		= 25,
+	IPTC_TAG_CONTENT_LOC_CODE	= 26,
+	IPTC_TAG_CONTENT_LOC_NAME	= 27,
+	IPTC_TAG_RELEASE_DATE		= 30,
+	IPTC_TAG_RELEASE_TIME		= 35,
+	IPTC_TAG_EXPIRATION_DATE	= 37,
+	IPTC_TAG_EXPIRATION_TIME	= 38,
+	IPTC_TAG_SPECIAL_INSTRUCTIONS	= 40,
+	IPTC_TAG_ACTION_ADVISED		= 42,
+	IPTC_TAG_REFERENCE_SERVICE	= 45,
+	IPTC_TAG_REFERENCE_DATE		= 47,
+	IPTC_TAG_REFERENCE_NUMBER	= 50,
+	IPTC_TAG_DATE_CREATED		= 55,
+	IPTC_TAG_TIME_CREATED		= 60,
+	IPTC_TAG_DIGITAL_CREATION_DATE	= 62,
+	IPTC_TAG_DIGITAL_CREATION_TIME	= 63,
+	IPTC_TAG_ORIGINATING_PROGRAM	= 65,
+	IPTC_TAG_PROGRAM_VERSION	= 70,
+	IPTC_TAG_OBJECT_CYCLE		= 75,
+	IPTC_TAG_BYLINE			= 80,
+	IPTC_TAG_BYLINE_TITLE		= 85,
+	IPTC_TAG_CITY			= 90,
+	IPTC_TAG_SUBLOCATION		= 92,
+	IPTC_TAG_STATE			= 95,
+	IPTC_TAG_COUNTRY_CODE		= 100,
+	IPTC_TAG_COUNTRY_NAME		= 101,
+	IPTC_TAG_ORIG_TRANS_REF		= 103,
+	IPTC_TAG_HEADLINE		= 105,
+	IPTC_TAG_CREDIT			= 110,
+	IPTC_TAG_SOURCE			= 115,
+	IPTC_TAG_COPYRIGHT_NOTICE	= 116,
+	IPTC_TAG_PICASA_UNKNOWN		= 117,
+	IPTC_TAG_CONTACT		= 118,
+	IPTC_TAG_CAPTION		= 120,
+	IPTC_TAG_WRITER_EDITOR		= 122,
+	IPTC_TAG_RASTERIZED_CAPTION	= 125,
+	IPTC_TAG_IMAGE_TYPE		= 130,
+	IPTC_TAG_IMAGE_ORIENTATION	= 131,
+	IPTC_TAG_LANGUAGE_ID		= 135,
+	IPTC_TAG_AUDIO_TYPE		= 150,
+	IPTC_TAG_AUDIO_SAMPLING_RATE	= 151,
+	IPTC_TAG_AUDIO_SAMPLING_RES	= 152,
+	IPTC_TAG_AUDIO_DURATION		= 153,
+	IPTC_TAG_AUDIO_OUTCUE		= 154,
+	IPTC_TAG_PREVIEW_FORMAT		= 200,
+	IPTC_TAG_PREVIEW_FORMAT_VER	= 201,
+	IPTC_TAG_PREVIEW_DATA		= 202,	/* End record 2 tags */
+	IPTC_TAG_SIZE_MODE		= 10,	/* Begin record 7 tags */
+	IPTC_TAG_MAX_SUBFILE_SIZE	= 20,
+	IPTC_TAG_SIZE_ANNOUNCED		= 90,
+	IPTC_TAG_MAX_OBJECT_SIZE	= 95,	/* End record 7 tags */
+	IPTC_TAG_SUBFILE		= 10,	/* Record 8 tags */
+	IPTC_TAG_CONFIRMED_DATA_SIZE	= 10	/* Record 9 tags */
+} IptcTag;
+</pre>
+<p>
+The tag number that, together with the record number (<a class="link" href="libiptcdata-tag.html#IptcRecord" title="enum IptcRecord"><span class="type">IptcRecord</span></a>),
+uniquely identifies the purpose of a tag.
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="IptcTagInfo"></a><h3>IptcTagInfo</h3>
+<pre class="programlisting">typedef struct {
+	IptcRecord	record;
+	IptcTag		tag;
+	const char     *name;
+	const char     *title;
+	const char     *description;
+	IptcFormat	format;
+	IptcMandatory	mandatory;
+	IptcRepeatable	repeatable;
+	unsigned int	minbytes;
+	unsigned int	maxbytes;
+} IptcTagInfo;
+</pre>
+<p>
+Contains static information about a specific tag (identified by its
+record-tag pair) from the IPTC IIM specificiation.  This info is for
+reference only and should never be modified by an application.
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><a class="link" href="libiptcdata-tag.html#IptcRecord" title="enum IptcRecord">IptcRecord</a> <em class="structfield"><code>record</code></em>;</span></p></td>
+<td>record number of the tag
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><a class="link" href="libiptcdata-tag.html#IptcTag" title="enum IptcTag">IptcTag</a> <em class="structfield"><code>tag</code></em>;</span></p></td>
+<td>dataset number of the tag
+</td>
+</tr>
+<tr>
+<td><p><span class="term">const char *<em class="structfield"><code>name</code></em>;</span></p></td>
+<td>English name of the tag (no spaces)
+</td>
+</tr>
+<tr>
+<td><p><span class="term">const char *<em class="structfield"><code>title</code></em>;</span></p></td>
+<td>English title of the tag (may contain spaces)
+</td>
+</tr>
+<tr>
+<td><p><span class="term">const char *<em class="structfield"><code>description</code></em>;</span></p></td>
+<td>English description of the tag
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><a class="link" href="libiptcdata-tag.html#IptcFormat" title="enum IptcFormat">IptcFormat</a> <em class="structfield"><code>format</code></em>;</span></p></td>
+<td>data format of the tag
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><a class="link" href="libiptcdata-tag.html#IptcMandatory" title="enum IptcMandatory">IptcMandatory</a> <em class="structfield"><code>mandatory</code></em>;</span></p></td>
+<td>whether the specification says the tag
+is required
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><a class="link" href="libiptcdata-tag.html#IptcRepeatable" title="enum IptcRepeatable">IptcRepeatable</a> <em class="structfield"><code>repeatable</code></em>;</span></p></td>
+<td>whether the specification says the tag
+can appear more than once
+</td>
+</tr>
+<tr>
+<td><p><span class="term">unsigned int <em class="structfield"><code>minbytes</code></em>;</span></p></td>
+<td>minimum number of bytes in the tag value
+</td>
+</tr>
+<tr>
+<td><p><span class="term">unsigned int <em class="structfield"><code>maxbytes</code></em>;</span></p></td>
+<td>maximum number of bytes in the tag value
+
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="IptcFormat"></a><h3>enum IptcFormat</h3>
+<pre class="programlisting">typedef enum {
+	IPTC_FORMAT_UNKNOWN,
+	IPTC_FORMAT_BINARY,
+	IPTC_FORMAT_BYTE,
+	IPTC_FORMAT_SHORT,
+	IPTC_FORMAT_LONG,
+	IPTC_FORMAT_STRING,
+	IPTC_FORMAT_NUMERIC_STRING,
+	IPTC_FORMAT_DATE,
+	IPTC_FORMAT_TIME
+} IptcFormat;
+</pre>
+<p>
+The possible data formats for a tag's value, derived from the IPTC IIM
+specification.  Integer formats are always represented with the most
+significant byte first (big-endian) in the IPTC bytestream.
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><a name="IPTC-FORMAT-UNKNOWN:CAPS"></a><span class="term"><code class="literal">IPTC_FORMAT_UNKNOWN</code></span></p></td>
+<td>Unknown format (for a tag not in the specification)
+</td>
+</tr>
+<tr>
+<td><p><a name="IPTC-FORMAT-BINARY:CAPS"></a><span class="term"><code class="literal">IPTC_FORMAT_BINARY</code></span></p></td>
+<td>Binary data (variable length)
+</td>
+</tr>
+<tr>
+<td><p><a name="IPTC-FORMAT-BYTE:CAPS"></a><span class="term"><code class="literal">IPTC_FORMAT_BYTE</code></span></p></td>
+<td>1-byte integer
+</td>
+</tr>
+<tr>
+<td><p><a name="IPTC-FORMAT-SHORT:CAPS"></a><span class="term"><code class="literal">IPTC_FORMAT_SHORT</code></span></p></td>
+<td>2-byte integer (big-endian)
+</td>
+</tr>
+<tr>
+<td><p><a name="IPTC-FORMAT-LONG:CAPS"></a><span class="term"><code class="literal">IPTC_FORMAT_LONG</code></span></p></td>
+<td>4-byte integer (big-endian)
+</td>
+</tr>
+<tr>
+<td><p><a name="IPTC-FORMAT-STRING:CAPS"></a><span class="term"><code class="literal">IPTC_FORMAT_STRING</code></span></p></td>
+<td>String data (variable length, of any character set)
+</td>
+</tr>
+<tr>
+<td><p><a name="IPTC-FORMAT-NUMERIC-STRING:CAPS"></a><span class="term"><code class="literal">IPTC_FORMAT_NUMERIC_STRING</code></span></p></td>
+<td>String containing only numerals (variable length)
+</td>
+</tr>
+<tr>
+<td><p><a name="IPTC-FORMAT-DATE:CAPS"></a><span class="term"><code class="literal">IPTC_FORMAT_DATE</code></span></p></td>
+<td>String of the format "YYYYMMDD" (8 bytes)
+</td>
+</tr>
+<tr>
+<td><p><a name="IPTC-FORMAT-TIME:CAPS"></a><span class="term"><code class="literal">IPTC_FORMAT_TIME</code></span></p></td>
+<td>String of the format "HHMMSS±HHMM" where the second
+HHMM defines the timezone offset (11 bytes)
+
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="IptcMandatory"></a><h3>enum IptcMandatory</h3>
+<pre class="programlisting">typedef enum {
+	IPTC_OPTIONAL = 0,
+	IPTC_MANDATORY = 1
+} IptcMandatory;
+</pre>
+<p>
+Whether a tag is mandatory according to the IPTC IIM specification.
+Note that most applications ignore this aspect of the specification
+since the spec was designed to encapsulate the media file rather than
+the other way around (which is how nearly all applications use it).
+This renders most mandatory tags unnecessary.
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><a name="IPTC-OPTIONAL:CAPS"></a><span class="term"><code class="literal">IPTC_OPTIONAL</code></span></p></td>
+<td>tag is allowed to be absent
+</td>
+</tr>
+<tr>
+<td><p><a name="IPTC-MANDATORY:CAPS"></a><span class="term"><code class="literal">IPTC_MANDATORY</code></span></p></td>
+<td>tag must be present
+
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="IptcRepeatable"></a><h3>enum IptcRepeatable</h3>
+<pre class="programlisting">typedef enum {
+	IPTC_NOT_REPEATABLE = 0,
+	IPTC_REPEATABLE = 1
+} IptcRepeatable;
+</pre>
+<p>
+Whether a tag can occur more than once according to the IPTC IIM
+specification.  For example, the "Keywords" tag only contains a single
+keyword, but the tag itself is repeated for media that references more
+than one keyword.
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><a name="IPTC-NOT-REPEATABLE:CAPS"></a><span class="term"><code class="literal">IPTC_NOT_REPEATABLE</code></span></p></td>
+<td>tag can only appear once
+</td>
+</tr>
+<tr>
+<td><p><a name="IPTC-REPEATABLE:CAPS"></a><span class="term"><code class="literal">IPTC_REPEATABLE</code></span></p></td>
+<td>tag can be repeated
+
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="iptc-tag-get-name"></a><h3>iptc_tag_get_name ()</h3>
+<pre class="programlisting">const char*         iptc_tag_get_name                   (<a class="link" href="libiptcdata-tag.html#IptcRecord" title="enum IptcRecord">IptcRecord</a> record,
+                                                         <a class="link" href="libiptcdata-tag.html#IptcTag" title="enum IptcTag">IptcTag</a> tag);</pre>
+<p>
+Retrieves the name of a tag.  The name is derived from the IPTC
+IIM specification and gives an indication of the purpose of a
+particular tag.  The name will consist of ASCII characters with
+no spaces, for example "CopyrightNotice".</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>record</code></em> :</span></p></td>
+<td> record number of tag
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>tag</code></em> :</span></p></td>
+<td> dataset number of tag
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> a static string containing the tag name, NULL if none found
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="iptc-tag-get-title"></a><h3>iptc_tag_get_title ()</h3>
+<pre class="programlisting">char*               iptc_tag_get_title                  (<a class="link" href="libiptcdata-tag.html#IptcRecord" title="enum IptcRecord">IptcRecord</a> record,
+                                                         <a class="link" href="libiptcdata-tag.html#IptcTag" title="enum IptcTag">IptcTag</a> tag);</pre>
+<p>
+Retrieves the title of a tag.  The title is similar to
+the name, except it will be translated to the current
+locale (if available) and may contain spaces, for example
+"Copyright Notice".  It is appropriate for the title to appear
+in user interfaces.  The return value will be encoding using the UTF-8
+character set.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>record</code></em> :</span></p></td>
+<td> record number of tag
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>tag</code></em> :</span></p></td>
+<td> dataset number of tag
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> a static string containing the tag title, empty string
+if none found
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="iptc-tag-get-description"></a><h3>iptc_tag_get_description ()</h3>
+<pre class="programlisting">char*               iptc_tag_get_description            (<a class="link" href="libiptcdata-tag.html#IptcRecord" title="enum IptcRecord">IptcRecord</a> record,
+                                                         <a class="link" href="libiptcdata-tag.html#IptcTag" title="enum IptcTag">IptcTag</a> tag);</pre>
+<p>
+Retrieves the description of a tag, which explains the purpose
+of the tag from the IPTC IIM specification.  It is translated
+to the current locale if available.  The return value will
+be encoded using the UTF-8 character set.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>record</code></em> :</span></p></td>
+<td> record number of tag
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>tag</code></em> :</span></p></td>
+<td> dataset number of tag
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> a static string containing the tag desciption, empty
+string if none found
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="iptc-tag-get-info"></a><h3>iptc_tag_get_info ()</h3>
+<pre class="programlisting">const <a class="link" href="libiptcdata-tag.html#IptcTagInfo" title="IptcTagInfo">IptcTagInfo</a>*  iptc_tag_get_info                   (<a class="link" href="libiptcdata-tag.html#IptcRecord" title="enum IptcRecord">IptcRecord</a> record,
+                                                         <a class="link" href="libiptcdata-tag.html#IptcTag" title="enum IptcTag">IptcTag</a> tag);</pre>
+<p>
+Retrieves the <a class="link" href="libiptcdata-tag.html#IptcTagInfo" title="IptcTagInfo"><span class="type">IptcTagInfo</span></a> structure containing information about the
+tag from the IPTC IIM specification such as purpose, data format,
+and minimum and maximum lengths.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>record</code></em> :</span></p></td>
+<td> record number of tag
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>tag</code></em> :</span></p></td>
+<td> dataset number of tag
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> a pointer to a static <a class="link" href="libiptcdata-tag.html#IptcTagInfo" title="IptcTagInfo"><span class="type">IptcTagInfo</span></a> structure or NULL if
+the tag is not found.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="iptc-format-get-name"></a><h3>iptc_format_get_name ()</h3>
+<pre class="programlisting">char*               iptc_format_get_name                (<a class="link" href="libiptcdata-tag.html#IptcFormat" title="enum IptcFormat">IptcFormat</a> format);</pre>
+<p>
+Retrieves a string version of a data format.  For example,
+<a class="link" href="libiptcdata-tag.html#IPTC-FORMAT-STRING:CAPS"><code class="literal">IPTC_FORMAT_STRING</code></a> returns "String".</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>format</code></em> :</span></p></td>
+<td> the format to be retrieved
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> a static string in the native locale
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="iptc-tag-find-by-name"></a><h3>iptc_tag_find_by_name ()</h3>
+<pre class="programlisting">int                 iptc_tag_find_by_name               (const char *name,
+                                                         <a class="link" href="libiptcdata-tag.html#IptcRecord" title="enum IptcRecord">IptcRecord</a> *record,
+                                                         <a class="link" href="libiptcdata-tag.html#IptcTag" title="enum IptcTag">IptcTag</a> *tag);</pre>
+<p>
+Looks up the record and tag numbers for a tag specified by name.  For
+example, searching for "Caption" would return 2:120 in the record and
+tag variables.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>name</code></em> :</span></p></td>
+<td> the name to search for
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>record</code></em> :</span></p></td>
+<td> output variable to store the record number
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>tag</code></em> :</span></p></td>
+<td> output variable to store the tag number
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> 0 on success, -1 on failure or if the tag name was not found
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+</div>
+<div class="footer">
+<hr>
+          Generated by GTK-Doc V1.10</div>
+</body>
+</html>

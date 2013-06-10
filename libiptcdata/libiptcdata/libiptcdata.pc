@@ -1,0 +1,11 @@
+prefix=/usr/local
+exec_prefix=${prefix}
+libdir=${exec_prefix}/lib
+includedir=${prefix}/include
+
+Name: libiptcdata
+Description: Library for easy access to IPTC data
+Requires:
+Version: 1.0.4
+Libs: -L${libdir} -liptcdata
+Cflags: -I${includedir}/libiptcdata -I${includedir}

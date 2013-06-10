@@ -1,0 +1,138 @@
+<!-- ##### SECTION Title ##### -->
+Error logging
+
+<!-- ##### SECTION Short_Description ##### -->
+Hooks for defining your own log-handling functions
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### STRUCT IptcLog ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### FUNCTION iptc_log_new ##### -->
+<para>
+
+</para>
+
+@Returns: 
+
+
+<!-- ##### FUNCTION iptc_log_new_mem ##### -->
+<para>
+
+</para>
+
+@Param1: 
+@Returns: 
+
+
+<!-- ##### FUNCTION iptc_log_ref ##### -->
+<para>
+
+</para>
+
+@log: 
+
+
+<!-- ##### FUNCTION iptc_log_unref ##### -->
+<para>
+
+</para>
+
+@log: 
+
+
+<!-- ##### FUNCTION iptc_log_free ##### -->
+<para>
+
+</para>
+
+@log: 
+
+
+<!-- ##### ENUM IptcLogCode ##### -->
+<para>
+
+</para>
+
+@IPTC_LOG_CODE_NONE: 
+@IPTC_LOG_CODE_DEBUG: 
+@IPTC_LOG_CODE_NO_MEMORY: 
+@IPTC_LOG_CODE_CORRUPT_DATA: 
+
+<!-- ##### FUNCTION iptc_log_code_get_title ##### -->
+<para>
+
+</para>
+
+@Param1: 
+@Returns: 
+
+
+<!-- ##### FUNCTION iptc_log_code_get_message ##### -->
+<para>
+
+</para>
+
+@Param1: 
+@Returns: 
+
+
+<!-- ##### USER_FUNCTION IptcLogFunc ##### -->
+<para>
+
+</para>
+
+@log: 
+@Param2: 
+@domain: 
+@format: 
+@args: 
+@data: 
+
+
+<!-- ##### FUNCTION iptc_log_set_func ##### -->
+<para>
+
+</para>
+
+@log: 
+@func: 
+@data: 
+
+
+<!-- ##### FUNCTION iptc_log ##### -->
+<para>
+
+</para>
+
+@log: 
+@Param2: 
+@domain: 
+@format: 
+
+
+<!-- ##### MACRO IPTC_LOG_NO_MEMORY ##### -->
+<para>
+
+</para>
+
+@l: 
+@d: 
+@s: 
+
+

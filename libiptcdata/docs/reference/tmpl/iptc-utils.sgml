@@ -1,0 +1,127 @@
+<!-- ##### SECTION Title ##### -->
+Byte ordering
+
+<!-- ##### SECTION Short_Description ##### -->
+functions for decoding integer types of different byte-orders
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### ENUM IptcByteOrder ##### -->
+<para>
+
+</para>
+
+@IPTC_BYTE_ORDER_MOTOROLA: 
+@IPTC_BYTE_ORDER_INTEL: 
+
+<!-- ##### TYPEDEF IptcByte ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### TYPEDEF IptcShort ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### TYPEDEF IptcLong ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### TYPEDEF IptcSLong ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### FUNCTION iptc_get_short ##### -->
+<para>
+
+</para>
+
+@b: 
+@order: 
+@Returns: 
+
+
+<!-- ##### FUNCTION iptc_get_long ##### -->
+<para>
+
+</para>
+
+@b: 
+@order: 
+@Returns: 
+
+
+<!-- ##### FUNCTION iptc_get_slong ##### -->
+<para>
+
+</para>
+
+@b: 
+@order: 
+@Returns: 
+
+
+<!-- ##### FUNCTION iptc_set_short ##### -->
+<para>
+
+</para>
+
+@b: 
+@order: 
+@value: 
+
+
+<!-- ##### FUNCTION iptc_set_long ##### -->
+<para>
+
+</para>
+
+@b: 
+@order: 
+@value: 
+
+
+<!-- ##### FUNCTION iptc_set_slong ##### -->
+<para>
+
+</para>
+
+@b: 
+@order: 
+@value: 
+
+
+<!-- ##### MACRO MIN ##### -->
+<para>
+
+</para>
+
+@a: 
+@b: 
+
+
+<!-- ##### MACRO IPTC_TAG_SUBSEC_TIME ##### -->
+<para>
+
+</para>
+
+
+

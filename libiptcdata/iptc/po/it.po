@@ -1,0 +1,261 @@
+# Italian translation for iptc
+# Copyright (c) 2009 Rosetta Contributors and Canonical Ltd 2009
+# This file is distributed under the same license as the iptc package.
+#
+# Carmelo Leggio <mighty.carm@gmail.com>, 2009
+# Milo Casagrande <milo@ubuntu.com>, 2009
+# Gruppo traduzione Italiano di Ubuntu <gruppo-traduzione@ubuntu-it.org>, 2009
+#
+# Collegamenti utili:
+#
+# http://www.exiv2.org/iptc.html
+# http://blogninja.com/doc/libexiv2-0.10/html/tags-iptc.html
+# (PDF!!!) http://www.iptc.org/std/IIM/4.1/specification/IIMV4.1.pdf
+#
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: iptc\n"
+"Report-Msgid-Bugs-To: dcm@acm.org\n"
+"POT-Creation-Date: 2007-05-15 02:36-0400\n"
+"PO-Revision-Date: 2009-06-17 18:51+0200\n"
+"Last-Translator: Milo Casagrande <milo@ubuntu.com>\n"
+"Language-Team: Italian <tp@lists.linux.it>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Launchpad-Export-Date: 2009-06-07 12:32+0000\n"
+"X-Generator: Launchpad (build Unknown)\n"
+
+#: iptc/main.c:29
+msgid ""
+"Examples:\n"
+"  iptc image.jpg       # display the IPTC metadata contained in image.jpg\n"
+"  iptc -m Caption -v \"Foo\" *.jpg\n"
+"                       # set caption \"Foo\" in all jpegs of the curr. dir.\n"
+"  iptc -a Keywords -v \"vacation\" *.jpg\n"
+"  iptc -a 2:25 -v \"vacation\" *.jpg\n"
+"                       # either command adds keyword \"vacation\" to all "
+"jpegs\n"
+"  iptc -d Keywords:1 image.jpg\n"
+"                       # removes keyword number 1 (the 2nd) from image.jpg\n"
+"  iptc -d Keywords:all image.jpg\n"
+"                       # removes all keywords from image.jpg\n"
+"\n"
+"Operations:\n"
+"  -a, --add=TAG        add new tag with identifier TAG\n"
+"  -m, --modify=TAG     modify tag with identifier TAG (add if not present)\n"
+"  -v, --value=VALUE    value for added/modified tag\n"
+"  -d, --delete=TAG     delete tag with identifier TAG\n"
+"  -p, --print=TAG      print value of tag with identifier TAG\n"
+"      --add-version    add IPTC version number into the headers\n"
+"      --add-encoding   add text encoding specification (UTF-8) into headers\n"
+"\n"
+"Options:\n"
+"  -q, --quiet          produce less verbose output\n"
+"  -b, --backup         backup any modified files\n"
+"      --no-sort        do not sort tags before saving\n"
+"\n"
+"Informative output:\n"
+"  -l, --list           list the names of all known tags (i.e. Caption, "
+"etc.)\n"
+"  -L, --list-desc=TAG  print the name and description of TAG\n"
+"      --help           print this help, then exit\n"
+"      --version        print iptc program version number, then exit\n"
+msgstr ""
+"Esempi:\n"
+"  iptc immagine.jpg # Mostra i metadati IPTC contenuti in immagine.jpg\n"
+"  iptc -m Caption -v \"Foo\" *.jpg\n"
+"                       # Imposta l'intestazione a \"Foo\" in tutti i file "
+"jpeg della directory corrente\n"
+"  iptc -a Keywords -v \"vacanza\" *.jpg\n"
+"  iptc -a 2:25 -v \"vacanza\" *.jpg\n"
+"                       # Entrambi i comandi aggiungono la parola chiave "
+"\"vacanza\" a tutti i file jpeg\n"
+"  iptc -d Keywords:1 immagine.jpg\n"
+"                       # Rimuove la parola chiave numero 1 (la 2a) da "
+"immagine.jpg\n"
+"  iptc -d Keywords:all immagine.jpg\n"
+"                       # Rimuove tutte le parole chiave da immagine.jpg\n"
+"\n"
+"Operazioni:\n"
+"  -a, --add=ETICHETTA Aggiunge una nuova ETICHETTA\n"
+"  -m, --modify=ETICHETTA Modifica l'ETICHETTA (la aggiunge se assente)\n"
+"  -v, --value=VALORE Valore per l'etichetta aggiunta/modificata\n"
+"  -d, --delete=ETICHETTA Elimina l'ETICHETTA\n"
+"  -p, --print=ETICHETTA Stampa il valore dell'ETICHETTA\n"
+"      --add-version Aggiunge il numero di versione di IPTC nelle "
+"intestazioni\n"
+"      --add-encoding Aggiunge la specifica sulla codifica del testo (UTF-8) "
+"nelle intestazioni\n"
+"\n"
+"Opzioni:\n"
+"  -q, --quiet Produce un output meno prolisso\n"
+"  -b, --backup Salva una copia di sicurezza dei file modificati\n"
+"      --no-sort Non ordina le etichette prima del salvataggio\n"
+"\n"
+"Output informativo:\n"
+"  -l, --list Elenca i nomi di tutte le etichette note (cioè Caption, "
+"ecc...)\n"
+"  -L, --list-desc=ETICHETTA Stampa il nome e la descrizione di ETICHETTA\n"
+"      --help Stampa questo aiuto ed esce\n"
+"      --version Stampa il numero di versione del programma iptc ed esce\n"
+
+#: iptc/main.c:67
+msgid ""
+"Utility for viewing and modifying the contents of IPTC metadata in images"
+msgstr ""
+"Utilità per visualizzare e modificare i contenuti dei metadati IPTC nelle "
+"immagini"
+
+#: iptc/main.c:69
+msgid "Usage"
+msgstr "Uso"
+
+#: iptc/main.c:69
+msgid "OPTIONS"
+msgstr "OPZIONI"
+
+#: iptc/main.c:69
+msgid "FILE"
+msgstr "FILE"
+
+#: iptc/main.c:77
+msgid "Written by David Moore <dcm@acm.org>"
+msgstr "Scritto da David Moore <dcm@acm.org>"
+
+#: iptc/main.c:223 iptc/main.c:260
+msgid "Tag"
+msgstr "Etich."
+
+#: iptc/main.c:223 iptc/main.c:260
+msgid "Name"
+msgstr "Nome"
+
+#: iptc/main.c:261
+msgid "Type"
+msgstr "Tipo"
+
+#: iptc/main.c:261
+msgid "Size"
+msgstr "Dimensione"
+
+#: iptc/main.c:261
+msgid "Value"
+msgstr "Valore"
+
+#: iptc/main.c:376
+#, c-format
+msgid "%s: Could not find dataset %d:%d, adding it\n"
+msgstr "%s: impossibile trovare il dataset %d: %d, viene aggiunto\n"
+
+#: iptc/main.c:383 iptc/main.c:394
+#, c-format
+msgid "%s: Could not find dataset %d:%d"
+msgstr "%s: impossibile trovare il dataset %d: %d"
+
+#: iptc/main.c:421
+#, c-format
+msgid "%s: Could not find dataset %d:%d\n"
+msgstr "%s: impossibile trovare il dataset %d: %d\n"
+
+#: iptc/main.c:586 iptc/main.c:610
+#, c-format
+msgid "\"%s\" is not a known tag\n"
+msgstr "\"%s\" non è un'etichetta conosciuta\n"
+
+#: iptc/main.c:590
+#, c-format
+msgid "No information about tag\n"
+msgstr "Nessuna informazione riguardo l'etichetta\n"
+
+#: iptc/main.c:606 iptc/main.c:640
+#, c-format
+msgid "Must specify value for add/modify operation\n"
+msgstr "Occorre specificare il valore per l'operazione di aggiunta/modifica\n"
+
+#: iptc/main.c:636
+#, c-format
+msgid "Must specify tag to add or modify\n"
+msgstr "Occorre specificare l'etichetta da aggiungere o modificare\n"
+
+#: iptc/main.c:655
+#, c-format
+msgid "Value must be an integer\n"
+msgstr "Il valore deve essere un numero intero\n"
+
+#: iptc/main.c:702
+#, c-format
+msgid "Error: Must specify value for add/modify operation\n"
+msgstr ""
+"Errore: è necessario specificare il valore per l'operazione di aggiunta/"
+"modifica\n"
+
+#: iptc/main.c:708
+#, c-format
+msgid "Error: Must specify a file\n"
+msgstr "Errore: è necessario specificare un file\n"
+
+#: iptc/main.c:725
+#, c-format
+msgid "Error opening %s\n"
+msgstr "Errore nell'aprire %s\n"
+
+#: iptc/main.c:732
+#, c-format
+msgid "Error parsing %s\n"
+msgstr "Errore nell'analizzare %s\n"
+
+#: iptc/main.c:739
+#, c-format
+msgid "Error parsing headers of %s\n"
+msgstr "Errore nell'analizzare le intestazioni di %s\n"
+
+#: iptc/main.c:752
+#, c-format
+msgid "%s: no changes to save\n"
+msgstr "%s: nessuna modifica da salvare\n"
+
+#: iptc/main.c:767
+#, c-format
+msgid ""
+"Warning: Strings encoded in UTF-8 have been added to the IPTC data, but\n"
+"pre-existing data may have been encoded with a different character set.\n"
+msgstr ""
+"Attenzione: le stringhe codificate in UTF-8 sono state aggiunte ai dati "
+"IPTC, ma\n"
+"i dati preesistenti potrebbero essere stati codificati con un altro set di "
+"caratteri.\n"
+
+#: iptc/main.c:785
+msgid "No IPTC data found"
+msgstr "Nessun dato IPTC trovato"
+
+#: iptc/main.c:797
+msgid "Failed to generate IPTC bytestream"
+msgstr "Generazione del bytestream IPTC non riuscita"
+
+#: iptc/main.c:806
+msgid "Failed to generate PS3 header"
+msgstr "Generazione intestazione PS3 non riuscita"
+
+#: iptc/main.c:813
+msgid "Failed to reopen file"
+msgstr "Riapertura del file non riuscita"
+
+#: iptc/main.c:820
+msgid "Can't open temporary file for writing"
+msgstr "Impossibile aprire il file temporaneo in scrittura"
+
+#: iptc/main.c:836
+msgid "Failed to create backup file, aborting"
+msgstr "Creazione della copia di sicurezza non riuscita, interruzione in corso"
+
+#: iptc/main.c:844 iptc/main.c:858
+msgid "Failed to save image"
+msgstr "Salvataggio dell'immagine non riuscito"
+
+#: iptc/main.c:854
+#, c-format
+msgid "%s: saved\n"
+msgstr "%s: salvato\n"

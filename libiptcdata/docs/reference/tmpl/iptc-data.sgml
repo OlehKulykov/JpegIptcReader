@@ -1,0 +1,302 @@
+<!-- ##### SECTION Title ##### -->
+IPTC Data
+
+<!-- ##### SECTION Short_Description ##### -->
+creating, loading, saving, and editing a collection of IPTC datasets
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+The #IptcData object is the top-level container for a collection of IPTC metadata tags.
+Each of these tags is stored in an #IptcDataSet object.
+</para>
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### STRUCT IptcData ##### -->
+<para>
+Represents the collection of datasets that make up a IPTC data block.
+</para>
+
+@datasets: array of pointers to the datasets in the collection
+@count: the number of datasets in the collection
+@priv: private data
+
+<!-- ##### FUNCTION iptc_data_new ##### -->
+<para>
+
+</para>
+
+@Returns: 
+
+
+<!-- ##### FUNCTION iptc_data_new_mem ##### -->
+<para>
+
+</para>
+
+@mem: 
+@Returns: 
+
+
+<!-- ##### FUNCTION iptc_data_ref ##### -->
+<para>
+
+</para>
+
+@data: 
+
+
+<!-- ##### FUNCTION iptc_data_unref ##### -->
+<para>
+
+</para>
+
+@data: 
+
+
+<!-- ##### FUNCTION iptc_data_free ##### -->
+<para>
+
+</para>
+
+@data: 
+
+
+<!-- ##### FUNCTION iptc_data_new_from_jpeg ##### -->
+<para>
+
+</para>
+
+@path: 
+@Returns: 
+
+
+<!-- ##### FUNCTION iptc_data_new_from_data ##### -->
+<para>
+
+</para>
+
+@buf: 
+@size: 
+@Returns: 
+
+
+<!-- ##### FUNCTION iptc_data_load ##### -->
+<para>
+
+</para>
+
+@data: 
+@buf: 
+@size: 
+@Returns: 
+
+
+<!-- ##### FUNCTION iptc_data_save ##### -->
+<para>
+
+</para>
+
+@data: 
+@buf: 
+@size: 
+@Returns: 
+
+
+<!-- ##### FUNCTION iptc_data_free_buf ##### -->
+<para>
+
+</para>
+
+@data: 
+@buf: 
+
+
+<!-- ##### FUNCTION iptc_data_get_dataset ##### -->
+<para>
+
+</para>
+
+@data: 
+@record: 
+@tag: 
+@Returns: 
+
+
+<!-- ##### FUNCTION iptc_data_get_next_dataset ##### -->
+<para>
+
+</para>
+
+@data: 
+@ds: 
+@record: 
+@tag: 
+@Returns: 
+
+
+<!-- ##### FUNCTION iptc_data_add_dataset ##### -->
+<para>
+
+</para>
+
+@data: 
+@ds: 
+@Returns: 
+
+
+<!-- ##### FUNCTION iptc_data_add_dataset_before ##### -->
+<para>
+
+</para>
+
+@data: 
+@ds: 
+@newds: 
+@Returns: 
+
+
+<!-- ##### FUNCTION iptc_data_add_dataset_after ##### -->
+<para>
+
+</para>
+
+@data: 
+@ds: 
+@newds: 
+@Returns: 
+
+
+<!-- ##### FUNCTION iptc_data_remove_dataset ##### -->
+<para>
+
+</para>
+
+@data: 
+@ds: 
+@Returns: 
+
+
+<!-- ##### USER_FUNCTION IptcDataForeachDataSetFunc ##### -->
+<para>
+Application callback executed for each dataset from
+iptc_data_foreach_dataset().
+</para>
+
+@dataset: the dataset
+@user_data: the same @user_data passed to iptc_data_foreach_dataset()
+
+
+<!-- ##### FUNCTION iptc_data_foreach_dataset ##### -->
+<para>
+
+</para>
+
+@data: 
+@func: 
+@user_data: 
+
+
+<!-- ##### FUNCTION iptc_data_sort ##### -->
+<para>
+
+</para>
+
+@data: 
+
+
+<!-- ##### ENUM IptcEncoding ##### -->
+<para>
+
+</para>
+
+@IPTC_ENCODING_UNKNOWN: 
+@IPTC_ENCODING_UNSPECIFIED: 
+@IPTC_ENCODING_UTF8: 
+
+<!-- ##### FUNCTION iptc_data_get_encoding ##### -->
+<para>
+
+</para>
+
+@data: 
+@Returns: 
+
+
+<!-- ##### FUNCTION iptc_data_set_encoding_utf8 ##### -->
+<para>
+
+</para>
+
+@data: 
+@Returns: 
+
+
+<!-- ##### MACRO IPTC_IIM_VERSION ##### -->
+<para>
+The version of the IPTC IIM specification implemented by this library.
+</para>
+
+
+
+<!-- ##### FUNCTION iptc_data_set_version ##### -->
+<para>
+
+</para>
+
+@data: 
+@version: 
+@Returns: 
+
+
+<!-- ##### FUNCTION iptc_data_add_dataset_with_value ##### -->
+<para>
+
+</para>
+
+@data: 
+@record: 
+@tag: 
+@value: 
+@validate: 
+@Returns: 
+
+
+<!-- ##### FUNCTION iptc_data_add_dataset_with_contents ##### -->
+<para>
+
+</para>
+
+@data: 
+@record: 
+@tag: 
+@buf: 
+@size: 
+@validate: 
+@Returns: 
+
+
+<!-- ##### FUNCTION iptc_data_dump ##### -->
+<para>
+
+</para>
+
+@data: 
+@indent: 
+
+
+<!-- ##### FUNCTION iptc_data_log ##### -->
+<para>
+
+</para>
+
+@data: 
+@log: 
+
+

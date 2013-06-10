@@ -1,0 +1,229 @@
+<!-- ##### SECTION Title ##### -->
+Datasets
+
+<!-- ##### SECTION Short_Description ##### -->
+manipulating a tag identifier and its associated value
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+The #IptcDataSet object contains a record number, dataset number, and
+data.  The record and dataset (tag) number uniquely define the purpose of
+the dataset according to the IPTC IIM specification.  The data is the
+contents of the tag.
+</para>
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### STRUCT IptcDataSet ##### -->
+<para>
+An IPTC dataset, which associates a record/tag pair with a value.
+</para>
+
+@record: the record number
+@tag: the dataset number
+@info: information about the tag from the IPTC IIM specification
+@data: the value of the tag
+@size: the length of @data in bytes
+@parent: the #IptcData object that contains this dataset or NULL
+if it is not contained
+@priv: private data
+
+<!-- ##### FUNCTION iptc_dataset_new ##### -->
+<para>
+
+</para>
+
+@Returns: 
+
+
+<!-- ##### FUNCTION iptc_dataset_new_mem ##### -->
+<para>
+
+</para>
+
+@mem: 
+@Returns: 
+
+
+<!-- ##### FUNCTION iptc_dataset_copy ##### -->
+<para>
+
+</para>
+
+@dataset: 
+@Returns: 
+
+
+<!-- ##### FUNCTION iptc_dataset_ref ##### -->
+<para>
+
+</para>
+
+@dataset: 
+
+
+<!-- ##### FUNCTION iptc_dataset_unref ##### -->
+<para>
+
+</para>
+
+@dataset: 
+
+
+<!-- ##### FUNCTION iptc_dataset_free ##### -->
+<para>
+
+</para>
+
+@dataset: 
+
+
+<!-- ##### FUNCTION iptc_dataset_get_format ##### -->
+<para>
+
+</para>
+
+@dataset: 
+@Returns: 
+
+
+<!-- ##### FUNCTION iptc_dataset_get_data ##### -->
+<para>
+
+</para>
+
+@dataset: 
+@buf: 
+@size: 
+@Returns: 
+
+
+<!-- ##### FUNCTION iptc_dataset_get_value ##### -->
+<para>
+
+</para>
+
+@dataset: 
+@Returns: 
+
+
+<!-- ##### FUNCTION iptc_dataset_get_date ##### -->
+<para>
+
+</para>
+
+@dataset: 
+@year: 
+@month: 
+@day: 
+@Returns: 
+
+
+<!-- ##### FUNCTION iptc_dataset_get_time ##### -->
+<para>
+
+</para>
+
+@dataset: 
+@hour: 
+@min: 
+@sec: 
+@tz: 
+@Returns: 
+
+
+<!-- ##### FUNCTION iptc_dataset_set_tag ##### -->
+<para>
+
+</para>
+
+@dataset: 
+@record: 
+@tag: 
+
+
+<!-- ##### ENUM IptcValidate ##### -->
+<para>
+Whether the value of a dataset should be validated to meet the IPTC
+IIM specification.
+</para>
+
+@IPTC_DONT_VALIDATE: do not check the value against the specification
+@IPTC_VALIDATE: check the value against the specification
+
+<!-- ##### FUNCTION iptc_dataset_set_data ##### -->
+<para>
+
+</para>
+
+@dataset: 
+@buf: 
+@size: 
+@validate: 
+@Returns: 
+
+
+<!-- ##### FUNCTION iptc_dataset_set_value ##### -->
+<para>
+
+</para>
+
+@dataset: 
+@value: 
+@validate: 
+@Returns: 
+
+
+<!-- ##### FUNCTION iptc_dataset_set_date ##### -->
+<para>
+
+</para>
+
+@dataset: 
+@year: 
+@month: 
+@day: 
+@validate: 
+@Returns: 
+
+
+<!-- ##### FUNCTION iptc_dataset_set_time ##### -->
+<para>
+
+</para>
+
+@dataset: 
+@hour: 
+@min: 
+@sec: 
+@tz: 
+@validate: 
+@Returns: 
+
+
+<!-- ##### FUNCTION iptc_dataset_get_as_str ##### -->
+<para>
+
+</para>
+
+@dataset: 
+@buf: 
+@size: 
+@Returns: 
+
+
+<!-- ##### FUNCTION iptc_dataset_dump ##### -->
+<para>
+
+</para>
+
+@dataset: 
+@indent: 
+
+

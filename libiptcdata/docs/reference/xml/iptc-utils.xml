@@ -1,0 +1,251 @@
+<?xml version="1.0"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN" 
+               "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
+<!ENTITY iptc-overview SYSTEM "overview.sgml">
+<!ENTITY iptc-about SYSTEM "about.sgml">
+<!ENTITY iptc-commandline SYSTEM "commandline.sgml">
+<!ENTITY iptc-i18n SYSTEM "i18n.sgml">
+<!ENTITY iptc-libjpeg SYSTEM "libjpeg.sgml">
+<!ENTITY version SYSTEM "version.xml">
+]>
+<refentry id="libiptcdata-utils">
+<refmeta>
+<refentrytitle role="top_of_page" id="libiptcdata-utils.top_of_page">Byte ordering</refentrytitle>
+<manvolnum>3</manvolnum>
+<refmiscinfo>LIBIPTCDATA Library</refmiscinfo>
+</refmeta>
+
+<refnamediv>
+<refname>Byte ordering</refname>
+<refpurpose>functions for decoding integer types of different byte-orders</refpurpose>
+<!--[<xref linkend="desc" endterm="desc.title"/>]-->
+</refnamediv>
+
+<refsynopsisdiv id="libiptcdata-utils.synopsis" role="synopsis">
+<title role="synopsis.title">Synopsis</title>
+
+<synopsis>
+enum                <link linkend="IptcByteOrder">IptcByteOrder</link>;
+typedef             <link linkend="IptcByte">IptcByte</link>;
+typedef             <link linkend="IptcShort">IptcShort</link>;
+typedef             <link linkend="IptcLong">IptcLong</link>;
+typedef             <link linkend="IptcSLong">IptcSLong</link>;
+<link linkend="IptcShort">IptcShort</link>           <link linkend="iptc-get-short">iptc_get_short</link>                      (unsigned <link linkend="char">char</link> *b,
+                                                         <link linkend="IptcByteOrder">IptcByteOrder</link> order);
+<link linkend="IptcLong">IptcLong</link>            <link linkend="iptc-get-long">iptc_get_long</link>                       (unsigned <link linkend="char">char</link> *b,
+                                                         <link linkend="IptcByteOrder">IptcByteOrder</link> order);
+<link linkend="IptcSLong">IptcSLong</link>           <link linkend="iptc-get-slong">iptc_get_slong</link>                      (unsigned <link linkend="char">char</link> *b,
+                                                         <link linkend="IptcByteOrder">IptcByteOrder</link> order);
+<link linkend="void">void</link>                <link linkend="iptc-set-short">iptc_set_short</link>                      (unsigned <link linkend="char">char</link> *b,
+                                                         <link linkend="IptcByteOrder">IptcByteOrder</link> order,
+                                                         <link linkend="IptcShort">IptcShort</link> value);
+<link linkend="void">void</link>                <link linkend="iptc-set-long">iptc_set_long</link>                       (unsigned <link linkend="char">char</link> *b,
+                                                         <link linkend="IptcByteOrder">IptcByteOrder</link> order,
+                                                         <link linkend="IptcLong">IptcLong</link> value);
+<link linkend="void">void</link>                <link linkend="iptc-set-slong">iptc_set_slong</link>                      (unsigned <link linkend="char">char</link> *b,
+                                                         <link linkend="IptcByteOrder">IptcByteOrder</link> order,
+                                                         <link linkend="IptcSLong">IptcSLong</link> value);
+#define             <link linkend="MIN:CAPS">MIN</link>                                 (a, b)
+#define             <link linkend="IPTC-TAG-SUBSEC-TIME:CAPS">IPTC_TAG_SUBSEC_TIME</link>
+</synopsis>
+</refsynopsisdiv>
+
+
+
+
+
+
+
+
+
+<refsect1 id="libiptcdata-utils.description" role="desc">
+<title role="desc.title">Description</title>
+<para>
+
+</para>
+</refsect1>
+
+<refsect1 id="libiptcdata-utils.details" role="details">
+<title role="details.title">Details</title>
+<refsect2 id="IptcByteOrder" role="enum">
+<title>enum IptcByteOrder</title>
+<indexterm zone="IptcByteOrder"><primary>IptcByteOrder</primary></indexterm><programlisting>typedef enum {
+	IPTC_BYTE_ORDER_MOTOROLA,
+	IPTC_BYTE_ORDER_INTEL
+} IptcByteOrder;
+</programlisting>
+<para>
+
+</para></refsect2>
+<refsect2 id="IptcByte" role="typedef">
+<title>IptcByte</title>
+<indexterm zone="IptcByte"><primary>IptcByte</primary></indexterm><programlisting>typedef char		IptcByte;          /* 1 byte  */
+</programlisting>
+<para>
+
+</para></refsect2>
+<refsect2 id="IptcShort" role="typedef">
+<title>IptcShort</title>
+<indexterm zone="IptcShort"><primary>IptcShort</primary></indexterm><programlisting>typedef uint16_t	IptcShort;         /* 2 bytes */
+</programlisting>
+<para>
+
+</para></refsect2>
+<refsect2 id="IptcLong" role="typedef">
+<title>IptcLong</title>
+<indexterm zone="IptcLong"><primary>IptcLong</primary></indexterm><programlisting>typedef uint32_t	IptcLong;          /* 4 bytes */
+</programlisting>
+<para>
+
+</para></refsect2>
+<refsect2 id="IptcSLong" role="typedef">
+<title>IptcSLong</title>
+<indexterm zone="IptcSLong"><primary>IptcSLong</primary></indexterm><programlisting>typedef int32_t		IptcSLong;         /* 4 bytes */
+</programlisting>
+<para>
+
+</para></refsect2>
+<refsect2 id="iptc-get-short" role="function">
+<title>iptc_get_short ()</title>
+<indexterm zone="iptc-get-short"><primary>iptc_get_short</primary></indexterm><programlisting><link linkend="IptcShort">IptcShort</link>           iptc_get_short                      (unsigned <link linkend="char">char</link> *b,
+                                                         <link linkend="IptcByteOrder">IptcByteOrder</link> order);</programlisting>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>b</parameter>&nbsp;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>order</parameter>&nbsp;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara>
+
+
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="iptc-get-long" role="function">
+<title>iptc_get_long ()</title>
+<indexterm zone="iptc-get-long"><primary>iptc_get_long</primary></indexterm><programlisting><link linkend="IptcLong">IptcLong</link>            iptc_get_long                       (unsigned <link linkend="char">char</link> *b,
+                                                         <link linkend="IptcByteOrder">IptcByteOrder</link> order);</programlisting>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>b</parameter>&nbsp;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>order</parameter>&nbsp;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara>
+
+
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="iptc-get-slong" role="function">
+<title>iptc_get_slong ()</title>
+<indexterm zone="iptc-get-slong"><primary>iptc_get_slong</primary></indexterm><programlisting><link linkend="IptcSLong">IptcSLong</link>           iptc_get_slong                      (unsigned <link linkend="char">char</link> *b,
+                                                         <link linkend="IptcByteOrder">IptcByteOrder</link> order);</programlisting>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>b</parameter>&nbsp;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>order</parameter>&nbsp;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara>
+
+
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="iptc-set-short" role="function">
+<title>iptc_set_short ()</title>
+<indexterm zone="iptc-set-short"><primary>iptc_set_short</primary></indexterm><programlisting><link linkend="void">void</link>                iptc_set_short                      (unsigned <link linkend="char">char</link> *b,
+                                                         <link linkend="IptcByteOrder">IptcByteOrder</link> order,
+                                                         <link linkend="IptcShort">IptcShort</link> value);</programlisting>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>b</parameter>&nbsp;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>order</parameter>&nbsp;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>value</parameter>&nbsp;:</term>
+<listitem><simpara>
+
+
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="iptc-set-long" role="function">
+<title>iptc_set_long ()</title>
+<indexterm zone="iptc-set-long"><primary>iptc_set_long</primary></indexterm><programlisting><link linkend="void">void</link>                iptc_set_long                       (unsigned <link linkend="char">char</link> *b,
+                                                         <link linkend="IptcByteOrder">IptcByteOrder</link> order,
+                                                         <link linkend="IptcLong">IptcLong</link> value);</programlisting>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>b</parameter>&nbsp;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>order</parameter>&nbsp;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>value</parameter>&nbsp;:</term>
+<listitem><simpara>
+
+
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="iptc-set-slong" role="function">
+<title>iptc_set_slong ()</title>
+<indexterm zone="iptc-set-slong"><primary>iptc_set_slong</primary></indexterm><programlisting><link linkend="void">void</link>                iptc_set_slong                      (unsigned <link linkend="char">char</link> *b,
+                                                         <link linkend="IptcByteOrder">IptcByteOrder</link> order,
+                                                         <link linkend="IptcSLong">IptcSLong</link> value);</programlisting>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>b</parameter>&nbsp;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>order</parameter>&nbsp;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>value</parameter>&nbsp;:</term>
+<listitem><simpara>
+
+
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="MIN:CAPS" role="macro">
+<title>MIN()</title>
+<indexterm zone="MIN:CAPS"><primary>MIN</primary></indexterm><programlisting>#define MIN(a, b)  (((a) &lt; (b)) ? (a) : (b))
+</programlisting>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>a</parameter>&nbsp;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>b</parameter>&nbsp;:</term>
+<listitem><simpara>
+
+
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="IPTC-TAG-SUBSEC-TIME:CAPS" role="macro">
+<title>IPTC_TAG_SUBSEC_TIME</title>
+<indexterm zone="IPTC-TAG-SUBSEC-TIME:CAPS"><primary>IPTC_TAG_SUBSEC_TIME</primary></indexterm><programlisting>#define IPTC_TAG_SUBSEC_TIME IPTC_TAG_SUB_SEC_TIME
+</programlisting>
+<para>
+
+</para></refsect2>
+
+</refsect1>
+
+
+
+
+</refentry>

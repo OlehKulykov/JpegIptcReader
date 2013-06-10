@@ -1,0 +1,247 @@
+<!-- ##### SECTION Title ##### -->
+Tag Specifications
+
+<!-- ##### SECTION Short_Description ##### -->
+querying tag usage information from the IPTC IIM specification
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+These functions allow queries to the <ulink url="http://www.iptc.org/IIM">IPTC IIM
+specification</ulink> which contains information about the purpose of each IPTC
+tag, along with any requirements such as maximum/minimum data length, data type,
+repeatability and whether the tag is mandatory.
+</para>
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### ENUM IptcRecord ##### -->
+<para>
+The record number that, together with the tag number (#IptcTag),
+uniquely identifies the purpose of a tag.
+</para>
+
+@IPTC_RECORD_OBJECT_ENV: the record used for file information such
+as file format, version, unique identifier, etc.  This is often
+not used for photo-management applications.
+@IPTC_RECORD_APP_2: the record used for application-specific tags
+such as Caption, Keywords, etc.
+@IPTC_RECORD_APP_3: application-specific tags
+@IPTC_RECORD_APP_4: application-specific tags
+@IPTC_RECORD_APP_5: application-specific tags
+@IPTC_RECORD_APP_6: application-specific tags
+@IPTC_RECORD_PREOBJ_DATA: contains information about an encapsulated file
+@IPTC_RECORD_OBJ_DATA: the encapsulated file data (usually not used)
+@IPTC_RECORD_POSTOBJ_DATA: followup information about an encapsulated file
+
+<!-- ##### ENUM IptcTag ##### -->
+<para>
+The tag number that, together with the record number (#IptcRecord),
+uniquely identifies the purpose of a tag.
+</para>
+
+@IPTC_TAG_MODEL_VERSION: 
+@IPTC_TAG_DESTINATION: 
+@IPTC_TAG_FILE_FORMAT: 
+@IPTC_TAG_FILE_VERSION: 
+@IPTC_TAG_SERVICE_ID: 
+@IPTC_TAG_ENVELOPE_NUM: 
+@IPTC_TAG_PRODUCT_ID: 
+@IPTC_TAG_ENVELOPE_PRIORITY: 
+@IPTC_TAG_DATE_SENT: 
+@IPTC_TAG_TIME_SENT: 
+@IPTC_TAG_CHARACTER_SET: 
+@IPTC_TAG_UNO: 
+@IPTC_TAG_ARM_ID: 
+@IPTC_TAG_ARM_VERSION: 
+@IPTC_TAG_RECORD_VERSION: 
+@IPTC_TAG_OBJECT_TYPE: 
+@IPTC_TAG_OBJECT_ATTRIBUTE: 
+@IPTC_TAG_OBJECT_NAME: 
+@IPTC_TAG_EDIT_STATUS: 
+@IPTC_TAG_EDITORIAL_UPDATE: 
+@IPTC_TAG_URGENCY: 
+@IPTC_TAG_SUBJECT_REFERENCE: 
+@IPTC_TAG_CATEGORY: 
+@IPTC_TAG_SUPPL_CATEGORY: 
+@IPTC_TAG_FIXTURE_ID: 
+@IPTC_TAG_KEYWORDS: 
+@IPTC_TAG_CONTENT_LOC_CODE: 
+@IPTC_TAG_CONTENT_LOC_NAME: 
+@IPTC_TAG_RELEASE_DATE: 
+@IPTC_TAG_RELEASE_TIME: 
+@IPTC_TAG_EXPIRATION_DATE: 
+@IPTC_TAG_EXPIRATION_TIME: 
+@IPTC_TAG_SPECIAL_INSTRUCTIONS: 
+@IPTC_TAG_ACTION_ADVISED: 
+@IPTC_TAG_REFERENCE_SERVICE: 
+@IPTC_TAG_REFERENCE_DATE: 
+@IPTC_TAG_REFERENCE_NUMBER: 
+@IPTC_TAG_DATE_CREATED: 
+@IPTC_TAG_TIME_CREATED: 
+@IPTC_TAG_DIGITAL_CREATION_DATE: 
+@IPTC_TAG_DIGITAL_CREATION_TIME: 
+@IPTC_TAG_ORIGINATING_PROGRAM: 
+@IPTC_TAG_PROGRAM_VERSION: 
+@IPTC_TAG_OBJECT_CYCLE: 
+@IPTC_TAG_BYLINE: 
+@IPTC_TAG_BYLINE_TITLE: 
+@IPTC_TAG_CITY: 
+@IPTC_TAG_SUBLOCATION: 
+@IPTC_TAG_STATE: 
+@IPTC_TAG_COUNTRY_CODE: 
+@IPTC_TAG_COUNTRY_NAME: 
+@IPTC_TAG_ORIG_TRANS_REF: 
+@IPTC_TAG_HEADLINE: 
+@IPTC_TAG_CREDIT: 
+@IPTC_TAG_SOURCE: 
+@IPTC_TAG_COPYRIGHT_NOTICE: 
+@IPTC_TAG_PICASA_UNKNOWN: 
+@IPTC_TAG_CONTACT: 
+@IPTC_TAG_CAPTION: 
+@IPTC_TAG_WRITER_EDITOR: 
+@IPTC_TAG_RASTERIZED_CAPTION: 
+@IPTC_TAG_IMAGE_TYPE: 
+@IPTC_TAG_IMAGE_ORIENTATION: 
+@IPTC_TAG_LANGUAGE_ID: 
+@IPTC_TAG_AUDIO_TYPE: 
+@IPTC_TAG_AUDIO_SAMPLING_RATE: 
+@IPTC_TAG_AUDIO_SAMPLING_RES: 
+@IPTC_TAG_AUDIO_DURATION: 
+@IPTC_TAG_AUDIO_OUTCUE: 
+@IPTC_TAG_PREVIEW_FORMAT: 
+@IPTC_TAG_PREVIEW_FORMAT_VER: 
+@IPTC_TAG_PREVIEW_DATA: 
+@IPTC_TAG_SIZE_MODE: 
+@IPTC_TAG_MAX_SUBFILE_SIZE: 
+@IPTC_TAG_SIZE_ANNOUNCED: 
+@IPTC_TAG_MAX_OBJECT_SIZE: 
+@IPTC_TAG_SUBFILE: 
+@IPTC_TAG_CONFIRMED_DATA_SIZE: 
+
+<!-- ##### STRUCT IptcTagInfo ##### -->
+<para>
+Contains static information about a specific tag (identified by its
+record-tag pair) from the IPTC IIM specificiation.  This info is for
+reference only and should never be modified by an application.
+</para>
+
+@record: record number of the tag
+@tag: dataset number of the tag
+@name: English name of the tag (no spaces)
+@title: English title of the tag (may contain spaces)
+@description: English description of the tag
+@format: data format of the tag
+@mandatory: whether the specification says the tag
+is required
+@repeatable: whether the specification says the tag
+can appear more than once
+@minbytes: minimum number of bytes in the tag value
+@maxbytes: maximum number of bytes in the tag value
+
+<!-- ##### ENUM IptcFormat ##### -->
+<para>
+The possible data formats for a tag's value, derived from the IPTC IIM
+specification.  Integer formats are always represented with the most
+significant byte first (big-endian) in the IPTC bytestream.
+</para>
+
+@IPTC_FORMAT_UNKNOWN: Unknown format (for a tag not in the specification)
+@IPTC_FORMAT_BINARY: Binary data (variable length)
+@IPTC_FORMAT_BYTE: 1-byte integer
+@IPTC_FORMAT_SHORT: 2-byte integer (big-endian)
+@IPTC_FORMAT_LONG: 4-byte integer (big-endian)
+@IPTC_FORMAT_STRING: String data (variable length, of any character set)
+@IPTC_FORMAT_NUMERIC_STRING: String containing only numerals (variable length)
+@IPTC_FORMAT_DATE: String of the format "YYYYMMDD" (8 bytes)
+@IPTC_FORMAT_TIME: String of the format "HHMMSS&plusmn;HHMM" where the second
+HHMM defines the timezone offset (11 bytes)
+
+<!-- ##### ENUM IptcMandatory ##### -->
+<para>
+Whether a tag is mandatory according to the IPTC IIM specification.
+Note that most applications ignore this aspect of the specification
+since the spec was designed to encapsulate the media file rather than
+the other way around (which is how nearly all applications use it).
+This renders most mandatory tags unnecessary.
+</para>
+
+@IPTC_OPTIONAL: tag is allowed to be absent
+@IPTC_MANDATORY: tag must be present
+
+<!-- ##### ENUM IptcRepeatable ##### -->
+<para>
+Whether a tag can occur more than once according to the IPTC IIM
+specification.  For example, the "Keywords" tag only contains a single
+keyword, but the tag itself is repeated for media that references more
+than one keyword.
+</para>
+
+@IPTC_NOT_REPEATABLE: tag can only appear once
+@IPTC_REPEATABLE: tag can be repeated
+
+<!-- ##### FUNCTION iptc_tag_get_name ##### -->
+<para>
+
+</para>
+
+@record: 
+@tag: 
+@Returns: 
+
+
+<!-- ##### FUNCTION iptc_tag_get_title ##### -->
+<para>
+
+</para>
+
+@record: 
+@tag: 
+@Returns: 
+
+
+<!-- ##### FUNCTION iptc_tag_get_description ##### -->
+<para>
+
+</para>
+
+@record: 
+@tag: 
+@Returns: 
+
+
+<!-- ##### FUNCTION iptc_tag_get_info ##### -->
+<para>
+
+</para>
+
+@record: 
+@tag: 
+@Returns: 
+
+
+<!-- ##### FUNCTION iptc_format_get_name ##### -->
+<para>
+
+</para>
+
+@format: 
+@Returns: 
+
+
+<!-- ##### FUNCTION iptc_tag_find_by_name ##### -->
+<para>
+
+</para>
+
+@name: 
+@record: 
+@tag: 
+@Returns: 
+
+

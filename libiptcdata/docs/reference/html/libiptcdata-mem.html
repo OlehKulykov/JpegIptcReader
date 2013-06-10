@@ -1,0 +1,342 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Memory managment</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.74.0">
+<link rel="home" href="index.html" title="libiptcdata Reference Manual">
+<link rel="up" href="ch03.html" title="Helper Functions">
+<link rel="prev" href="libiptcdata-utils.html" title="Byte ordering">
+<link rel="next" href="libiptcdata-log.html" title="Error logging">
+<meta name="generator" content="GTK-Doc V1.10 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+<link rel="chapter" href="ch01.html" title="IPTC Data Manipulation">
+<link rel="chapter" href="ch02.html" title="Format-specific Functions">
+<link rel="chapter" href="ch03.html" title="Helper Functions">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
+<tr valign="middle">
+<td><a accesskey="p" href="libiptcdata-utils.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="ch03.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">libiptcdata Reference Manual</th>
+<td><a accesskey="n" href="libiptcdata-log.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+</tr>
+<tr><td colspan="5" class="shortcuts"><nobr><a href="#libiptcdata-mem.synopsis" class="shortcut">Top</a>
+                   | 
+                  <a href="#libiptcdata-mem.description" class="shortcut">Description</a></nobr></td></tr>
+</table>
+<div class="refentry" lang="en">
+<a name="libiptcdata-mem"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2><span class="refentrytitle"><a name="libiptcdata-mem.top_of_page"></a>Memory managment</span></h2>
+<p>Memory managment — hooks for defining your own memory managment functions</p>
+</td>
+<td valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsynopsisdiv">
+<a name="libiptcdata-mem.synopsis"></a><h2>Synopsis</h2>
+<pre class="synopsis">
+void*               (<a class="link" href="libiptcdata-mem.html#IptcMemAllocFunc" title="IptcMemAllocFunc ()">*IptcMemAllocFunc</a>)                 (<a class="link" href="libiptcdata-utils.html#IptcLong" title="IptcLong">IptcLong</a> );
+void*               (<a class="link" href="libiptcdata-mem.html#IptcMemReallocFunc" title="IptcMemReallocFunc ()">*IptcMemReallocFunc</a>)               (void *,
+                                                         <a class="link" href="libiptcdata-utils.html#IptcLong" title="IptcLong">IptcLong</a> );
+void                (<a class="link" href="libiptcdata-mem.html#IptcMemFreeFunc" title="IptcMemFreeFunc ()">*IptcMemFreeFunc</a>)                  (void *);
+                    <a class="link" href="libiptcdata-mem.html#IptcMem" title="IptcMem">IptcMem</a>;
+<a class="link" href="libiptcdata-mem.html#IptcMem" title="IptcMem">IptcMem</a>*            <a class="link" href="libiptcdata-mem.html#iptc-mem-new" title="iptc_mem_new ()">iptc_mem_new</a>                        (<a class="link" href="libiptcdata-mem.html#IptcMemAllocFunc" title="IptcMemAllocFunc ()">IptcMemAllocFunc</a> ,
+                                                         <a class="link" href="libiptcdata-mem.html#IptcMemReallocFunc" title="IptcMemReallocFunc ()">IptcMemReallocFunc</a> ,
+                                                         <a class="link" href="libiptcdata-mem.html#IptcMemFreeFunc" title="IptcMemFreeFunc ()">IptcMemFreeFunc</a> );
+void                <a class="link" href="libiptcdata-mem.html#iptc-mem-ref" title="iptc_mem_ref ()">iptc_mem_ref</a>                        (<a class="link" href="libiptcdata-mem.html#IptcMem" title="IptcMem">IptcMem</a> *);
+void                <a class="link" href="libiptcdata-mem.html#iptc-mem-unref" title="iptc_mem_unref ()">iptc_mem_unref</a>                      (<a class="link" href="libiptcdata-mem.html#IptcMem" title="IptcMem">IptcMem</a> *);
+void*               <a class="link" href="libiptcdata-mem.html#iptc-mem-alloc" title="iptc_mem_alloc ()">iptc_mem_alloc</a>                      (<a class="link" href="libiptcdata-mem.html#IptcMem" title="IptcMem">IptcMem</a> *,
+                                                         <a class="link" href="libiptcdata-utils.html#IptcLong" title="IptcLong">IptcLong</a> );
+void*               <a class="link" href="libiptcdata-mem.html#iptc-mem-realloc" title="iptc_mem_realloc ()">iptc_mem_realloc</a>                    (<a class="link" href="libiptcdata-mem.html#IptcMem" title="IptcMem">IptcMem</a> *,
+                                                         void *,
+                                                         <a class="link" href="libiptcdata-utils.html#IptcLong" title="IptcLong">IptcLong</a> );
+void                <a class="link" href="libiptcdata-mem.html#iptc-mem-free" title="iptc_mem_free ()">iptc_mem_free</a>                       (<a class="link" href="libiptcdata-mem.html#IptcMem" title="IptcMem">IptcMem</a> *,
+                                                         void *);
+<a class="link" href="libiptcdata-mem.html#IptcMem" title="IptcMem">IptcMem</a>*            <a class="link" href="libiptcdata-mem.html#iptc-mem-new-default" title="iptc_mem_new_default ()">iptc_mem_new_default</a>                (void);
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="libiptcdata-mem.description"></a><h2>Description</h2>
+<p>
+
+</p>
+</div>
+<div class="refsect1" lang="en">
+<a name="libiptcdata-mem.details"></a><h2>Details</h2>
+<div class="refsect2" lang="en">
+<a name="IptcMemAllocFunc"></a><h3>IptcMemAllocFunc ()</h3>
+<pre class="programlisting">void*               (*IptcMemAllocFunc)                 (<a class="link" href="libiptcdata-utils.html#IptcLong" title="IptcLong">IptcLong</a> );</pre>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>Param1</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>
+
+
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="IptcMemReallocFunc"></a><h3>IptcMemReallocFunc ()</h3>
+<pre class="programlisting">void*               (*IptcMemReallocFunc)               (void *,
+                                                         <a class="link" href="libiptcdata-utils.html#IptcLong" title="IptcLong">IptcLong</a> );</pre>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>Param1</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>Param2</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>
+
+
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="IptcMemFreeFunc"></a><h3>IptcMemFreeFunc ()</h3>
+<pre class="programlisting">void                (*IptcMemFreeFunc)                  (void *);</pre>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><em class="parameter"><code>Param1</code></em> :</span></p></td>
+<td>
+
+
+</td>
+</tr></tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="IptcMem"></a><h3>IptcMem</h3>
+<pre class="programlisting">typedef struct _IptcMem IptcMem;</pre>
+<p>
+
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="iptc-mem-new"></a><h3>iptc_mem_new ()</h3>
+<pre class="programlisting"><a class="link" href="libiptcdata-mem.html#IptcMem" title="IptcMem">IptcMem</a>*            iptc_mem_new                        (<a class="link" href="libiptcdata-mem.html#IptcMemAllocFunc" title="IptcMemAllocFunc ()">IptcMemAllocFunc</a> ,
+                                                         <a class="link" href="libiptcdata-mem.html#IptcMemReallocFunc" title="IptcMemReallocFunc ()">IptcMemReallocFunc</a> ,
+                                                         <a class="link" href="libiptcdata-mem.html#IptcMemFreeFunc" title="IptcMemFreeFunc ()">IptcMemFreeFunc</a> );</pre>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>Param1</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>Param2</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>Param3</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>
+
+
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="iptc-mem-ref"></a><h3>iptc_mem_ref ()</h3>
+<pre class="programlisting">void                iptc_mem_ref                        (<a class="link" href="libiptcdata-mem.html#IptcMem" title="IptcMem">IptcMem</a> *);</pre>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><em class="parameter"><code>Param1</code></em> :</span></p></td>
+<td>
+
+
+</td>
+</tr></tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="iptc-mem-unref"></a><h3>iptc_mem_unref ()</h3>
+<pre class="programlisting">void                iptc_mem_unref                      (<a class="link" href="libiptcdata-mem.html#IptcMem" title="IptcMem">IptcMem</a> *);</pre>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><em class="parameter"><code>Param1</code></em> :</span></p></td>
+<td>
+
+
+</td>
+</tr></tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="iptc-mem-alloc"></a><h3>iptc_mem_alloc ()</h3>
+<pre class="programlisting">void*               iptc_mem_alloc                      (<a class="link" href="libiptcdata-mem.html#IptcMem" title="IptcMem">IptcMem</a> *,
+                                                         <a class="link" href="libiptcdata-utils.html#IptcLong" title="IptcLong">IptcLong</a> );</pre>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>Param1</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>Param2</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>
+
+
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="iptc-mem-realloc"></a><h3>iptc_mem_realloc ()</h3>
+<pre class="programlisting">void*               iptc_mem_realloc                    (<a class="link" href="libiptcdata-mem.html#IptcMem" title="IptcMem">IptcMem</a> *,
+                                                         void *,
+                                                         <a class="link" href="libiptcdata-utils.html#IptcLong" title="IptcLong">IptcLong</a> );</pre>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>Param1</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>Param2</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>Param3</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>
+
+
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="iptc-mem-free"></a><h3>iptc_mem_free ()</h3>
+<pre class="programlisting">void                iptc_mem_free                       (<a class="link" href="libiptcdata-mem.html#IptcMem" title="IptcMem">IptcMem</a> *,
+                                                         void *);</pre>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>Param1</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>Param2</code></em> :</span></p></td>
+<td>
+
+
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="iptc-mem-new-default"></a><h3>iptc_mem_new_default ()</h3>
+<pre class="programlisting"><a class="link" href="libiptcdata-mem.html#IptcMem" title="IptcMem">IptcMem</a>*            iptc_mem_new_default                (void);</pre>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>
+
+
+</td>
+</tr></tbody>
+</table></div>
+</div>
+</div>
+</div>
+<div class="footer">
+<hr>
+          Generated by GTK-Doc V1.10</div>
+</body>
+</html>

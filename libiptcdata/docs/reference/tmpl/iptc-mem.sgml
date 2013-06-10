@@ -1,0 +1,117 @@
+<!-- ##### SECTION Title ##### -->
+Memory managment
+
+<!-- ##### SECTION Short_Description ##### -->
+hooks for defining your own memory managment functions
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### USER_FUNCTION IptcMemAllocFunc ##### -->
+<para>
+
+</para>
+
+@Param1: 
+@Returns: 
+
+
+<!-- ##### USER_FUNCTION IptcMemReallocFunc ##### -->
+<para>
+
+</para>
+
+@Param1: 
+@Param2: 
+@Returns: 
+
+
+<!-- ##### USER_FUNCTION IptcMemFreeFunc ##### -->
+<para>
+
+</para>
+
+@Param1: 
+
+
+<!-- ##### STRUCT IptcMem ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### FUNCTION iptc_mem_new ##### -->
+<para>
+
+</para>
+
+@Param1: 
+@Param2: 
+@Param3: 
+@Returns: 
+
+
+<!-- ##### FUNCTION iptc_mem_ref ##### -->
+<para>
+
+</para>
+
+@Param1: 
+
+
+<!-- ##### FUNCTION iptc_mem_unref ##### -->
+<para>
+
+</para>
+
+@Param1: 
+
+
+<!-- ##### FUNCTION iptc_mem_alloc ##### -->
+<para>
+
+</para>
+
+@Param1: 
+@Param2: 
+@Returns: 
+
+
+<!-- ##### FUNCTION iptc_mem_realloc ##### -->
+<para>
+
+</para>
+
+@Param1: 
+@Param2: 
+@Param3: 
+@Returns: 
+
+
+<!-- ##### FUNCTION iptc_mem_free ##### -->
+<para>
+
+</para>
+
+@Param1: 
+@Param2: 
+
+
+<!-- ##### FUNCTION iptc_mem_new_default ##### -->
+<para>
+
+</para>
+
+@Returns: 
+
+

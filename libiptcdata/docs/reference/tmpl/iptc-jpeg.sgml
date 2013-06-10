@@ -1,0 +1,67 @@
+<!-- ##### SECTION Title ##### -->
+JPEG
+
+<!-- ##### SECTION Short_Description ##### -->
+functions for loading and saving IPTC data from JPEG files
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+Convenience functions for loading and saving IPTC data blocks from JPEG files.
+</para>
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### FUNCTION iptc_jpeg_read_ps3 ##### -->
+<para>
+
+</para>
+
+@infile: 
+@buf: 
+@size: 
+@Returns: 
+
+
+<!-- ##### FUNCTION iptc_jpeg_ps3_find_iptc ##### -->
+<para>
+
+</para>
+
+@ps3: 
+@ps3_size: 
+@iptc_len: 
+@Returns: 
+
+
+<!-- ##### FUNCTION iptc_jpeg_ps3_save_iptc ##### -->
+<para>
+
+</para>
+
+@ps3: 
+@ps3_size: 
+@iptc: 
+@iptc_size: 
+@buf: 
+@size: 
+@Returns: 
+
+
+<!-- ##### FUNCTION iptc_jpeg_save_with_ps3 ##### -->
+<para>
+
+</para>
+
+@infile: 
+@outfile: 
+@ps3: 
+@ps3_size: 
+@Returns: 
+
+

@@ -1,0 +1,34 @@
+libiptcdata
+===========
+
+    David Moore <dcm@acm.org>
+
+
+REQUIREMENTS
+------------
+
+libiptcdata is written in portable C code and has no prerequisite
+libraries.  It has been tested under GNU/Linux.
+
+INSTALLATION
+------------
+
+first run:
+
+  ./configure
+  make
+
+and as root:
+
+  make install
+
+
+Note: On Mac OS X, it has been reported that internationalization support
+in libiptcdata is often disabled at configure time because the libintl
+library cannot be found.  If you use a package installer such as Fink
+or DarwinPorts, you can obtain libintl by installing the gettext package and
+then running libiptcdata's configure script as:
+  ./configure --with-libintl-prefix=/sw --with-libiconv-prefix=/sw
+for Fink, or:
+  ./configure --with-libintl-prefix=/opt/local --with-libiconv-prefix=/opt/local
+for DarwinPorts.

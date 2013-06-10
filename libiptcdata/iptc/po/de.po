@@ -1,0 +1,250 @@
+# Translation of libiptcdata to German
+# Copyright (C) 2008 David Moore
+# Copyright (C) Chris Leick <c.leick@vollbio.de>, 2008.
+# This file is distributed under the same license as the libiptcdata package.
+# Chris Leick <c.leick@vollbio.de>, 2008.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: libiptcdata 1.0.2+libtool01-2_iptc\n"
+"Report-Msgid-Bugs-To: dcm@acm.org\n"
+"POT-Creation-Date: 2007-05-15 02:36-0400\n"
+"PO-Revision-Date: 2008-12-17 10:27+GMT\n"
+"Last-Translator: Chris Leick <c.leick@vollbio.de>\n"
+"Language-Team: German <debian-l10n-german@lists.debian.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: iptc/main.c:29
+msgid ""
+"Examples:\n"
+"  iptc image.jpg       # display the IPTC metadata contained in image.jpg\n"
+"  iptc -m Caption -v \"Foo\" *.jpg\n"
+"                       # set caption \"Foo\" in all jpegs of the curr. dir.\n"
+"  iptc -a Keywords -v \"vacation\" *.jpg\n"
+"  iptc -a 2:25 -v \"vacation\" *.jpg\n"
+"                       # either command adds keyword \"vacation\" to all "
+"jpegs\n"
+"  iptc -d Keywords:1 image.jpg\n"
+"                       # removes keyword number 1 (the 2nd) from image.jpg\n"
+"  iptc -d Keywords:all image.jpg\n"
+"                       # removes all keywords from image.jpg\n"
+"\n"
+"Operations:\n"
+"  -a, --add=TAG        add new tag with identifier TAG\n"
+"  -m, --modify=TAG     modify tag with identifier TAG (add if not present)\n"
+"  -v, --value=VALUE    value for added/modified tag\n"
+"  -d, --delete=TAG     delete tag with identifier TAG\n"
+"  -p, --print=TAG      print value of tag with identifier TAG\n"
+"      --add-version    add IPTC version number into the headers\n"
+"      --add-encoding   add text encoding specification (UTF-8) into headers\n"
+"\n"
+"Options:\n"
+"  -q, --quiet          produce less verbose output\n"
+"  -b, --backup         backup any modified files\n"
+"      --no-sort        do not sort tags before saving\n"
+"\n"
+"Informative output:\n"
+"  -l, --list           list the names of all known tags (i.e. Caption, "
+"etc.)\n"
+"  -L, --list-desc=TAG  print the name and description of TAG\n"
+"      --help           print this help, then exit\n"
+"      --version        print iptc program version number, then exit\n"
+msgstr ""
+"Beispiele:\n"
+"  iptc Bild.jpg        # zeigt die in Bild.jpg enthaltenen IPTC-Metadaten\n"
+"  iptc -m Caption -v »Platzhalter« *.jpg\n"
+"                       # setzt Überschrift »Platzhalter« in allen Jpegs des "
+"aktuellen Verzeichnisses.\n"
+"  iptc -a Keywords -v »Ferien« *.jpg\n"
+"  iptc -a 2:25 -v »Ferien« *.jpg\n"
+"                       # beide Befehle fügen das Schlüsselwort »Ferien«\n"
+"                       # zu allen Jpegs hinzu\n"
+"  iptc -d Keywords:1 Bild.jpg\n"
+"                       # entfernt Schlüsselwort Nummer 1 (das zweite) von\n"
+"                       # Bild.jpg\n"
+"  iptc -d Keywords:all Bild.jpg\n"
+"                       # entfernt alle Schlüsselwörter von Bild.jpg\n"
+"\n"
+"Befehle:\n"
+"  -a, --add=TAG        neue Markierung mit Bezeichner TAG hinzufügen\n"
+"  -m, --modify=TAG     Markierung mit Bezeichner TAG ändern\n"
+"                       (hinzufügen, wenn nicht vorhanden)\n"
+"  -v, --value=WERT     Wert für neue/geänderte Markierung\n"
+"  -d, --delete=TAG     Markierung mit Bezeichner TAG löschen\n"
+"  -p, --print=TAG      Wert der Markierung mit Bezeichner TAG ausgeben\n"
+"      --add-version    IPTC-Versionsnummer in den Kopfzeilen hinzufügen\n"
+"      --add-encoding   Zeichenkodierung (UTF-8) in den Kopfzeilen "
+"hinzufügen\n"
+"\n"
+"Optionen:\n"
+"  -q, --quiet          weniger umfassende Ausgabe\n"
+"  -b, --backup         geänderte Dateien sichern\n"
+"      --no-sort        Markierungen nicht vor dem Speichern sortieren\n"
+"\n"
+"Informative Ausgabe:\n"
+"  -l, --list           Namen aller bekannten Markierungen auflisten\n"
+"                       (d.h. Überschrift, etc.)\n"
+"  -L, --list-desc=TAG  Name und Beschreibung von TAG ausdrucken\n"
+"      --help           diese Hilfe ausdrucken, dann beenden\n"
+"      --version        Versionsnummer des IPTC-Programms drucken,\n"
+"                       dann beenden\n"
+
+#: iptc/main.c:67
+msgid ""
+"Utility for viewing and modifying the contents of IPTC metadata in images"
+msgstr ""
+"Werkzeug zum Anzeigen und Verändern des Inhaltes von IPTC-Metadaten in "
+"Bildern"
+
+#: iptc/main.c:69
+msgid "Usage"
+msgstr "Aufruf"
+
+#: iptc/main.c:69
+msgid "OPTIONS"
+msgstr "OPTIONEN"
+
+#: iptc/main.c:69
+msgid "FILE"
+msgstr "DATEI"
+
+#: iptc/main.c:77
+msgid "Written by David Moore <dcm@acm.org>"
+msgstr "Geschrieben von David Moore <dcm@acm.org>"
+
+#: iptc/main.c:223 iptc/main.c:260
+msgid "Tag"
+msgstr "Markierung"
+
+#: iptc/main.c:223 iptc/main.c:260
+msgid "Name"
+msgstr "Name"
+
+#: iptc/main.c:261
+msgid "Type"
+msgstr "Typ"
+
+#: iptc/main.c:261
+msgid "Size"
+msgstr "Größe"
+
+#: iptc/main.c:261
+msgid "Value"
+msgstr "Wert"
+
+#: iptc/main.c:376
+#, c-format
+msgid "%s: Could not find dataset %d:%d, adding it\n"
+msgstr "%s: Datensatz %d:%d kann nicht gefunden werden, er wird hinzugefügt\n"
+
+#: iptc/main.c:383 iptc/main.c:394
+#, c-format
+msgid "%s: Could not find dataset %d:%d"
+msgstr "%s: Datensatz %d:%d kann nicht gefunden werden"
+
+#: iptc/main.c:421
+#, c-format
+msgid "%s: Could not find dataset %d:%d\n"
+msgstr "%s: Datensatz %d:%d kann nicht gefunden werden\n"
+
+#: iptc/main.c:586 iptc/main.c:610
+#, c-format
+msgid "\"%s\" is not a known tag\n"
+msgstr "»%s« ist keine bekannte Markierung\n"
+
+#: iptc/main.c:590
+#, c-format
+msgid "No information about tag\n"
+msgstr "Keine Information über Markierung verfügbar\n"
+
+#: iptc/main.c:606 iptc/main.c:640
+#, c-format
+msgid "Must specify value for add/modify operation\n"
+msgstr "Für das Hinzufügen/Ändern müssen Sie einen Wert angeben.\n"
+
+#: iptc/main.c:636
+#, c-format
+msgid "Must specify tag to add or modify\n"
+msgstr ""
+"Sie müssen eine Markierung angeben, die hinzugefügt oder geändert\n"
+"werden soll.\n"
+
+#: iptc/main.c:655
+#, c-format
+msgid "Value must be an integer\n"
+msgstr "Wert muss eine Ganzzahl sein\n"
+
+#: iptc/main.c:702
+#, c-format
+msgid "Error: Must specify value for add/modify operation\n"
+msgstr "Fehler: Sie müssen einen Wert für das Hinzufügen/Ändern angeben\n"
+
+#: iptc/main.c:708
+#, c-format
+msgid "Error: Must specify a file\n"
+msgstr "Fehler: Sie müssen eine Datei angeben\n"
+
+#: iptc/main.c:725
+#, c-format
+msgid "Error opening %s\n"
+msgstr "Fehler beim Öffnen von %s\n"
+
+#: iptc/main.c:732
+#, c-format
+msgid "Error parsing %s\n"
+msgstr "Fehler beim Auswerten von %s\n"
+
+#: iptc/main.c:739
+#, c-format
+msgid "Error parsing headers of %s\n"
+msgstr "Fehler beim Auswerten der Kopfzeilen von %s\n"
+
+#: iptc/main.c:752
+#, c-format
+msgid "%s: no changes to save\n"
+msgstr "%s: Keine zu sichernden Änderungen.\n"
+
+#: iptc/main.c:767
+#, c-format
+msgid ""
+"Warning: Strings encoded in UTF-8 have been added to the IPTC data, but\n"
+"pre-existing data may have been encoded with a different character set.\n"
+msgstr ""
+"Warnung: UTF-8-kodierte Zeichenketten wurden zu den IPTC-Daten\n"
+"hinzugefügt, aber vorher bestehende Daten könnten mit einem anderen\n"
+"Zeichensatz kodiert sein.\n"
+
+#: iptc/main.c:785
+msgid "No IPTC data found"
+msgstr "Keine IPTC-Daten gefunden"
+
+#: iptc/main.c:797
+msgid "Failed to generate IPTC bytestream"
+msgstr "Erzeugen von IPTC-Byte-Strom fehlgeschlagen"
+
+#: iptc/main.c:806
+msgid "Failed to generate PS3 header"
+msgstr "Erzeugen von PS3-Kopfzeilen fehlgeschlagen"
+
+#: iptc/main.c:813
+msgid "Failed to reopen file"
+msgstr "Erneutes Öffnen der Datei fehlgeschlagen"
+
+#: iptc/main.c:820
+msgid "Can't open temporary file for writing"
+msgstr "Temporäre Datei kann nicht zum Schreiben geöffnet werden"
+
+#: iptc/main.c:836
+msgid "Failed to create backup file, aborting"
+msgstr "Erstellen der Sicherungsdatei fehlgeschlagen, es wird abgebrochen."
+
+#: iptc/main.c:844 iptc/main.c:858
+msgid "Failed to save image"
+msgstr "Speichern des Bildes fehlgeschlagen"
+
+#: iptc/main.c:854
+#, c-format
+msgid "%s: saved\n"
+msgstr "%s: gespeichert\n"

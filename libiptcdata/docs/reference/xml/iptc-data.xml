@@ -1,0 +1,759 @@
+<?xml version="1.0"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN" 
+               "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
+<!ENTITY iptc-overview SYSTEM "overview.sgml">
+<!ENTITY iptc-about SYSTEM "about.sgml">
+<!ENTITY iptc-commandline SYSTEM "commandline.sgml">
+<!ENTITY iptc-i18n SYSTEM "i18n.sgml">
+<!ENTITY iptc-libjpeg SYSTEM "libjpeg.sgml">
+<!ENTITY version SYSTEM "version.xml">
+]>
+<refentry id="libiptcdata-data">
+<refmeta>
+<refentrytitle role="top_of_page" id="libiptcdata-data.top_of_page">IPTC Data</refentrytitle>
+<manvolnum>3</manvolnum>
+<refmiscinfo>LIBIPTCDATA Library</refmiscinfo>
+</refmeta>
+
+<refnamediv>
+<refname>IPTC Data</refname>
+<refpurpose>creating, loading, saving, and editing a collection of IPTC datasets</refpurpose>
+<!--[<xref linkend="desc" endterm="desc.title"/>]-->
+</refnamediv>
+
+<refsynopsisdiv id="libiptcdata-data.synopsis" role="synopsis">
+<title role="synopsis.title">Synopsis</title>
+
+<synopsis>
+                    <link linkend="IptcData">IptcData</link>;
+<link linkend="IptcData">IptcData</link>*           <link linkend="iptc-data-new">iptc_data_new</link>                       (void);
+<link linkend="IptcData">IptcData</link>*           <link linkend="iptc-data-new-mem">iptc_data_new_mem</link>                   (<link linkend="IptcMem">IptcMem</link> *mem);
+<link linkend="void">void</link>                <link linkend="iptc-data-ref">iptc_data_ref</link>                       (<link linkend="IptcData">IptcData</link> *data);
+<link linkend="void">void</link>                <link linkend="iptc-data-unref">iptc_data_unref</link>                     (<link linkend="IptcData">IptcData</link> *data);
+<link linkend="void">void</link>                <link linkend="iptc-data-free">iptc_data_free</link>                      (<link linkend="IptcData">IptcData</link> *data);
+
+<link linkend="IptcData">IptcData</link>*           <link linkend="iptc-data-new-from-jpeg">iptc_data_new_from_jpeg</link>             (const <link linkend="char">char</link> *path);
+<link linkend="IptcData">IptcData</link>*           <link linkend="iptc-data-new-from-data">iptc_data_new_from_data</link>             (unsigned <link linkend="char">char</link> *buf,
+                                                         unsigned <link linkend="int">int</link> size);
+
+<link linkend="int">int</link>                 <link linkend="iptc-data-load">iptc_data_load</link>                      (<link linkend="IptcData">IptcData</link> *data,
+                                                         unsigned <link linkend="char">char</link> *buf,
+                                                         unsigned <link linkend="int">int</link> size);
+<link linkend="int">int</link>                 <link linkend="iptc-data-save">iptc_data_save</link>                      (<link linkend="IptcData">IptcData</link> *data,
+                                                         unsigned <link linkend="char">char</link> **buf,
+                                                         unsigned <link linkend="int">int</link> *size);
+<link linkend="void">void</link>                <link linkend="iptc-data-free-buf">iptc_data_free_buf</link>                  (<link linkend="IptcData">IptcData</link> *data,
+                                                         unsigned <link linkend="char">char</link> *buf);
+
+<link linkend="IptcDataSet">IptcDataSet</link>*        <link linkend="iptc-data-get-dataset">iptc_data_get_dataset</link>               (<link linkend="IptcData">IptcData</link> *data,
+                                                         <link linkend="IptcRecord">IptcRecord</link> record,
+                                                         <link linkend="IptcTag">IptcTag</link> tag);
+<link linkend="IptcDataSet">IptcDataSet</link>*        <link linkend="iptc-data-get-next-dataset">iptc_data_get_next_dataset</link>          (<link linkend="IptcData">IptcData</link> *data,
+                                                         <link linkend="IptcDataSet">IptcDataSet</link> *ds,
+                                                         <link linkend="IptcRecord">IptcRecord</link> record,
+                                                         <link linkend="IptcTag">IptcTag</link> tag);
+<link linkend="int">int</link>                 <link linkend="iptc-data-add-dataset">iptc_data_add_dataset</link>               (<link linkend="IptcData">IptcData</link> *data,
+                                                         <link linkend="IptcDataSet">IptcDataSet</link> *ds);
+<link linkend="int">int</link>                 <link linkend="iptc-data-add-dataset-before">iptc_data_add_dataset_before</link>        (<link linkend="IptcData">IptcData</link> *data,
+                                                         <link linkend="IptcDataSet">IptcDataSet</link> *ds,
+                                                         <link linkend="IptcDataSet">IptcDataSet</link> *newds);
+<link linkend="int">int</link>                 <link linkend="iptc-data-add-dataset-after">iptc_data_add_dataset_after</link>         (<link linkend="IptcData">IptcData</link> *data,
+                                                         <link linkend="IptcDataSet">IptcDataSet</link> *ds,
+                                                         <link linkend="IptcDataSet">IptcDataSet</link> *newds);
+<link linkend="int">int</link>                 <link linkend="iptc-data-remove-dataset">iptc_data_remove_dataset</link>            (<link linkend="IptcData">IptcData</link> *data,
+                                                         <link linkend="IptcDataSet">IptcDataSet</link> *ds);
+
+<link linkend="void">void</link>                (<link linkend="IptcDataForeachDataSetFunc">*IptcDataForeachDataSetFunc</link>)       (<link linkend="IptcDataSet">IptcDataSet</link> *dataset,
+                                                         <link linkend="void">void</link> *user_data);
+<link linkend="void">void</link>                <link linkend="iptc-data-foreach-dataset">iptc_data_foreach_dataset</link>           (<link linkend="IptcData">IptcData</link> *data,
+                                                         <link linkend="IptcDataForeachDataSetFunc">IptcDataForeachDataSetFunc</link> func,
+                                                         <link linkend="void">void</link> *user_data);
+
+<link linkend="void">void</link>                <link linkend="iptc-data-sort">iptc_data_sort</link>                      (<link linkend="IptcData">IptcData</link> *data);
+
+enum                <link linkend="IptcEncoding">IptcEncoding</link>;
+<link linkend="IptcEncoding">IptcEncoding</link>        <link linkend="iptc-data-get-encoding">iptc_data_get_encoding</link>              (<link linkend="IptcData">IptcData</link> *data);
+<link linkend="int">int</link>                 <link linkend="iptc-data-set-encoding-utf8">iptc_data_set_encoding_utf8</link>         (<link linkend="IptcData">IptcData</link> *data);
+
+#define             <link linkend="IPTC-IIM-VERSION:CAPS">IPTC_IIM_VERSION</link>
+<link linkend="int">int</link>                 <link linkend="iptc-data-set-version">iptc_data_set_version</link>               (<link linkend="IptcData">IptcData</link> *data,
+                                                         unsigned <link linkend="int">int</link> version);
+
+<link linkend="int">int</link>                 <link linkend="iptc-data-add-dataset-with-value">iptc_data_add_dataset_with_value</link>    (<link linkend="IptcData">IptcData</link> *data,
+                                                         <link linkend="IptcRecord">IptcRecord</link> record,
+                                                         <link linkend="IptcTag">IptcTag</link> tag,
+                                                         unsigned <link linkend="int">int</link> value,
+                                                         <link linkend="IptcValidate">IptcValidate</link> validate);
+<link linkend="int">int</link>                 <link linkend="iptc-data-add-dataset-with-contents">iptc_data_add_dataset_with_contents</link> (<link linkend="IptcData">IptcData</link> *data,
+                                                         <link linkend="IptcRecord">IptcRecord</link> record,
+                                                         <link linkend="IptcTag">IptcTag</link> tag,
+                                                         unsigned <link linkend="char">char</link> *buf,
+                                                         unsigned <link linkend="int">int</link> size,
+                                                         <link linkend="IptcValidate">IptcValidate</link> validate);
+
+<link linkend="void">void</link>                <link linkend="iptc-data-dump">iptc_data_dump</link>                      (<link linkend="IptcData">IptcData</link> *data,
+                                                         unsigned <link linkend="int">int</link> indent);
+<link linkend="void">void</link>                <link linkend="iptc-data-log">iptc_data_log</link>                       (<link linkend="IptcData">IptcData</link> *data,
+                                                         <link linkend="IptcLog">IptcLog</link> *log);
+</synopsis>
+</refsynopsisdiv>
+
+
+
+
+
+
+
+
+
+<refsect1 id="libiptcdata-data.description" role="desc">
+<title role="desc.title">Description</title>
+<para>
+The <link linkend="IptcData"><type>IptcData</type></link> object is the top-level container for a collection of IPTC metadata tags.
+Each of these tags is stored in an <link linkend="IptcDataSet"><type>IptcDataSet</type></link> object.
+</para>
+</refsect1>
+
+<refsect1 id="libiptcdata-data.details" role="details">
+<title role="details.title">Details</title>
+<refsect2 id="IptcData" role="struct">
+<title>IptcData</title>
+<indexterm zone="IptcData"><primary>IptcData</primary></indexterm><programlisting>typedef struct {
+        IptcDataSet **datasets;
+        unsigned int count;
+
+	IptcDataPrivate *priv;
+} IptcData;
+</programlisting>
+<para>
+Represents the collection of datasets that make up a IPTC data block.
+</para><variablelist role="struct">
+<varlistentry>
+<term><link linkend="IptcDataSet">IptcDataSet</link>&nbsp;**<structfield>datasets</structfield>;</term>
+<listitem><simpara>array of pointers to the datasets in the collection
+</simpara></listitem>
+</varlistentry>
+<varlistentry>
+<term>unsigned&nbsp;<link linkend="int">int</link>&nbsp;<structfield>count</structfield>;</term>
+<listitem><simpara>the number of datasets in the collection
+</simpara></listitem>
+</varlistentry>
+<varlistentry>
+<term><link linkend="IptcDataPrivate">IptcDataPrivate</link>&nbsp;*<structfield>priv</structfield>;</term>
+<listitem><simpara>private data
+
+</simpara></listitem>
+</varlistentry>
+</variablelist></refsect2>
+<refsect2 id="iptc-data-new" role="function">
+<title>iptc_data_new ()</title>
+<indexterm zone="iptc-data-new"><primary>iptc_data_new</primary></indexterm><programlisting><link linkend="IptcData">IptcData</link>*           iptc_data_new                       (void);</programlisting>
+<para>
+Allocates a new collection of datasets, which is initialized to be
+empty.  The default memory allocation functions (malloc, etc.) are
+used.  If you need custom memory management functions, use
+<link linkend="iptc-data-new-mem"><function>iptc_data_new_mem()</function></link> instead.  This allocation will set the <link linkend="IptcData"><type>IptcData</type></link>
+refcount to 1, so use <link linkend="iptc-data-unref"><function>iptc_data_unref()</function></link> when finished with the pointer.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> pointer to the new <link linkend="IptcData"><type>IptcData</type></link> object, NULL on error
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="iptc-data-new-mem" role="function">
+<title>iptc_data_new_mem ()</title>
+<indexterm zone="iptc-data-new-mem"><primary>iptc_data_new_mem</primary></indexterm><programlisting><link linkend="IptcData">IptcData</link>*           iptc_data_new_mem                   (<link linkend="IptcMem">IptcMem</link> *mem);</programlisting>
+<para>
+Allocates a new collection of datasets, which is initialized to be
+empty, using custom memory management functions.  This allocation
+will set the <link linkend="IptcData"><type>IptcData</type></link> refcount to 1, so use <link linkend="iptc-data-unref"><function>iptc_data_unref()</function></link> when
+finished with the object.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>mem</parameter>&nbsp;:</term>
+<listitem><simpara> Pointer to an <link linkend="IptcMem"><type>IptcMem</type></link> object that defines custom memory managment
+functions.  The refcount of <parameter>mem</parameter> will be incremented.  It is decremented
+when the returned <link linkend="IptcData"><type>IptcData</type></link> object is freed.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> pointer to the new <link linkend="IptcData"><type>IptcData</type></link> object, NULL on error
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="iptc-data-ref" role="function">
+<title>iptc_data_ref ()</title>
+<indexterm zone="iptc-data-ref"><primary>iptc_data_ref</primary></indexterm><programlisting><link linkend="void">void</link>                iptc_data_ref                       (<link linkend="IptcData">IptcData</link> *data);</programlisting>
+<para>
+Increments the reference count of an <link linkend="IptcData"><type>IptcData</type></link> object.  This function
+should be called whenever a copy of a pointer is made by the application.
+<link linkend="iptc-data-unref"><function>iptc_data_unref()</function></link> can then be used when the pointer is no longer needed
+to ensure that the object is freed once the object is completely unused.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>data</parameter>&nbsp;:</term>
+<listitem><simpara> the referenced pointer
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="iptc-data-unref" role="function">
+<title>iptc_data_unref ()</title>
+<indexterm zone="iptc-data-unref"><primary>iptc_data_unref</primary></indexterm><programlisting><link linkend="void">void</link>                iptc_data_unref                     (<link linkend="IptcData">IptcData</link> *data);</programlisting>
+<para>
+Decrements the reference count of an <link linkend="IptcData"><type>IptcData</type></link> object.  The object will
+automatically be freed when the count reaches 0.  This function should
+be called whenever a pointer is no longer needed by an application.  It
+is also good practice to set the local copy of the pointer to NULL to
+shield against accidently reusing the value.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>data</parameter>&nbsp;:</term>
+<listitem><simpara> the unreferenced pointer
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="iptc-data-free" role="function">
+<title>iptc_data_free ()</title>
+<indexterm zone="iptc-data-free"><primary>iptc_data_free</primary></indexterm><programlisting><link linkend="void">void</link>                iptc_data_free                      (<link linkend="IptcData">IptcData</link> *data);</programlisting>
+<para>
+Frees an <link linkend="IptcData"><type>IptcData</type></link> object.  This function should be used only for error
+handling since <link linkend="iptc-data-unref"><function>iptc_data_unref()</function></link> provides a safer mechanism for freeing
+that allows multiple components to have access to an object.  This
+function decrements the reference count of any datasets contained by the
+object.  This will generally cause them to be freed as well unless other
+parts of the application are referencing them individually.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>data</parameter>&nbsp;:</term>
+<listitem><simpara> the object to free
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="iptc-data-new-from-jpeg" role="function">
+<title>iptc_data_new_from_jpeg ()</title>
+<indexterm zone="iptc-data-new-from-jpeg"><primary>iptc_data_new_from_jpeg</primary></indexterm><programlisting><link linkend="IptcData">IptcData</link>*           iptc_data_new_from_jpeg             (const <link linkend="char">char</link> *path);</programlisting>
+<para>
+Allocates a new collection of datasets which is initialized by decoding
+the IPTC data in JPEG file <parameter>path</parameter>.  This allocation will set the <link linkend="IptcData"><type>IptcData</type></link>
+refcount to 1, so use <link linkend="iptc-data-unref"><function>iptc_data_unref()</function></link> when finished with the object.
+This is a convenience function that reads the contents of the file,
+creates a new <link linkend="IptcData"><type>IptcData</type></link> object, parses the file with
+<link linkend="iptc-jpeg-read-ps3"><function>iptc_jpeg_read_ps3()</function></link> and <link linkend="iptc-jpeg-ps3-find-iptc"><function>iptc_jpeg_ps3_find_iptc()</function></link>, and loads the
+data with <link linkend="iptc-data-load"><function>iptc_data_load()</function></link>.  If more fine-grained error detection
+is needed, those functions should be used individually.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>path</parameter>&nbsp;:</term>
+<listitem><simpara> filesystem path of the jpeg file to be read
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> pointer to the new <link linkend="IptcData"><type>IptcData</type></link> object.  NULL on error (including
+parsing errors or if the file did not include IPTC data).
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="iptc-data-new-from-data" role="function">
+<title>iptc_data_new_from_data ()</title>
+<indexterm zone="iptc-data-new-from-data"><primary>iptc_data_new_from_data</primary></indexterm><programlisting><link linkend="IptcData">IptcData</link>*           iptc_data_new_from_data             (unsigned <link linkend="char">char</link> *buf,
+                                                         unsigned <link linkend="int">int</link> size);</programlisting>
+<para>
+Allocates a new collection of datasets which is initialized by decoding
+the contents of <parameter>buf</parameter>.  This allocation will set the <link linkend="IptcData"><type>IptcData</type></link>
+refcount to 1, so use <link linkend="iptc-data-unref"><function>iptc_data_unref()</function></link> when finished with the object.
+This is simply a convenience function that can be duplicated by calling
+<link linkend="iptc-data-new"><function>iptc_data_new()</function></link> followed by <link linkend="iptc-data-load"><function>iptc_data_load()</function></link>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>buf</parameter>&nbsp;:</term>
+<listitem><simpara> the buffer of IPTC data to be decoded
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>size</parameter>&nbsp;:</term>
+<listitem><simpara> the length to be read in bytes
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> pointer to the new <link linkend="IptcData"><type>IptcData</type></link> object.  NULL on error (including
+parsing errors in the contents of <parameter>buf</parameter>).
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="iptc-data-load" role="function">
+<title>iptc_data_load ()</title>
+<indexterm zone="iptc-data-load"><primary>iptc_data_load</primary></indexterm><programlisting><link linkend="int">int</link>                 iptc_data_load                      (<link linkend="IptcData">IptcData</link> *data,
+                                                         unsigned <link linkend="char">char</link> *buf,
+                                                         unsigned <link linkend="int">int</link> size);</programlisting>
+<para>
+Parses a buffer containing raw IPTC data and adds the datasets
+to the <link linkend="IptcData"><type>IptcData</type></link> object <parameter>data</parameter>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>data</parameter>&nbsp;:</term>
+<listitem><simpara> object to be populated with the loaded datasets
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>buf</parameter>&nbsp;:</term>
+<listitem><simpara> data buffer to be parsed, containing IPTC data
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>size</parameter>&nbsp;:</term>
+<listitem><simpara> length of data buffer to be parsed
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> 0 on success, -1 on failure.  Note that in the failure
+case, some datasets may still have been added to <parameter>data</parameter>.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="iptc-data-save" role="function">
+<title>iptc_data_save ()</title>
+<indexterm zone="iptc-data-save"><primary>iptc_data_save</primary></indexterm><programlisting><link linkend="int">int</link>                 iptc_data_save                      (<link linkend="IptcData">IptcData</link> *data,
+                                                         unsigned <link linkend="char">char</link> **buf,
+                                                         unsigned <link linkend="int">int</link> *size);</programlisting>
+<para>
+Outputs a collection of datasets as an IPTC bytestream.  No memory allocation
+is required in advance.  <parameter>buf</parameter> should point to a NULL pointer that will be set
+to the address of the output buffer by this function.  <parameter>size</parameter> will contain
+this buffer's length after completion.  The object <parameter>data</parameter> is unmodified by this
+function.  The application should free the output buffer using
+<link linkend="iptc-data-free-buf"><function>iptc_data_free_buf()</function></link> when it is no longer needed.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>data</parameter>&nbsp;:</term>
+<listitem><simpara> collection of datasets to be saved
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>buf</parameter>&nbsp;:</term>
+<listitem><simpara> pointer to a pointer that will hold the address of the output buffer
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>size</parameter>&nbsp;:</term>
+<listitem><simpara> pointer to an integer that will hold the length of the output buffer
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> 0 on success, -1 on failure.  In the failure case, <parameter>buf</parameter> should still
+be checked for a non-NULL value, and freed using <link linkend="iptc-data-free-buf"><function>iptc_data_free_buf()</function></link> if
+necessary.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="iptc-data-free-buf" role="function">
+<title>iptc_data_free_buf ()</title>
+<indexterm zone="iptc-data-free-buf"><primary>iptc_data_free_buf</primary></indexterm><programlisting><link linkend="void">void</link>                iptc_data_free_buf                  (<link linkend="IptcData">IptcData</link> *data,
+                                                         unsigned <link linkend="char">char</link> *buf);</programlisting>
+<para>
+Frees a temporary buffer created from an <link linkend="IptcData"><type>IptcData</type></link> object by the
+<link linkend="iptc-data-save"><function>iptc_data_save()</function></link> function.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>data</parameter>&nbsp;:</term>
+<listitem><simpara> the <link linkend="IptcData"><type>IptcData</type></link> object that allocated the buffer
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>buf</parameter>&nbsp;:</term>
+<listitem><simpara> the buffer to free
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="iptc-data-get-dataset" role="function">
+<title>iptc_data_get_dataset ()</title>
+<indexterm zone="iptc-data-get-dataset"><primary>iptc_data_get_dataset</primary></indexterm><programlisting><link linkend="IptcDataSet">IptcDataSet</link>*        iptc_data_get_dataset               (<link linkend="IptcData">IptcData</link> *data,
+                                                         <link linkend="IptcRecord">IptcRecord</link> record,
+                                                         <link linkend="IptcTag">IptcTag</link> tag);</programlisting>
+<para>
+Finds the first occurence of a dataset inside a collection with
+the specified record and tag identifiers.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>data</parameter>&nbsp;:</term>
+<listitem><simpara> collection to search
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>record</parameter>&nbsp;:</term>
+<listitem><simpara> record identifier of dataset
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>tag</parameter>&nbsp;:</term>
+<listitem><simpara> tag identifier (dataset number) of dataset
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> pointer to dataset if found, NULL if no matching dataset found
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="iptc-data-get-next-dataset" role="function">
+<title>iptc_data_get_next_dataset ()</title>
+<indexterm zone="iptc-data-get-next-dataset"><primary>iptc_data_get_next_dataset</primary></indexterm><programlisting><link linkend="IptcDataSet">IptcDataSet</link>*        iptc_data_get_next_dataset          (<link linkend="IptcData">IptcData</link> *data,
+                                                         <link linkend="IptcDataSet">IptcDataSet</link> *ds,
+                                                         <link linkend="IptcRecord">IptcRecord</link> record,
+                                                         <link linkend="IptcTag">IptcTag</link> tag);</programlisting>
+<para>
+Finds the next occurence of a dataset inside a collection with
+the specified record and tag identifiers following <parameter>ds</parameter>.  This is useful
+when a collection contains more than one dataset with the same record
+and tag identifier (for example, the keywords tag appears once for
+each keyword in the IPTC metadata).  When <parameter>ds</parameter> is NULL, this function
+is equivalent to <link linkend="iptc-data-get-dataset"><function>iptc_data_get_dataset()</function></link>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>data</parameter>&nbsp;:</term>
+<listitem><simpara> collection to search
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>ds</parameter>&nbsp;:</term>
+<listitem><simpara> dataset where the search should originate (can be NULL)
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>record</parameter>&nbsp;:</term>
+<listitem><simpara> record identifier of dataset
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>tag</parameter>&nbsp;:</term>
+<listitem><simpara> tag identifier (dataset number) of dataset
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> pointer to dataset if found, NULL if no matching dataset found
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="iptc-data-add-dataset" role="function">
+<title>iptc_data_add_dataset ()</title>
+<indexterm zone="iptc-data-add-dataset"><primary>iptc_data_add_dataset</primary></indexterm><programlisting><link linkend="int">int</link>                 iptc_data_add_dataset               (<link linkend="IptcData">IptcData</link> *data,
+                                                         <link linkend="IptcDataSet">IptcDataSet</link> *ds);</programlisting>
+<para>
+Adds an <link linkend="IptcDataSet"><type>IptcDataSet</type></link> at the end of an existing collection.  A
+dataset can only be a member of a single collection.  This
+function will increment the reference count of <parameter>dataset</parameter>, so if
+the application no longer intends to use <parameter>dataset</parameter> directly, it
+should call <link linkend="iptc-dataset-unref"><function>iptc_dataset_unref()</function></link> immediately following this call.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>data</parameter>&nbsp;:</term>
+<listitem><simpara> the collection to which the dataset will be added
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>ds</parameter>&nbsp;:</term>
+<listitem><simpara> dataset to add
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> 0 on success, -1 on error
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="iptc-data-add-dataset-before" role="function">
+<title>iptc_data_add_dataset_before ()</title>
+<indexterm zone="iptc-data-add-dataset-before"><primary>iptc_data_add_dataset_before</primary></indexterm><programlisting><link linkend="int">int</link>                 iptc_data_add_dataset_before        (<link linkend="IptcData">IptcData</link> *data,
+                                                         <link linkend="IptcDataSet">IptcDataSet</link> *ds,
+                                                         <link linkend="IptcDataSet">IptcDataSet</link> *newds);</programlisting>
+<para>
+Same as <link linkend="iptc-data-add-dataset"><function>iptc_data_add_dataset()</function></link>, except the <parameter>dataset</parameter> will be added
+before an existing dataset <parameter>ds</parameter>, so that if they are enumerated,
+<parameter>newds</parameter> will appear before <parameter>ds</parameter> in the collection.  <parameter>ds</parameter> must be
+a dataset already present in the collection.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>data</parameter>&nbsp;:</term>
+<listitem><simpara> the collection to which the dataset will be added
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>ds</parameter>&nbsp;:</term>
+<listitem><simpara> existing dataset before which <parameter>newds</parameter> will be added
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>newds</parameter>&nbsp;:</term>
+<listitem><simpara> dataset to add
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> 0 on success, -1 on error
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="iptc-data-add-dataset-after" role="function">
+<title>iptc_data_add_dataset_after ()</title>
+<indexterm zone="iptc-data-add-dataset-after"><primary>iptc_data_add_dataset_after</primary></indexterm><programlisting><link linkend="int">int</link>                 iptc_data_add_dataset_after         (<link linkend="IptcData">IptcData</link> *data,
+                                                         <link linkend="IptcDataSet">IptcDataSet</link> *ds,
+                                                         <link linkend="IptcDataSet">IptcDataSet</link> *newds);</programlisting>
+<para>
+Same as <link linkend="iptc-data-add-dataset"><function>iptc_data_add_dataset()</function></link>, except the <parameter>dataset</parameter> will be added
+after an existing dataset <parameter>ds</parameter>, so that if they are enumerated,
+<parameter>newds</parameter> will appear after <parameter>ds</parameter> in the collection.  <parameter>ds</parameter> must be a
+dataset already present in the collection.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>data</parameter>&nbsp;:</term>
+<listitem><simpara> the collection to which the dataset will be added
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>ds</parameter>&nbsp;:</term>
+<listitem><simpara> existing dataset after which <parameter>newds</parameter> will be added
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>newds</parameter>&nbsp;:</term>
+<listitem><simpara> dataset to add
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> 0 on success, -1 on error
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="iptc-data-remove-dataset" role="function">
+<title>iptc_data_remove_dataset ()</title>
+<indexterm zone="iptc-data-remove-dataset"><primary>iptc_data_remove_dataset</primary></indexterm><programlisting><link linkend="int">int</link>                 iptc_data_remove_dataset            (<link linkend="IptcData">IptcData</link> *data,
+                                                         <link linkend="IptcDataSet">IptcDataSet</link> *ds);</programlisting>
+<para>
+Removes a dataset from a collection.  This function also calls
+<link linkend="iptc-dataset-unref"><function>iptc_dataset_unref()</function></link> on <parameter>ds</parameter>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>data</parameter>&nbsp;:</term>
+<listitem><simpara> the collection from which to remove an entry
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>ds</parameter>&nbsp;:</term>
+<listitem><simpara> the dataset to remove from the collection
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> 0 on success, -1 on error
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="IptcDataForeachDataSetFunc" role="function">
+<title>IptcDataForeachDataSetFunc ()</title>
+<indexterm zone="IptcDataForeachDataSetFunc"><primary>IptcDataForeachDataSetFunc</primary></indexterm><programlisting><link linkend="void">void</link>                (*IptcDataForeachDataSetFunc)       (<link linkend="IptcDataSet">IptcDataSet</link> *dataset,
+                                                         <link linkend="void">void</link> *user_data);</programlisting>
+<para>
+Application callback executed for each dataset from
+<link linkend="iptc-data-foreach-dataset"><function>iptc_data_foreach_dataset()</function></link>.
+</para><variablelist role="params">
+<varlistentry><term><parameter>dataset</parameter>&nbsp;:</term>
+<listitem><simpara>the dataset
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>user_data</parameter>&nbsp;:</term>
+<listitem><simpara>the same <parameter>user_data</parameter> passed to <link linkend="iptc-data-foreach-dataset"><function>iptc_data_foreach_dataset()</function></link>
+
+
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="iptc-data-foreach-dataset" role="function">
+<title>iptc_data_foreach_dataset ()</title>
+<indexterm zone="iptc-data-foreach-dataset"><primary>iptc_data_foreach_dataset</primary></indexterm><programlisting><link linkend="void">void</link>                iptc_data_foreach_dataset           (<link linkend="IptcData">IptcData</link> *data,
+                                                         <link linkend="IptcDataForeachDataSetFunc">IptcDataForeachDataSetFunc</link> func,
+                                                         <link linkend="void">void</link> *user_data);</programlisting>
+<para>
+Iterates through each dataset in the collection and calls the
+callback function on that dataset.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>data</parameter>&nbsp;:</term>
+<listitem><simpara> collection through which to iterate
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>func</parameter>&nbsp;:</term>
+<listitem><simpara> callback function
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>user_data</parameter>&nbsp;:</term>
+<listitem><simpara> arbitrary user data to be passed to the callback
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="iptc-data-sort" role="function">
+<title>iptc_data_sort ()</title>
+<indexterm zone="iptc-data-sort"><primary>iptc_data_sort</primary></indexterm><programlisting><link linkend="void">void</link>                iptc_data_sort                      (<link linkend="IptcData">IptcData</link> *data);</programlisting>
+<para>
+Sorts a collection of datasets in ascending order first by record
+number and second by tag number.  It can be useful to call this
+function before saving IPTC data in order to maintain a more
+organized file.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>data</parameter>&nbsp;:</term>
+<listitem><simpara> collection of datasets to sort
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="IptcEncoding" role="enum">
+<title>enum IptcEncoding</title>
+<indexterm zone="IptcEncoding"><primary>IptcEncoding</primary></indexterm><programlisting>typedef enum {
+	IPTC_ENCODING_UNKNOWN = 0,
+	IPTC_ENCODING_UNSPECIFIED = 1,
+	IPTC_ENCODING_UTF8 = 2
+} IptcEncoding;
+</programlisting>
+<para>
+
+</para></refsect2>
+<refsect2 id="iptc-data-get-encoding" role="function">
+<title>iptc_data_get_encoding ()</title>
+<indexterm zone="iptc-data-get-encoding"><primary>iptc_data_get_encoding</primary></indexterm><programlisting><link linkend="IptcEncoding">IptcEncoding</link>        iptc_data_get_encoding              (<link linkend="IptcData">IptcData</link> *data);</programlisting>
+<para>
+Identifies the character encoding of the collection of datasets as
+specified by the "character set" dataset (1:90).  The specification
+allows this dataset to contain control sequences from the ISO 2022
+standard.  Unfortunately, this standard is very complicated and
+generally not used by application writers.  Thus, rather than
+attempt to decode any possible any possible control sequence, this
+function only attempts to recognize the control sequence that identifies
+the UTF-8 character set.  If found, this function will return
+<link linkend="IPTC-ENCODING-UTF8:CAPS"><type>IPTC_ENCODING_UTF8</type></link>.  All character-based datasets in record 2 and
+higher are then expected to contain data encoded in the UTF-8
+character set.  Otherwise, this function will return
+<link linkend="IPTC-ENCODING-UNKNOWN:CAPS"><type>IPTC_ENCODING_UNKNOWN</type></link>, meaning that any other character set
+might be used, including ISO 2022 control sequences that have not
+been decoded.  If dataset 1:90 is not present, this function returns
+<link linkend="IPTC-ENCODING-UNSPECIFIED:CAPS"><type>IPTC_ENCODING_UNSPECIFIED</type></link>, in which case character-based datasets
+will usually be plain ASCII, although broken applications may have
+used some other encoding.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>data</parameter>&nbsp;:</term>
+<listitem><simpara> collection of datasets
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> <link linkend="IPTC-ENCODING-UTF8:CAPS"><type>IPTC_ENCODING_UTF8</type></link>, <link linkend="IPTC-ENCODING-UNKNOWN:CAPS"><type>IPTC_ENCODING_UNKNOWN</type></link>, or
+<link linkend="IPTC-ENCODING-UNSPECIFIED:CAPS"><type>IPTC_ENCODING_UNSPECIFIED</type></link>.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="iptc-data-set-encoding-utf8" role="function">
+<title>iptc_data_set_encoding_utf8 ()</title>
+<indexterm zone="iptc-data-set-encoding-utf8"><primary>iptc_data_set_encoding_utf8</primary></indexterm><programlisting><link linkend="int">int</link>                 iptc_data_set_encoding_utf8         (<link linkend="IptcData">IptcData</link> *data);</programlisting>
+<para>
+Sets the contents of the "character set" dataset (1:90) to contain
+the control sequence that indicates UTF-8 as the character encoding
+for any character-based datasets in record 2 or higher.  If dataset
+1:90 is not present, it will be added to the collection.  Any prior
+value of dataset 1:90 will be overwritten by this function.
+Note that some third-party applications (notably Picasa) will ignore
+all your IPTC data if this option is set.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>data</parameter>&nbsp;:</term>
+<listitem><simpara> collection of datasets for which to specify the encoding
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> 0 on success, -1 on failure.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="IPTC-IIM-VERSION:CAPS" role="macro">
+<title>IPTC_IIM_VERSION</title>
+<indexterm zone="IPTC-IIM-VERSION:CAPS"><primary>IPTC_IIM_VERSION</primary></indexterm><programlisting>#define IPTC_IIM_VERSION	4
+</programlisting>
+<para>
+The version of the IPTC IIM specification implemented by this library.
+</para></refsect2>
+<refsect2 id="iptc-data-set-version" role="function">
+<title>iptc_data_set_version ()</title>
+<indexterm zone="iptc-data-set-version"><primary>iptc_data_set_version</primary></indexterm><programlisting><link linkend="int">int</link>                 iptc_data_set_version               (<link linkend="IptcData">IptcData</link> *data,
+                                                         unsigned <link linkend="int">int</link> version);</programlisting>
+<para>
+Specifies the version of the IIM specification used by this library by
+setting the value of datasets 1:00 and 2:00.  It is recommended to set the
+version number to <link linkend="IPTC-IIM-VERSION:CAPS"><type>IPTC_IIM_VERSION</type></link>, which specifies the version
+implemented by this library (currently 4).  If datasets 1:00 or 2:00 are
+not present, they will be added to the collection.  Any prior value of
+the datasets will be overwritten by this function.  To ensure strict
+compliance with the standard, this function should be called before
+saving a collection of datasets.  However, in practice, some applications
+(notably Picasa) will ignore all your IPTC data if this option is set.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>data</parameter>&nbsp;:</term>
+<listitem><simpara> collection of datasets for which to specify the version
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>version</parameter>&nbsp;:</term>
+<listitem><simpara> version number to write
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> 0 on success, -1 on failure.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="iptc-data-add-dataset-with-value" role="function">
+<title>iptc_data_add_dataset_with_value ()</title>
+<indexterm zone="iptc-data-add-dataset-with-value"><primary>iptc_data_add_dataset_with_value</primary></indexterm><programlisting><link linkend="int">int</link>                 iptc_data_add_dataset_with_value    (<link linkend="IptcData">IptcData</link> *data,
+                                                         <link linkend="IptcRecord">IptcRecord</link> record,
+                                                         <link linkend="IptcTag">IptcTag</link> tag,
+                                                         unsigned <link linkend="int">int</link> value,
+                                                         <link linkend="IptcValidate">IptcValidate</link> validate);</programlisting>
+<para>
+This is a convenience function that creates a new dataset with the given
+record and tag, adds it to the specified collection of datasets, and
+stores the given numeric value as the contents of the dataset.  It is
+equivalent to calling this sequence of functions: <link linkend="iptc-dataset-new"><function>iptc_dataset_new()</function></link>,
+<link linkend="iptc-dataset-set-tag"><function>iptc_dataset_set_tag()</function></link>, <link linkend="iptc-data-add-dataset"><function>iptc_data_add_dataset()</function></link>,
+and <link linkend="iptc-dataset-set-value"><function>iptc_dataset_set_value()</function></link>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>data</parameter>&nbsp;:</term>
+<listitem><simpara> collection to which the new dataset should be added
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>record</parameter>&nbsp;:</term>
+<listitem><simpara> record number of the dataset to be added
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>tag</parameter>&nbsp;:</term>
+<listitem><simpara> tag (dataset number) of the dataset to be added
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>value</parameter>&nbsp;:</term>
+<listitem><simpara> value for the dataset
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>validate</parameter>&nbsp;:</term>
+<listitem><simpara> whether or not the passed value should be validated against
+the IPTC specification for this dataset's tag.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> -1 on error, 0 if validation failed, the number of bytes copied
+on success
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="iptc-data-add-dataset-with-contents" role="function">
+<title>iptc_data_add_dataset_with_contents ()</title>
+<indexterm zone="iptc-data-add-dataset-with-contents"><primary>iptc_data_add_dataset_with_contents</primary></indexterm><programlisting><link linkend="int">int</link>                 iptc_data_add_dataset_with_contents (<link linkend="IptcData">IptcData</link> *data,
+                                                         <link linkend="IptcRecord">IptcRecord</link> record,
+                                                         <link linkend="IptcTag">IptcTag</link> tag,
+                                                         unsigned <link linkend="char">char</link> *buf,
+                                                         unsigned <link linkend="int">int</link> size,
+                                                         <link linkend="IptcValidate">IptcValidate</link> validate);</programlisting>
+<para>
+This is a convenience function that creates a new dataset with the given
+record and tag, adds it to the specified collection of datasets, and
+stores a copy of the given data buffer as the contents of the dataset.
+It is equivalent to calling this sequence of functions: <link linkend="iptc-dataset-new"><function>iptc_dataset_new()</function></link>,
+<link linkend="iptc-dataset-set-tag"><function>iptc_dataset_set_tag()</function></link>, <link linkend="iptc-data-add-dataset"><function>iptc_data_add_dataset()</function></link>,
+and <link linkend="iptc-dataset-set-data"><function>iptc_dataset_set_data()</function></link>.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>data</parameter>&nbsp;:</term>
+<listitem><simpara> collection to which the new dataset should be added
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>record</parameter>&nbsp;:</term>
+<listitem><simpara> record number of the dataset to be added
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>tag</parameter>&nbsp;:</term>
+<listitem><simpara> tag (dataset number) of the dataset to be added
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>buf</parameter>&nbsp;:</term>
+<listitem><simpara> buffer containing the value
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>size</parameter>&nbsp;:</term>
+<listitem><simpara> number of bytes to copy
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>validate</parameter>&nbsp;:</term>
+<listitem><simpara> whether or not the passed value should be validated against
+the IPTC specification for this dataset's tag.
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> -1 on error, 0 if validation failed, the number of bytes copied
+on success
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="iptc-data-dump" role="function">
+<title>iptc_data_dump ()</title>
+<indexterm zone="iptc-data-dump"><primary>iptc_data_dump</primary></indexterm><programlisting><link linkend="void">void</link>                iptc_data_dump                      (<link linkend="IptcData">IptcData</link> *data,
+                                                         unsigned <link linkend="int">int</link> indent);</programlisting>
+<para>
+A debugging aid that prints out the contents of a collection
+of datasets to standard output.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>data</parameter>&nbsp;:</term>
+<listitem><simpara> collection of datasets to print
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>indent</parameter>&nbsp;:</term>
+<listitem><simpara> indentation level of the printout
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="iptc-data-log" role="function">
+<title>iptc_data_log ()</title>
+<indexterm zone="iptc-data-log"><primary>iptc_data_log</primary></indexterm><programlisting><link linkend="void">void</link>                iptc_data_log                       (<link linkend="IptcData">IptcData</link> *data,
+                                                         <link linkend="IptcLog">IptcLog</link> *log);</programlisting>
+<para>
+Changes the logging object for a <link linkend="IptcData"><type>IptcData</type></link> object.  The logging
+object determines how warning and error messages are relayed back
+to the application.  This function also calls <link linkend="iptc-log-ref"><function>iptc_log_ref()</function></link> on
+the new log object and <link linkend="iptc-log-unref"><function>iptc_log_unref()</function></link> on the previous log
+object.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>data</parameter>&nbsp;:</term>
+<listitem><simpara> collection for which the log object should be changed.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>log</parameter>&nbsp;:</term>
+<listitem><simpara> log object to use for the collection
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+
+</refsect1>
+
+
+
+
+</refentry>

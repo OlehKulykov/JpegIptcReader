@@ -1,0 +1,399 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Error logging</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.74.0">
+<link rel="home" href="index.html" title="libiptcdata Reference Manual">
+<link rel="up" href="ch03.html" title="Helper Functions">
+<link rel="prev" href="libiptcdata-mem.html" title="Memory managment">
+<meta name="generator" content="GTK-Doc V1.10 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+<link rel="chapter" href="ch01.html" title="IPTC Data Manipulation">
+<link rel="chapter" href="ch02.html" title="Format-specific Functions">
+<link rel="chapter" href="ch03.html" title="Helper Functions">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
+<tr valign="middle">
+<td><a accesskey="p" href="libiptcdata-mem.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="ch03.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">libiptcdata Reference Manual</th>
+<td> </td>
+</tr>
+<tr><td colspan="5" class="shortcuts"><nobr><a href="#libiptcdata-log.synopsis" class="shortcut">Top</a>
+                   | 
+                  <a href="#libiptcdata-log.description" class="shortcut">Description</a></nobr></td></tr>
+</table>
+<div class="refentry" lang="en">
+<a name="libiptcdata-log"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2><span class="refentrytitle"><a name="libiptcdata-log.top_of_page"></a>Error logging</span></h2>
+<p>Error logging — Hooks for defining your own log-handling functions</p>
+</td>
+<td valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsynopsisdiv">
+<a name="libiptcdata-log.synopsis"></a><h2>Synopsis</h2>
+<pre class="synopsis">
+                    <a class="link" href="libiptcdata-log.html#IptcLog" title="IptcLog">IptcLog</a>;
+<a class="link" href="libiptcdata-log.html#IptcLog" title="IptcLog">IptcLog</a>*            <a class="link" href="libiptcdata-log.html#iptc-log-new" title="iptc_log_new ()">iptc_log_new</a>                        (void);
+<a class="link" href="libiptcdata-log.html#IptcLog" title="IptcLog">IptcLog</a>*            <a class="link" href="libiptcdata-log.html#iptc-log-new-mem" title="iptc_log_new_mem ()">iptc_log_new_mem</a>                    (<a class="link" href="libiptcdata-mem.html#IptcMem" title="IptcMem">IptcMem</a> *);
+void                <a class="link" href="libiptcdata-log.html#iptc-log-ref" title="iptc_log_ref ()">iptc_log_ref</a>                        (<a class="link" href="libiptcdata-log.html#IptcLog" title="IptcLog">IptcLog</a> *log);
+void                <a class="link" href="libiptcdata-log.html#iptc-log-unref" title="iptc_log_unref ()">iptc_log_unref</a>                      (<a class="link" href="libiptcdata-log.html#IptcLog" title="IptcLog">IptcLog</a> *log);
+void                <a class="link" href="libiptcdata-log.html#iptc-log-free" title="iptc_log_free ()">iptc_log_free</a>                       (<a class="link" href="libiptcdata-log.html#IptcLog" title="IptcLog">IptcLog</a> *log);
+enum                <a class="link" href="libiptcdata-log.html#IptcLogCode" title="enum IptcLogCode">IptcLogCode</a>;
+const char*         <a class="link" href="libiptcdata-log.html#iptc-log-code-get-title" title="iptc_log_code_get_title ()">iptc_log_code_get_title</a>             (<a class="link" href="libiptcdata-log.html#IptcLogCode" title="enum IptcLogCode">IptcLogCode</a> );
+const char*         <a class="link" href="libiptcdata-log.html#iptc-log-code-get-message" title="iptc_log_code_get_message ()">iptc_log_code_get_message</a>           (<a class="link" href="libiptcdata-log.html#IptcLogCode" title="enum IptcLogCode">IptcLogCode</a> );
+void                (<a class="link" href="libiptcdata-log.html#IptcLogFunc" title="IptcLogFunc ()">*IptcLogFunc</a>)                      (<a class="link" href="libiptcdata-log.html#IptcLog" title="IptcLog">IptcLog</a> *log,
+                                                         <a class="link" href="libiptcdata-log.html#IptcLogCode" title="enum IptcLogCode">IptcLogCode</a> ,
+                                                         const char *domain,
+                                                         const char *format,
+                                                         va_list args,
+                                                         void *data);
+void                <a class="link" href="libiptcdata-log.html#iptc-log-set-func" title="iptc_log_set_func ()">iptc_log_set_func</a>                   (<a class="link" href="libiptcdata-log.html#IptcLog" title="IptcLog">IptcLog</a> *log,
+                                                         <a class="link" href="libiptcdata-log.html#IptcLogFunc" title="IptcLogFunc ()">IptcLogFunc</a> func,
+                                                         void *data);
+void                <a class="link" href="libiptcdata-log.html#iptc-log" title="iptc_log ()">iptc_log</a>                            (<a class="link" href="libiptcdata-log.html#IptcLog" title="IptcLog">IptcLog</a> *log,
+                                                         <a class="link" href="libiptcdata-log.html#IptcLogCode" title="enum IptcLogCode">IptcLogCode</a> ,
+                                                         const char *domain,
+                                                         const char *format);
+#define             <a class="link" href="libiptcdata-log.html#IPTC-LOG-NO-MEMORY:CAPS" title="IPTC_LOG_NO_MEMORY()">IPTC_LOG_NO_MEMORY</a>                  (l,d,s)
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="libiptcdata-log.description"></a><h2>Description</h2>
+<p>
+
+</p>
+</div>
+<div class="refsect1" lang="en">
+<a name="libiptcdata-log.details"></a><h2>Details</h2>
+<div class="refsect2" lang="en">
+<a name="IptcLog"></a><h3>IptcLog</h3>
+<pre class="programlisting">typedef struct _IptcLog IptcLog;</pre>
+<p>
+
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="iptc-log-new"></a><h3>iptc_log_new ()</h3>
+<pre class="programlisting"><a class="link" href="libiptcdata-log.html#IptcLog" title="IptcLog">IptcLog</a>*            iptc_log_new                        (void);</pre>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>
+
+
+</td>
+</tr></tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="iptc-log-new-mem"></a><h3>iptc_log_new_mem ()</h3>
+<pre class="programlisting"><a class="link" href="libiptcdata-log.html#IptcLog" title="IptcLog">IptcLog</a>*            iptc_log_new_mem                    (<a class="link" href="libiptcdata-mem.html#IptcMem" title="IptcMem">IptcMem</a> *);</pre>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>Param1</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>
+
+
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="iptc-log-ref"></a><h3>iptc_log_ref ()</h3>
+<pre class="programlisting">void                iptc_log_ref                        (<a class="link" href="libiptcdata-log.html#IptcLog" title="IptcLog">IptcLog</a> *log);</pre>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><em class="parameter"><code>log</code></em> :</span></p></td>
+<td>
+
+
+</td>
+</tr></tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="iptc-log-unref"></a><h3>iptc_log_unref ()</h3>
+<pre class="programlisting">void                iptc_log_unref                      (<a class="link" href="libiptcdata-log.html#IptcLog" title="IptcLog">IptcLog</a> *log);</pre>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><em class="parameter"><code>log</code></em> :</span></p></td>
+<td>
+
+
+</td>
+</tr></tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="iptc-log-free"></a><h3>iptc_log_free ()</h3>
+<pre class="programlisting">void                iptc_log_free                       (<a class="link" href="libiptcdata-log.html#IptcLog" title="IptcLog">IptcLog</a> *log);</pre>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><em class="parameter"><code>log</code></em> :</span></p></td>
+<td>
+
+
+</td>
+</tr></tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="IptcLogCode"></a><h3>enum IptcLogCode</h3>
+<pre class="programlisting">typedef enum {
+	IPTC_LOG_CODE_NONE,
+	IPTC_LOG_CODE_DEBUG,
+	IPTC_LOG_CODE_NO_MEMORY,
+	IPTC_LOG_CODE_CORRUPT_DATA
+} IptcLogCode;
+</pre>
+<p>
+
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="iptc-log-code-get-title"></a><h3>iptc_log_code_get_title ()</h3>
+<pre class="programlisting">const char*         iptc_log_code_get_title             (<a class="link" href="libiptcdata-log.html#IptcLogCode" title="enum IptcLogCode">IptcLogCode</a> );</pre>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>Param1</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>
+
+
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="iptc-log-code-get-message"></a><h3>iptc_log_code_get_message ()</h3>
+<pre class="programlisting">const char*         iptc_log_code_get_message           (<a class="link" href="libiptcdata-log.html#IptcLogCode" title="enum IptcLogCode">IptcLogCode</a> );</pre>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>Param1</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>
+
+
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="IptcLogFunc"></a><h3>IptcLogFunc ()</h3>
+<pre class="programlisting">void                (*IptcLogFunc)                      (<a class="link" href="libiptcdata-log.html#IptcLog" title="IptcLog">IptcLog</a> *log,
+                                                         <a class="link" href="libiptcdata-log.html#IptcLogCode" title="enum IptcLogCode">IptcLogCode</a> ,
+                                                         const char *domain,
+                                                         const char *format,
+                                                         va_list args,
+                                                         void *data);</pre>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>log</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>Param2</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>domain</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>format</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>args</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>data</code></em> :</span></p></td>
+<td>
+
+
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="iptc-log-set-func"></a><h3>iptc_log_set_func ()</h3>
+<pre class="programlisting">void                iptc_log_set_func                   (<a class="link" href="libiptcdata-log.html#IptcLog" title="IptcLog">IptcLog</a> *log,
+                                                         <a class="link" href="libiptcdata-log.html#IptcLogFunc" title="IptcLogFunc ()">IptcLogFunc</a> func,
+                                                         void *data);</pre>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>log</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>func</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>data</code></em> :</span></p></td>
+<td>
+
+
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="iptc-log"></a><h3>iptc_log ()</h3>
+<pre class="programlisting">void                iptc_log                            (<a class="link" href="libiptcdata-log.html#IptcLog" title="IptcLog">IptcLog</a> *log,
+                                                         <a class="link" href="libiptcdata-log.html#IptcLogCode" title="enum IptcLogCode">IptcLogCode</a> ,
+                                                         const char *domain,
+                                                         const char *format);</pre>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>log</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>Param2</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>domain</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>format</code></em> :</span></p></td>
+<td>
+
+
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="IPTC-LOG-NO-MEMORY:CAPS"></a><h3>IPTC_LOG_NO_MEMORY()</h3>
+<pre class="programlisting">#define IPTC_LOG_NO_MEMORY(l,d,s) iptc_log (l, IPTC_LOG_CODE_NO_MEMORY, d, "Could not allocate %i byte(s).", s)
+</pre>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>l</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>d</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>s</code></em> :</span></p></td>
+<td>
+
+
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+</div>
+<div class="footer">
+<hr>
+          Generated by GTK-Doc V1.10</div>
+</body>
+</html>

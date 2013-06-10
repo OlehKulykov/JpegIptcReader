@@ -1,0 +1,855 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Datasets</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.74.0">
+<link rel="home" href="index.html" title="libiptcdata Reference Manual">
+<link rel="up" href="ch01.html" title="IPTC Data Manipulation">
+<link rel="prev" href="libiptcdata-data.html" title="IPTC Data">
+<link rel="next" href="libiptcdata-tag.html" title="Tag Specifications">
+<meta name="generator" content="GTK-Doc V1.10 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+<link rel="chapter" href="ch01.html" title="IPTC Data Manipulation">
+<link rel="chapter" href="ch02.html" title="Format-specific Functions">
+<link rel="chapter" href="ch03.html" title="Helper Functions">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
+<tr valign="middle">
+<td><a accesskey="p" href="libiptcdata-data.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="ch01.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">libiptcdata Reference Manual</th>
+<td><a accesskey="n" href="libiptcdata-tag.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+</tr>
+<tr><td colspan="5" class="shortcuts"><nobr><a href="#libiptcdata-dataset.synopsis" class="shortcut">Top</a>
+                   | 
+                  <a href="#libiptcdata-dataset.description" class="shortcut">Description</a></nobr></td></tr>
+</table>
+<div class="refentry" lang="en">
+<a name="libiptcdata-dataset"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2><span class="refentrytitle"><a name="libiptcdata-dataset.top_of_page"></a>Datasets</span></h2>
+<p>Datasets — manipulating a tag identifier and its associated value</p>
+</td>
+<td valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsynopsisdiv">
+<a name="libiptcdata-dataset.synopsis"></a><h2>Synopsis</h2>
+<pre class="synopsis">
+                    <a class="link" href="libiptcdata-dataset.html#IptcDataSet" title="IptcDataSet">IptcDataSet</a>;
+<a class="link" href="libiptcdata-dataset.html#IptcDataSet" title="IptcDataSet">IptcDataSet</a>*        <a class="link" href="libiptcdata-dataset.html#iptc-dataset-new" title="iptc_dataset_new ()">iptc_dataset_new</a>                    (void);
+<a class="link" href="libiptcdata-dataset.html#IptcDataSet" title="IptcDataSet">IptcDataSet</a>*        <a class="link" href="libiptcdata-dataset.html#iptc-dataset-new-mem" title="iptc_dataset_new_mem ()">iptc_dataset_new_mem</a>                (<a class="link" href="libiptcdata-mem.html#IptcMem" title="IptcMem">IptcMem</a> *mem);
+<a class="link" href="libiptcdata-dataset.html#IptcDataSet" title="IptcDataSet">IptcDataSet</a>*        <a class="link" href="libiptcdata-dataset.html#iptc-dataset-copy" title="iptc_dataset_copy ()">iptc_dataset_copy</a>                   (<a class="link" href="libiptcdata-dataset.html#IptcDataSet" title="IptcDataSet">IptcDataSet</a> *dataset);
+void                <a class="link" href="libiptcdata-dataset.html#iptc-dataset-ref" title="iptc_dataset_ref ()">iptc_dataset_ref</a>                    (<a class="link" href="libiptcdata-dataset.html#IptcDataSet" title="IptcDataSet">IptcDataSet</a> *dataset);
+void                <a class="link" href="libiptcdata-dataset.html#iptc-dataset-unref" title="iptc_dataset_unref ()">iptc_dataset_unref</a>                  (<a class="link" href="libiptcdata-dataset.html#IptcDataSet" title="IptcDataSet">IptcDataSet</a> *dataset);
+void                <a class="link" href="libiptcdata-dataset.html#iptc-dataset-free" title="iptc_dataset_free ()">iptc_dataset_free</a>                   (<a class="link" href="libiptcdata-dataset.html#IptcDataSet" title="IptcDataSet">IptcDataSet</a> *dataset);
+
+<a class="link" href="libiptcdata-tag.html#IptcFormat" title="enum IptcFormat">IptcFormat</a>          <a class="link" href="libiptcdata-dataset.html#iptc-dataset-get-format" title="iptc_dataset_get_format ()">iptc_dataset_get_format</a>             (<a class="link" href="libiptcdata-dataset.html#IptcDataSet" title="IptcDataSet">IptcDataSet</a> *dataset);
+int                 <a class="link" href="libiptcdata-dataset.html#iptc-dataset-get-data" title="iptc_dataset_get_data ()">iptc_dataset_get_data</a>               (<a class="link" href="libiptcdata-dataset.html#IptcDataSet" title="IptcDataSet">IptcDataSet</a> *dataset,
+                                                         unsigned char *buf,
+                                                         unsigned int size);
+unsigned int        <a class="link" href="libiptcdata-dataset.html#iptc-dataset-get-value" title="iptc_dataset_get_value ()">iptc_dataset_get_value</a>              (<a class="link" href="libiptcdata-dataset.html#IptcDataSet" title="IptcDataSet">IptcDataSet</a> *dataset);
+int                 <a class="link" href="libiptcdata-dataset.html#iptc-dataset-get-date" title="iptc_dataset_get_date ()">iptc_dataset_get_date</a>               (<a class="link" href="libiptcdata-dataset.html#IptcDataSet" title="IptcDataSet">IptcDataSet</a> *dataset,
+                                                         int *year,
+                                                         int *month,
+                                                         int *day);
+int                 <a class="link" href="libiptcdata-dataset.html#iptc-dataset-get-time" title="iptc_dataset_get_time ()">iptc_dataset_get_time</a>               (<a class="link" href="libiptcdata-dataset.html#IptcDataSet" title="IptcDataSet">IptcDataSet</a> *dataset,
+                                                         int *hour,
+                                                         int *min,
+                                                         int *sec,
+                                                         int *tz);
+
+void                <a class="link" href="libiptcdata-dataset.html#iptc-dataset-set-tag" title="iptc_dataset_set_tag ()">iptc_dataset_set_tag</a>                (<a class="link" href="libiptcdata-dataset.html#IptcDataSet" title="IptcDataSet">IptcDataSet</a> *dataset,
+                                                         <a class="link" href="libiptcdata-tag.html#IptcRecord" title="enum IptcRecord">IptcRecord</a> record,
+                                                         <a class="link" href="libiptcdata-tag.html#IptcTag" title="enum IptcTag">IptcTag</a> tag);
+enum                <a class="link" href="libiptcdata-dataset.html#IptcValidate" title="enum IptcValidate">IptcValidate</a>;
+int                 <a class="link" href="libiptcdata-dataset.html#iptc-dataset-set-data" title="iptc_dataset_set_data ()">iptc_dataset_set_data</a>               (<a class="link" href="libiptcdata-dataset.html#IptcDataSet" title="IptcDataSet">IptcDataSet</a> *dataset,
+                                                         unsigned char *buf,
+                                                         unsigned int size,
+                                                         <a class="link" href="libiptcdata-dataset.html#IptcValidate" title="enum IptcValidate">IptcValidate</a> validate);
+int                 <a class="link" href="libiptcdata-dataset.html#iptc-dataset-set-value" title="iptc_dataset_set_value ()">iptc_dataset_set_value</a>              (<a class="link" href="libiptcdata-dataset.html#IptcDataSet" title="IptcDataSet">IptcDataSet</a> *dataset,
+                                                         unsigned int value,
+                                                         <a class="link" href="libiptcdata-dataset.html#IptcValidate" title="enum IptcValidate">IptcValidate</a> validate);
+int                 <a class="link" href="libiptcdata-dataset.html#iptc-dataset-set-date" title="iptc_dataset_set_date ()">iptc_dataset_set_date</a>               (<a class="link" href="libiptcdata-dataset.html#IptcDataSet" title="IptcDataSet">IptcDataSet</a> *dataset,
+                                                         int year,
+                                                         int month,
+                                                         int day,
+                                                         <a class="link" href="libiptcdata-dataset.html#IptcValidate" title="enum IptcValidate">IptcValidate</a> validate);
+int                 <a class="link" href="libiptcdata-dataset.html#iptc-dataset-set-time" title="iptc_dataset_set_time ()">iptc_dataset_set_time</a>               (<a class="link" href="libiptcdata-dataset.html#IptcDataSet" title="IptcDataSet">IptcDataSet</a> *dataset,
+                                                         int hour,
+                                                         int min,
+                                                         int sec,
+                                                         int tz,
+                                                         <a class="link" href="libiptcdata-dataset.html#IptcValidate" title="enum IptcValidate">IptcValidate</a> validate);
+
+const char*         <a class="link" href="libiptcdata-dataset.html#iptc-dataset-get-as-str" title="iptc_dataset_get_as_str ()">iptc_dataset_get_as_str</a>             (<a class="link" href="libiptcdata-dataset.html#IptcDataSet" title="IptcDataSet">IptcDataSet</a> *dataset,
+                                                         char *buf,
+                                                         unsigned int size);
+void                <a class="link" href="libiptcdata-dataset.html#iptc-dataset-dump" title="iptc_dataset_dump ()">iptc_dataset_dump</a>                   (<a class="link" href="libiptcdata-dataset.html#IptcDataSet" title="IptcDataSet">IptcDataSet</a> *dataset,
+                                                         unsigned int indent);
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="libiptcdata-dataset.description"></a><h2>Description</h2>
+<p>
+The <a class="link" href="libiptcdata-dataset.html#IptcDataSet" title="IptcDataSet"><span class="type">IptcDataSet</span></a> object contains a record number, dataset number, and
+data.  The record and dataset (tag) number uniquely define the purpose of
+the dataset according to the IPTC IIM specification.  The data is the
+contents of the tag.
+</p>
+</div>
+<div class="refsect1" lang="en">
+<a name="libiptcdata-dataset.details"></a><h2>Details</h2>
+<div class="refsect2" lang="en">
+<a name="IptcDataSet"></a><h3>IptcDataSet</h3>
+<pre class="programlisting">typedef struct {
+	IptcRecord record;
+        IptcTag tag;
+        const IptcTagInfo * info;
+
+        unsigned char *data;
+        unsigned int size;
+
+	/* Data containing this dataset */
+	IptcData *parent;
+
+	IptcDataSetPrivate *priv;
+} IptcDataSet;
+</pre>
+<p>
+An IPTC dataset, which associates a record/tag pair with a value.
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><a class="link" href="libiptcdata-tag.html#IptcRecord" title="enum IptcRecord">IptcRecord</a> <em class="structfield"><code>record</code></em>;</span></p></td>
+<td>the record number
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><a class="link" href="libiptcdata-tag.html#IptcTag" title="enum IptcTag">IptcTag</a> <em class="structfield"><code>tag</code></em>;</span></p></td>
+<td>the dataset number
+</td>
+</tr>
+<tr>
+<td><p><span class="term">const <a class="link" href="libiptcdata-tag.html#IptcTagInfo" title="IptcTagInfo">IptcTagInfo</a> *<em class="structfield"><code>info</code></em>;</span></p></td>
+<td>information about the tag from the IPTC IIM specification
+</td>
+</tr>
+<tr>
+<td><p><span class="term">unsigned char *<em class="structfield"><code>data</code></em>;</span></p></td>
+<td>the value of the tag
+</td>
+</tr>
+<tr>
+<td><p><span class="term">unsigned int <em class="structfield"><code>size</code></em>;</span></p></td>
+<td>the length of <em class="parameter"><code>data</code></em> in bytes
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><a class="link" href="libiptcdata-data.html#IptcData" title="IptcData">IptcData</a> *<em class="structfield"><code>parent</code></em>;</span></p></td>
+<td>the <a class="link" href="libiptcdata-data.html#IptcData" title="IptcData"><span class="type">IptcData</span></a> object that contains this dataset or NULL
+if it is not contained
+</td>
+</tr>
+<tr>
+<td><p><span class="term">IptcDataSetPrivate *<em class="structfield"><code>priv</code></em>;</span></p></td>
+<td>private data
+
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="iptc-dataset-new"></a><h3>iptc_dataset_new ()</h3>
+<pre class="programlisting"><a class="link" href="libiptcdata-dataset.html#IptcDataSet" title="IptcDataSet">IptcDataSet</a>*        iptc_dataset_new                    (void);</pre>
+<p>
+Allocates a new dataset, which is initialized to be empty (undefined tag and
+empty value).  The default memory allocation functions (malloc, etc.) are
+used.  If you need custom memory management functions, use
+<a class="link" href="libiptcdata-dataset.html#iptc-dataset-new-mem" title="iptc_dataset_new_mem ()"><code class="function">iptc_dataset_new_mem()</code></a> instead.  This allocation will set the <a class="link" href="libiptcdata-dataset.html#IptcDataSet" title="IptcDataSet"><span class="type">IptcDataSet</span></a>
+refcount to 1, so use <a class="link" href="libiptcdata-dataset.html#iptc-dataset-unref" title="iptc_dataset_unref ()"><code class="function">iptc_dataset_unref()</code></a> when finished with the pointer.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> pointer to the new <a class="link" href="libiptcdata-dataset.html#IptcDataSet" title="IptcDataSet"><span class="type">IptcDataSet</span></a> object, NULL on error
+</td>
+</tr></tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="iptc-dataset-new-mem"></a><h3>iptc_dataset_new_mem ()</h3>
+<pre class="programlisting"><a class="link" href="libiptcdata-dataset.html#IptcDataSet" title="IptcDataSet">IptcDataSet</a>*        iptc_dataset_new_mem                (<a class="link" href="libiptcdata-mem.html#IptcMem" title="IptcMem">IptcMem</a> *mem);</pre>
+<p>
+Allocates a new dataset, which is initialized to be empty (undefined tag and
+empty value), using custom memory management functions.  This allocation
+will set the <a class="link" href="libiptcdata-dataset.html#IptcDataSet" title="IptcDataSet"><span class="type">IptcDataSet</span></a> refcount to 1, so use <a class="link" href="libiptcdata-dataset.html#iptc-dataset-unref" title="iptc_dataset_unref ()"><code class="function">iptc_dataset_unref()</code></a> when
+finished with the pointer.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>mem</code></em> :</span></p></td>
+<td> Pointer to an <a class="link" href="libiptcdata-mem.html#IptcMem" title="IptcMem"><span class="type">IptcMem</span></a> object that defines custom memory managment
+functions.  The refcount of <em class="parameter"><code>mem</code></em> will be incremented.  It is decremented
+when the returned <a class="link" href="libiptcdata-dataset.html#IptcDataSet" title="IptcDataSet"><span class="type">IptcDataSet</span></a> object is freed.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> pointer to the new <a class="link" href="libiptcdata-dataset.html#IptcDataSet" title="IptcDataSet"><span class="type">IptcDataSet</span></a> object, NULL on error
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="iptc-dataset-copy"></a><h3>iptc_dataset_copy ()</h3>
+<pre class="programlisting"><a class="link" href="libiptcdata-dataset.html#IptcDataSet" title="IptcDataSet">IptcDataSet</a>*        iptc_dataset_copy                   (<a class="link" href="libiptcdata-dataset.html#IptcDataSet" title="IptcDataSet">IptcDataSet</a> *dataset);</pre>
+<p>
+Allocates a new dataset and copies the contents of an existing dataset
+into the new one.  Copied data includes record, tag, and the data payload.
+This is a "deep copy" so that a new copy of the data payload is created,
+not just a pointer duplication.  The new dataset has no parent collection,
+regardless of the parent of the copied dataset.  This allocation will set
+the <a class="link" href="libiptcdata-dataset.html#IptcDataSet" title="IptcDataSet"><span class="type">IptcDataSet</span></a> refcount to 1, so use <a class="link" href="libiptcdata-dataset.html#iptc-dataset-unref" title="iptc_dataset_unref ()"><code class="function">iptc_dataset_unref()</code></a> when finished
+with the pointer.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>dataset</code></em> :</span></p></td>
+<td> the dataset to duplicate
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> pointer to the new <a class="link" href="libiptcdata-dataset.html#IptcDataSet" title="IptcDataSet"><span class="type">IptcDataSet</span></a> object, NULL on error
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="iptc-dataset-ref"></a><h3>iptc_dataset_ref ()</h3>
+<pre class="programlisting">void                iptc_dataset_ref                    (<a class="link" href="libiptcdata-dataset.html#IptcDataSet" title="IptcDataSet">IptcDataSet</a> *dataset);</pre>
+<p>
+Increments the reference count of an <a class="link" href="libiptcdata-dataset.html#IptcDataSet" title="IptcDataSet"><span class="type">IptcDataSet</span></a> object.  This function
+should be called whenever a copy of a pointer is made by the application.
+<a class="link" href="libiptcdata-dataset.html#iptc-dataset-unref" title="iptc_dataset_unref ()"><code class="function">iptc_dataset_unref()</code></a> can then be used when the pointer is no longer needed
+to ensure that the object is freed once the object is completely unused.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><em class="parameter"><code>dataset</code></em> :</span></p></td>
+<td> the referenced pointer
+</td>
+</tr></tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="iptc-dataset-unref"></a><h3>iptc_dataset_unref ()</h3>
+<pre class="programlisting">void                iptc_dataset_unref                  (<a class="link" href="libiptcdata-dataset.html#IptcDataSet" title="IptcDataSet">IptcDataSet</a> *dataset);</pre>
+<p>
+Decrements the reference count of an <a class="link" href="libiptcdata-dataset.html#IptcDataSet" title="IptcDataSet"><span class="type">IptcDataSet</span></a> object.  The object will
+automatically be freed when the count reaches 0.  This function should
+be called whenever a pointer is no longer needed by an application.  It
+is also good practice to set the local copy of the pointer to NULL to
+shield against accidently reusing the value.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><em class="parameter"><code>dataset</code></em> :</span></p></td>
+<td> the unreferenced pointer
+</td>
+</tr></tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="iptc-dataset-free"></a><h3>iptc_dataset_free ()</h3>
+<pre class="programlisting">void                iptc_dataset_free                   (<a class="link" href="libiptcdata-dataset.html#IptcDataSet" title="IptcDataSet">IptcDataSet</a> *dataset);</pre>
+<p>
+Frees an <a class="link" href="libiptcdata-dataset.html#IptcDataSet" title="IptcDataSet"><span class="type">IptcDataSet</span></a> object and its contained data.  This function should
+be used only for error handling since <a class="link" href="libiptcdata-dataset.html#iptc-dataset-unref" title="iptc_dataset_unref ()"><code class="function">iptc_dataset_unref()</code></a> provides a
+safer mechanism for freeing that allows multiple components to have access
+to an object.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><em class="parameter"><code>dataset</code></em> :</span></p></td>
+<td> the object to free
+</td>
+</tr></tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="iptc-dataset-get-format"></a><h3>iptc_dataset_get_format ()</h3>
+<pre class="programlisting"><a class="link" href="libiptcdata-tag.html#IptcFormat" title="enum IptcFormat">IptcFormat</a>          iptc_dataset_get_format             (<a class="link" href="libiptcdata-dataset.html#IptcDataSet" title="IptcDataSet">IptcDataSet</a> *dataset);</pre>
+<p>
+Retrieves the data format of a dataset tag according to the IPTC
+specification.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>dataset</code></em> :</span></p></td>
+<td> pointer to an <a class="link" href="libiptcdata-dataset.html#IptcDataSet" title="IptcDataSet"><span class="type">IptcDataSet</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> the format of the tag which will be <a class="link" href="libiptcdata-tag.html#IPTC-FORMAT-UNKNOWN:CAPS"><code class="literal">IPTC_FORMAT_UNKNOWN</code></a> if the tag
+number has not been set or the tag is not in the specification
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="iptc-dataset-get-data"></a><h3>iptc_dataset_get_data ()</h3>
+<pre class="programlisting">int                 iptc_dataset_get_data               (<a class="link" href="libiptcdata-dataset.html#IptcDataSet" title="IptcDataSet">IptcDataSet</a> *dataset,
+                                                         unsigned char *buf,
+                                                         unsigned int size);</pre>
+<p>
+Copies the value of a dataset into a buffer.  If the buffer has extra
+space, the data will be NULL-terminated to assist in dealing with
+strings.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>dataset</code></em> :</span></p></td>
+<td> pointer to an <a class="link" href="libiptcdata-dataset.html#IptcDataSet" title="IptcDataSet"><span class="type">IptcDataSet</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>buf</code></em> :</span></p></td>
+<td> buffer to which the data will be copied
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>size</code></em> :</span></p></td>
+<td> maximum size of the buffer
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> the number of bytes copied, or -1 on failure
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="iptc-dataset-get-value"></a><h3>iptc_dataset_get_value ()</h3>
+<pre class="programlisting">unsigned int        iptc_dataset_get_value              (<a class="link" href="libiptcdata-dataset.html#IptcDataSet" title="IptcDataSet">IptcDataSet</a> *dataset);</pre>
+<p>
+Gets the value of a dataset as an unsigned integer.  This function is meant
+to be used when the format of a tag is a byte, short, or long.  Undefined
+results occur when this function is used on a tag containing data in another
+format.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>dataset</code></em> :</span></p></td>
+<td> pointer to an <a class="link" href="libiptcdata-dataset.html#IptcDataSet" title="IptcDataSet"><span class="type">IptcDataSet</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> value contained in the dataset
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="iptc-dataset-get-date"></a><h3>iptc_dataset_get_date ()</h3>
+<pre class="programlisting">int                 iptc_dataset_get_date               (<a class="link" href="libiptcdata-dataset.html#IptcDataSet" title="IptcDataSet">IptcDataSet</a> *dataset,
+                                                         int *year,
+                                                         int *month,
+                                                         int *day);</pre>
+<p>
+Interprets the contents of the dataset as an IPTC date and parses
+the year, month, and day into the given output variables.  If any
+variable is NULL, that value is skipped.  IPTC dates are stored as
+a string in the format YYYYMMDD.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>dataset</code></em> :</span></p></td>
+<td> pointer to an <a class="link" href="libiptcdata-dataset.html#IptcDataSet" title="IptcDataSet"><span class="type">IptcDataSet</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>year</code></em> :</span></p></td>
+<td> output variable to store the year (0-9999)
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>month</code></em> :</span></p></td>
+<td> output variable to store the month (1-12)
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>day</code></em> :</span></p></td>
+<td> output variable to store the day of the month (1-31)
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> 0 on success; -1 on failure
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="iptc-dataset-get-time"></a><h3>iptc_dataset_get_time ()</h3>
+<pre class="programlisting">int                 iptc_dataset_get_time               (<a class="link" href="libiptcdata-dataset.html#IptcDataSet" title="IptcDataSet">IptcDataSet</a> *dataset,
+                                                         int *hour,
+                                                         int *min,
+                                                         int *sec,
+                                                         int *tz);</pre>
+<p>
+Interprets the contents of the dataset as an IPTC time and parses
+the hour, minute, second, and timezone into the given output variables.
+If any variable is NULL, that value is skipped.  IPTC times are stored as
+a string in the format HHMMSS±HHMM.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>dataset</code></em> :</span></p></td>
+<td> pointer to an <a class="link" href="libiptcdata-dataset.html#IptcDataSet" title="IptcDataSet"><span class="type">IptcDataSet</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>hour</code></em> :</span></p></td>
+<td> output variable to store the hour (0-23)
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>min</code></em> :</span></p></td>
+<td> output variable to store the minute (0-59)
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>sec</code></em> :</span></p></td>
+<td> output variable to store the second (0-59)
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>tz</code></em> :</span></p></td>
+<td> output variable to store the timezone (offset in minutes from GMT)
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> 0 on success; -1 on failure
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="iptc-dataset-set-tag"></a><h3>iptc_dataset_set_tag ()</h3>
+<pre class="programlisting">void                iptc_dataset_set_tag                (<a class="link" href="libiptcdata-dataset.html#IptcDataSet" title="IptcDataSet">IptcDataSet</a> *dataset,
+                                                         <a class="link" href="libiptcdata-tag.html#IptcRecord" title="enum IptcRecord">IptcRecord</a> record,
+                                                         <a class="link" href="libiptcdata-tag.html#IptcTag" title="enum IptcTag">IptcTag</a> tag);</pre>
+<p>
+Sets the record and tag number for a dataset object.  Each record/tag pair
+is assigned a specific meaning by the IPTC IIM specification.  This function
+allows any value to be set for the dataset object, regardless of its
+meaning.  This function can also be used to change the record/tag number in
+place even if it has been already set.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>dataset</code></em> :</span></p></td>
+<td> dataset for which the record/tag numbers should be set
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>record</code></em> :</span></p></td>
+<td> record number of the dataset
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>tag</code></em> :</span></p></td>
+<td> tag (dataset number) of the dataset
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="IptcValidate"></a><h3>enum IptcValidate</h3>
+<pre class="programlisting">typedef enum {
+	IPTC_DONT_VALIDATE = 0,
+	IPTC_VALIDATE      = 1
+} IptcValidate;
+</pre>
+<p>
+Whether the value of a dataset should be validated to meet the IPTC
+IIM specification.
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><a name="IPTC-DONT-VALIDATE:CAPS"></a><span class="term"><code class="literal">IPTC_DONT_VALIDATE</code></span></p></td>
+<td>do not check the value against the specification
+</td>
+</tr>
+<tr>
+<td><p><a name="IPTC-VALIDATE:CAPS"></a><span class="term"><code class="literal">IPTC_VALIDATE</code></span></p></td>
+<td>check the value against the specification
+
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="iptc-dataset-set-data"></a><h3>iptc_dataset_set_data ()</h3>
+<pre class="programlisting">int                 iptc_dataset_set_data               (<a class="link" href="libiptcdata-dataset.html#IptcDataSet" title="IptcDataSet">IptcDataSet</a> *dataset,
+                                                         unsigned char *buf,
+                                                         unsigned int size,
+                                                         <a class="link" href="libiptcdata-dataset.html#IptcValidate" title="enum IptcValidate">IptcValidate</a> validate);</pre>
+<p>
+Copies bytes from a buffer as the new value for a dataset.  This is the
+correct method for setting a dataset value to a string or raw binary
+sequence.  The length of a string should be specified without the trailing
+NULL.  New memory is allocated for the value and <em class="parameter"><code>size</code></em> bytes are copied
+from <em class="parameter"><code>buf</code></em> into this new memory (which is freed when the dataset is freed or
+when a new value is set).  If <em class="parameter"><code>validate</code></em> is set to <a class="link" href="libiptcdata-dataset.html#IPTC-VALIDATE:CAPS"><code class="literal">IPTC_VALIDATE</code></a>, the buffer
+will only be copied if the size does not violate the IPTC specification (it
+must not be too long or too short).  This check is ignored if the dataset's
+tag is undefined or no information from the specification is available for
+that tag.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>dataset</code></em> :</span></p></td>
+<td> dataset for which the value should be set
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>buf</code></em> :</span></p></td>
+<td> buffer containing the value
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>size</code></em> :</span></p></td>
+<td> number of bytes to copy
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>validate</code></em> :</span></p></td>
+<td> whether or not the passed value should be validated against
+the IPTC specification for this dataset's tag.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> -1 on error, 0 if validation failed, the number of bytes copied
+on success
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="iptc-dataset-set-value"></a><h3>iptc_dataset_set_value ()</h3>
+<pre class="programlisting">int                 iptc_dataset_set_value              (<a class="link" href="libiptcdata-dataset.html#IptcDataSet" title="IptcDataSet">IptcDataSet</a> *dataset,
+                                                         unsigned int value,
+                                                         <a class="link" href="libiptcdata-dataset.html#IptcValidate" title="enum IptcValidate">IptcValidate</a> validate);</pre>
+<p>
+Sets the value of a dataset as an integer.  This is the correct method for
+setting a dataset value with type byte, short, or long.  If <em class="parameter"><code>validate</code></em> is
+set to <a class="link" href="libiptcdata-dataset.html#IPTC-VALIDATE:CAPS"><code class="literal">IPTC_VALIDATE</code></a>, the value will only be set if the tag has type
+byte, short, or long according the IPTC specification.  This check is
+ignored if the dataset's tag is undefined or no information from the
+specification is available for that tag.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>dataset</code></em> :</span></p></td>
+<td> dataset for which the value should be set
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>value</code></em> :</span></p></td>
+<td> value for the dataset
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>validate</code></em> :</span></p></td>
+<td> whether or not the passed value should be validated against
+the IPTC specification for this dataset's tag.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> -1 on error, 0 if validation failed, the number of bytes copied
+on success
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="iptc-dataset-set-date"></a><h3>iptc_dataset_set_date ()</h3>
+<pre class="programlisting">int                 iptc_dataset_set_date               (<a class="link" href="libiptcdata-dataset.html#IptcDataSet" title="IptcDataSet">IptcDataSet</a> *dataset,
+                                                         int year,
+                                                         int month,
+                                                         int day,
+                                                         <a class="link" href="libiptcdata-dataset.html#IptcValidate" title="enum IptcValidate">IptcValidate</a> validate);</pre>
+<p>
+Sets the contents of the dataset to be a date with the specified value.
+IPTC dates are stored as a string in the format YYYYMMDD.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>dataset</code></em> :</span></p></td>
+<td> pointer to an <a class="link" href="libiptcdata-dataset.html#IptcDataSet" title="IptcDataSet"><span class="type">IptcDataSet</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>year</code></em> :</span></p></td>
+<td> the year (0-9999)
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>month</code></em> :</span></p></td>
+<td> the month (1-12)
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>day</code></em> :</span></p></td>
+<td> the day of the month (1-31)
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>validate</code></em> :</span></p></td>
+<td> if set to <a class="link" href="libiptcdata-dataset.html#IPTC-VALIDATE:CAPS"><code class="literal">IPTC_VALIDATE</code></a>, the dataset date will only be set if
+the IPTC specification says it is of type date.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> the number of bytes written on success (always 8 in this case); 0
+if validation fails; -1 for other failures
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="iptc-dataset-set-time"></a><h3>iptc_dataset_set_time ()</h3>
+<pre class="programlisting">int                 iptc_dataset_set_time               (<a class="link" href="libiptcdata-dataset.html#IptcDataSet" title="IptcDataSet">IptcDataSet</a> *dataset,
+                                                         int hour,
+                                                         int min,
+                                                         int sec,
+                                                         int tz,
+                                                         <a class="link" href="libiptcdata-dataset.html#IptcValidate" title="enum IptcValidate">IptcValidate</a> validate);</pre>
+<p>
+Sets the contents of the dataset to be a time with the specified value.
+IPTC times are stored as a string in the format HHMMSS±HHMM.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>dataset</code></em> :</span></p></td>
+<td> pointer to an <a class="link" href="libiptcdata-dataset.html#IptcDataSet" title="IptcDataSet"><span class="type">IptcDataSet</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>hour</code></em> :</span></p></td>
+<td> the hour (0-23)
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>min</code></em> :</span></p></td>
+<td> the minutes (0-59)
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>sec</code></em> :</span></p></td>
+<td> the seconds (0-61)
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>tz</code></em> :</span></p></td>
+<td> the timezone expressed as the number of minutes offset from GMT.
+For example, EST is -300 (-5 hours).
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>validate</code></em> :</span></p></td>
+<td> if set to <a class="link" href="libiptcdata-dataset.html#IPTC-VALIDATE:CAPS"><code class="literal">IPTC_VALIDATE</code></a>, the dataset time will only be set if
+the IPTC specification says it is of type time.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> the number of bytes written on success (always 11 in this case); 0
+if validation fails; -1 for other failures
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="iptc-dataset-get-as-str"></a><h3>iptc_dataset_get_as_str ()</h3>
+<pre class="programlisting">const char*         iptc_dataset_get_as_str             (<a class="link" href="libiptcdata-dataset.html#IptcDataSet" title="IptcDataSet">IptcDataSet</a> *dataset,
+                                                         char *buf,
+                                                         unsigned int size);</pre>
+<p>
+Copies the value of a dataset into a buffer as a printable, NULL-terminated
+string.  For tags of type byte, short, or long, the value will be formatted
+as a string.  For tags of type string (including dates and times), the
+string will simply be copied into the output buffer.  For tags containing
+binary data, the data will be formatted as a string in hexidecimal.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>dataset</code></em> :</span></p></td>
+<td> pointer to an <a class="link" href="libiptcdata-dataset.html#IptcDataSet" title="IptcDataSet"><span class="type">IptcDataSet</span></a>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>buf</code></em> :</span></p></td>
+<td> buffer to which the string will be copied
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>size</code></em> :</span></p></td>
+<td> maximum size of the buffer
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> the output string on success, or NULL on failure
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="iptc-dataset-dump"></a><h3>iptc_dataset_dump ()</h3>
+<pre class="programlisting">void                iptc_dataset_dump                   (<a class="link" href="libiptcdata-dataset.html#IptcDataSet" title="IptcDataSet">IptcDataSet</a> *dataset,
+                                                         unsigned int indent);</pre>
+<p>
+A debugging aid that prints out the contents of a dataset to
+standard output.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>dataset</code></em> :</span></p></td>
+<td> dataset to print
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>indent</code></em> :</span></p></td>
+<td> indentation level of the printout
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+</div>
+<div class="footer">
+<hr>
+          Generated by GTK-Doc V1.10</div>
+</body>
+</html>

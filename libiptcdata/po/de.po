@@ -1,0 +1,824 @@
+# Translation of libiptcdata to German
+# Copyright (C) 2008 David Moore
+# Copyright (C) Chris Leick <c.leick@vollbio.de>, 2008.
+# This file is distributed under the same license as the libiptcdata package.
+# Chris Leick <c.leick@vollbio.de>, 2008.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: libiptcdata 1.0.2+libtool01-2_libiptcdata\n"
+"Report-Msgid-Bugs-To: dcm@acm.org\n"
+"POT-Creation-Date: 2007-01-27 18:53-0500\n"
+"PO-Revision-Date: 2008-12-17 10:27+GMT\n"
+"Last-Translator: Chris Leick <c.leick@vollbio.de>\n"
+"Language-Team: German <debian-l10n-german@lists.debian.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: libiptcdata/iptc-tag.c:31
+msgid "Model Version"
+msgstr "Modellversion"
+
+#: libiptcdata/iptc-tag.c:32
+msgid "Version of IIM part 1."
+msgstr "Version vom IIM Teil 1"
+
+#: libiptcdata/iptc-tag.c:36
+msgid "Destination"
+msgstr "Ziel"
+
+#: libiptcdata/iptc-tag.c:37
+msgid "Routing information."
+msgstr "Routing-Information"
+
+#: libiptcdata/iptc-tag.c:41
+msgid "File Format"
+msgstr "Dateiformat"
+
+#: libiptcdata/iptc-tag.c:42
+msgid "File format of the data described by this metadata."
+msgstr "Dateiformat der Daten, die durch diese Metadaten beschrieben werden."
+
+#: libiptcdata/iptc-tag.c:46
+msgid "File Version"
+msgstr "Dateiversion"
+
+#: libiptcdata/iptc-tag.c:47
+msgid "Version of the file format."
+msgstr "Version des Dateiformats"
+
+#: libiptcdata/iptc-tag.c:51
+msgid "Service Identifier"
+msgstr "Dienstbezeichnung"
+
+#: libiptcdata/iptc-tag.c:52
+msgid "Identifies the provider and product."
+msgstr "Gibt Anbieter und Produkt an"
+
+#: libiptcdata/iptc-tag.c:56
+msgid "Envelope Number"
+msgstr "Umschlagsnummer"
+
+#: libiptcdata/iptc-tag.c:57
+msgid "A number unique for the date in 1:70 and the service ID in 1:30."
+msgstr ""
+"Eine eindeutige Nummer für das Datum in 1:70 und die Dienstkennung in 1:30."
+
+#: libiptcdata/iptc-tag.c:61
+msgid "Product I.D."
+msgstr "Produktkennung"
+
+#: libiptcdata/iptc-tag.c:62
+msgid "Allows a provider to identify subsets of its overall service."
+msgstr ""
+"Erlaubt es einem Anbieter, Untermengen all seiner Dienste zu identifizieren."
+
+#: libiptcdata/iptc-tag.c:66
+msgid "Envelope Priority"
+msgstr "Umschlagspriorität"
+
+#: libiptcdata/iptc-tag.c:67
+msgid ""
+"Specifies the envelope handling priority and not the editorial urgency.  '1' "
+"for most urgent, '5' for normal, and '8' for least urgent.  '9' is user-"
+"defined."
+msgstr ""
+"Gibt die Umschlagsbehandlungspriorität an und nicht die redaktionelle "
+"Dringlichkeit. »1« für am dringendsten, »5« für normal und »8« für weniger "
+"dringend. »9« ist benutzerdefiniert."
+
+#: libiptcdata/iptc-tag.c:71
+msgid "Date Sent"
+msgstr "Versanddatum"
+
+#: libiptcdata/iptc-tag.c:72
+msgid "The day the service sent the material."
+msgstr "Der Tag, an dem der Dienst das Material schickte."
+
+#: libiptcdata/iptc-tag.c:76
+msgid "Time Sent"
+msgstr "Sendezeit"
+
+#: libiptcdata/iptc-tag.c:77
+msgid "The time the service sent the material."
+msgstr "Die Zeit, zu der der Dienst das Material schickte."
+
+#: libiptcdata/iptc-tag.c:81
+msgid "Coded Character Set"
+msgstr "Kodierter Zeichensatz"
+
+#: libiptcdata/iptc-tag.c:82
+msgid ""
+"Control functions used for the announcement, invocation or designation of "
+"coded character sets."
+msgstr ""
+"Steuerfunktionen, die für die Ankündigung, den Aufruf oder die "
+"Bereitstellung des kodierten Zeichensatzes benutzt werden."
+
+#: libiptcdata/iptc-tag.c:86
+msgid "Unique Name of Object"
+msgstr "Eindeutiger Name des Objektes"
+
+#: libiptcdata/iptc-tag.c:87
+msgid ""
+"An eternal, globally unique identification for the object, independent of "
+"provider and for any media form."
+msgstr ""
+"Eine bleibende, globale und einheitliche Identifizierung des Objektes, "
+"unabhängig vom Anbieter und für jede Art von Medien."
+
+#: libiptcdata/iptc-tag.c:91
+msgid "ARM Identifier"
+msgstr "ARM-Bezeichner"
+
+#: libiptcdata/iptc-tag.c:92
+msgid "Identifies the Abstract Relationship Method (ARM)."
+msgstr ""
+"Bezeichnet die abstrakte Beziehungsmethode »Abstract Relationship "
+"Method« (ARM)"
+
+#: libiptcdata/iptc-tag.c:96
+msgid "ARM Version"
+msgstr "ARM-Version"
+
+#: libiptcdata/iptc-tag.c:97
+msgid "Identifies the version of the Abstract Relationship Method (ARM)."
+msgstr ""
+"Bezeichnet die Version der abstrakten Beziehungsmethode »Abstract "
+"Relationship Method« (ARM)"
+
+#: libiptcdata/iptc-tag.c:101
+msgid "Record Version"
+msgstr "Datensatzversion"
+
+#: libiptcdata/iptc-tag.c:102
+msgid "Identifies the version of the IIM, Part 2"
+msgstr "Gibt die Version vom IIM an, Teil 2"
+
+#: libiptcdata/iptc-tag.c:106
+msgid "Object Type Reference"
+msgstr "Objekt-Typ-Bezug"
+
+#: libiptcdata/iptc-tag.c:107
+msgid "Distinguishes between different types of objects within the IIM."
+msgstr ""
+"Unterscheidet zwischen unterschiedlichen Objekttypen innerhalb des IIM."
+
+#: libiptcdata/iptc-tag.c:111
+msgid "Object Attribute Reference"
+msgstr "Objekt-Attributs-Bezug"
+
+#: libiptcdata/iptc-tag.c:112
+msgid "Defines the nature of the object independent of the subject."
+msgstr "Definiert die Art des Objekte unabhängig vom Thema."
+
+#: libiptcdata/iptc-tag.c:116
+msgid "Object Name"
+msgstr "Objektname"
+
+#: libiptcdata/iptc-tag.c:117
+msgid "A shorthand reference for the object."
+msgstr "Eine stichwortartige Beschreibung des Objekts"
+
+#: libiptcdata/iptc-tag.c:121
+msgid "Edit Status"
+msgstr "Status bearbeiten"
+
+#: libiptcdata/iptc-tag.c:122
+msgid "Status of the object, according to the practice of the provider."
+msgstr "Status des Objekts, entsprechend dem Gebrauch durch den Anbieter."
+
+#: libiptcdata/iptc-tag.c:126
+msgid "Editorial Update"
+msgstr "Redaktionelle Aktualisierung"
+
+#: libiptcdata/iptc-tag.c:127
+msgid ""
+"Indicates the type of update this object provides to a previous object.  The "
+"link to the previous object is made using the ARM.  '01' indicates an "
+"additional language."
+msgstr ""
+"Zeigt den Typ der Aktualisierung an, den dieses Objekt einem vorangegangenen "
+"Objekt anbietet. Der Verweis auf ein vorangegangenes Objekt wird mittels ARM "
+"erstellt. »01« zeigt eine zusätzliche Sprache an."
+
+#: libiptcdata/iptc-tag.c:131
+msgid "Urgency"
+msgstr "Dringlichkeit"
+
+#: libiptcdata/iptc-tag.c:132
+msgid ""
+"Specifies the editorial urgency of content and not necessarily the envelope "
+"handling priority.  '1' is most urgent, '5' normal, and '8' least urgent."
+msgstr ""
+"Gibt die redaktionelle Dringlichkeit des Inhalts und nicht notwendigerweise "
+"die Umschlagsbehandlungspriorität an. »1« ist am dringendsten, »5« normal und "
+"»8« weniger dringend."
+
+#: libiptcdata/iptc-tag.c:136
+msgid "Subject Reference"
+msgstr "Themen-Referenz"
+
+#: libiptcdata/iptc-tag.c:137
+msgid ""
+"A structured definition of the subject matter.  It must contain an IPR, an 8 "
+"digit Subject Reference Number and an optional Subject Name, Subject Matter "
+"Name, and Subject Detail Name each separated by a colon (:)."
+msgstr ""
+"Eine strukturierte Definition des Themas. Sie muss eine IPR beinhalten, eine "
+"Referenznummer mit einer Länge von acht Zeichen und einem optionalen "
+"Themennnamen, Themengegenstandsnamen und den Themendetailnamen, jeweils "
+"durch Doppelpunkt (:) getrennt."
+
+#: libiptcdata/iptc-tag.c:141
+msgid "Category"
+msgstr "Kategorie"
+
+#: libiptcdata/iptc-tag.c:142
+msgid ""
+"Identifies the subject of the object in the opinion of the provider "
+"(Deprecated)."
+msgstr ""
+"Gibt das Thema eines Objekts nach Auffassung des Anbieters an (veraltet)."
+
+#: libiptcdata/iptc-tag.c:146
+msgid "Supplemental Category"
+msgstr "Zusätzliche Kategorie"
+
+#: libiptcdata/iptc-tag.c:147
+msgid "Further refines the subject of the object (Deprecated)."
+msgstr "Vertieft das Thema des Objekts weiter (veraltet)."
+
+#: libiptcdata/iptc-tag.c:151
+msgid "Fixture Identifier"
+msgstr "Festgeschriebener Bezeichner"
+
+#: libiptcdata/iptc-tag.c:152
+msgid ""
+"Identifies objects that recur often and predictably, enabling users to "
+"immediately find or recall such an object."
+msgstr ""
+"Identifiziert Objekte, die oft auftreten und vorhersehbar sind und versetzt "
+"Benutzer damit in die Lage, diese sofort zu finden oder wieder aufzurufen."
+
+#: libiptcdata/iptc-tag.c:156
+msgid "Keywords"
+msgstr "Schlüsselwörter"
+
+#: libiptcdata/iptc-tag.c:157
+msgid "Used to indicate specific information retrieval words."
+msgstr ""
+"Wird benutzt, um spezifische Informationen über Suchbegriffe anzugeben."
+
+#: libiptcdata/iptc-tag.c:161
+msgid "Content Location Code"
+msgstr "Inhalts-Orts-Code"
+
+#: libiptcdata/iptc-tag.c:162
+msgid ""
+"Indicates the code of a country/geographical location referenced by the "
+"content of the object."
+msgstr ""
+"Gibt die Länderkennung/die geografische Lage an, auf den sich der Inhalt des "
+"Objektes bezieht."
+
+#: libiptcdata/iptc-tag.c:166
+msgid "Content Location Name"
+msgstr "Inhalts-Orts-Name"
+
+#: libiptcdata/iptc-tag.c:167
+msgid ""
+"A full, publishable name of a country/geographical location referenced by "
+"the content of the object."
+msgstr ""
+"Ein vollständiger, veröffentlichbarer Name eine Landes / geografischen "
+"Ortes, auf den sich der Inhalt des Objekts bezieht."
+
+#: libiptcdata/iptc-tag.c:171
+msgid "Release Date"
+msgstr "Release-Datum"
+
+#: libiptcdata/iptc-tag.c:172
+msgid ""
+"Designates the earliest date the provider intends the object to be used."
+msgstr ""
+"Bestimmt das früheste Datum, das der Anbieter zur Benutzung des Objekts "
+"vorsieht."
+
+#: libiptcdata/iptc-tag.c:176
+msgid "Release Time"
+msgstr "Release-Zeit"
+
+#: libiptcdata/iptc-tag.c:177
+msgid ""
+"Designates the earliest time the provider intends the object to be used."
+msgstr ""
+"Bestimmt die früheste Zeit, die der Anbieter zur Benutzung des Objekts "
+"vorsieht."
+
+#: libiptcdata/iptc-tag.c:181
+msgid "Expiration Date"
+msgstr "Ablaufdatum"
+
+#: libiptcdata/iptc-tag.c:182
+msgid "Designates the latest date the provider intends the object to be used."
+msgstr ""
+"Bestimmt das letzte Datum, das der Anbieter zur Benutzung des Objekts "
+"vorsieht."
+
+#: libiptcdata/iptc-tag.c:186
+msgid "Expiration Time"
+msgstr "Ablaufzeit"
+
+#: libiptcdata/iptc-tag.c:187
+msgid "Designates the latest time the provider intends the object to be used."
+msgstr ""
+"Bestimmt die späteste Zeit, die der Anbieter zur Benutzung des Objekts "
+"vorsieht."
+
+#: libiptcdata/iptc-tag.c:191
+msgid "Special Instructions"
+msgstr "Spezielle Anweisungen"
+
+#: libiptcdata/iptc-tag.c:192
+msgid "Other editorial instructions concerning the use of the object."
+msgstr "Andere redaktionelle Anweisungen zur Benutzung des Objekts"
+
+#: libiptcdata/iptc-tag.c:196
+msgid "Action Advised"
+msgstr "Angekündigte Aktion"
+
+#: libiptcdata/iptc-tag.c:197
+msgid ""
+"The type of action that this object provides to a previous object.  '01' "
+"Object Kill, '02' Object Replace, '03' Object Append, '04' Object Reference."
+msgstr ""
+"Der Typ der Aktion, die das Objekt einem vorherigen Objekt zur Verfügung "
+"stellt. »01« Objekt zerstören, »02« Objekt ersetzen, »03« Objekt anhängen, »04« "
+"Bezug zu Objekt herstellen."
+
+#: libiptcdata/iptc-tag.c:201
+msgid "Reference Service"
+msgstr "Referenzdienst"
+
+#: libiptcdata/iptc-tag.c:202
+msgid ""
+"The Service Identifier of a prior envelope to which the current object "
+"refers."
+msgstr ""
+"Der Dienstbezeichner eines vorherigen Umschlags, auf welches das aktuelle "
+"Objekt verweist."
+
+#: libiptcdata/iptc-tag.c:206
+msgid "Reference Date"
+msgstr "Referenzdatum"
+
+#: libiptcdata/iptc-tag.c:207
+msgid "The date of a prior envelope to which the current object refers."
+msgstr ""
+"Das Datum eines vorherigen Umschlags, auf welches das aktuelle Objekt "
+"verweist."
+
+#: libiptcdata/iptc-tag.c:211
+msgid "Reference Number"
+msgstr "Referenznummer"
+
+#: libiptcdata/iptc-tag.c:212
+msgid ""
+"The Envelope Number of a prior envelope to which the current object refers."
+msgstr ""
+"Die Umschlagsnummer eine vorherigen Umschlags, auf den des aktuelle Objekt "
+"verweist."
+
+#: libiptcdata/iptc-tag.c:216
+msgid "Date Created"
+msgstr "Erstellungsdatum"
+
+#: libiptcdata/iptc-tag.c:217
+msgid ""
+"The date the intellectual content of the object was created rather than the "
+"date of the creation of the physical representation."
+msgstr ""
+"Das Datum, an dem der geistige Inhalt des Objektes erstellt wurde, "
+"anstattdes Erstellungsdatums der physischen Darstellung."
+
+#: libiptcdata/iptc-tag.c:221
+msgid "Time Created"
+msgstr "Erstellungszeitpunkt"
+
+#: libiptcdata/iptc-tag.c:222
+msgid ""
+"The time the intellectual content of the object was created rather than the "
+"date of the creation of the physical representation."
+msgstr ""
+"Die Zeit, zu der der geistige Inhalt des Objektes erstellt wurde, anstattder "
+"Erstellungszeit der physischen Darstellung."
+
+#: libiptcdata/iptc-tag.c:226
+msgid "Digital Creation Date"
+msgstr "Digitales Erstellungsdatum"
+
+#: libiptcdata/iptc-tag.c:227
+msgid "The date the digital representation of the object was created."
+msgstr "Das Datum der digitalen Darstellung, zu dem das Objekt erstellt wurde."
+
+#: libiptcdata/iptc-tag.c:231
+msgid "Digital Creation Time"
+msgstr "Digitaler Erstellungszeitpunkt"
+
+#: libiptcdata/iptc-tag.c:232
+msgid "The time the digital representation of the object was created."
+msgstr ""
+"Der Zeitpunkt der digitalen Darstellung, zu dem das Objekt erstellt wurde."
+
+#: libiptcdata/iptc-tag.c:236
+msgid "Originating Program"
+msgstr "Ursprungsprogramm"
+
+#: libiptcdata/iptc-tag.c:237
+msgid "The type of program used to originate the object."
+msgstr "Der Typ des Programms, das zur Erstellung des Objekts verwendet wurde."
+
+#: libiptcdata/iptc-tag.c:241
+msgid "Program Version"
+msgstr "Programmversion"
+
+#: libiptcdata/iptc-tag.c:242
+msgid "The version of the originating program."
+msgstr "Die Version des Ursprungsprogramms"
+
+#: libiptcdata/iptc-tag.c:246
+msgid "Object Cycle"
+msgstr "Objekt-Zyklus"
+
+#: libiptcdata/iptc-tag.c:247
+msgid "Where 'a' is morning, 'b' is evening, 'b' is both."
+msgstr "Wo »a« morgen ist, »b« nachmittag ist, »b« beides ist."
+
+#: libiptcdata/iptc-tag.c:251
+msgid "By-line"
+msgstr "Pro Zeile"
+
+#: libiptcdata/iptc-tag.c:252
+msgid ""
+"Name of the creator of the object, e.g. writer, photographer or graphic "
+"artist."
+msgstr ""
+"Name des Erstellers eines Objektes, z.B. Schreiber, Fotograf oder Grafiker."
+
+#: libiptcdata/iptc-tag.c:256
+msgid "By-line Title"
+msgstr "Titel der Zeile"
+
+#: libiptcdata/iptc-tag.c:257
+msgid "Title of the creator or creators of the object."
+msgstr "Titel des Erstellers oder der Ersteller des Objekts."
+
+#: libiptcdata/iptc-tag.c:261
+msgid "City"
+msgstr "Stadt"
+
+#: libiptcdata/iptc-tag.c:262
+msgid "City of object origin."
+msgstr "Herkunftsstadt des Objektes"
+
+#: libiptcdata/iptc-tag.c:266
+msgid "Sub-location"
+msgstr "Unterort"
+
+#: libiptcdata/iptc-tag.c:267
+msgid "The location within a city from which the object originates."
+msgstr "Die Lage innerhalb der Stadt, aus der das Objekt stammt."
+
+#: libiptcdata/iptc-tag.c:271
+msgid "Province/State"
+msgstr "Region/Staat"
+
+#: libiptcdata/iptc-tag.c:272
+msgid "The Province/State where the object originates."
+msgstr "Die Region/Der Staat aus dem das Objekt stammt."
+
+#: libiptcdata/iptc-tag.c:276
+msgid "Country Code"
+msgstr "Länderkennzeichen"
+
+#: libiptcdata/iptc-tag.c:277
+msgid "The code of the country/primary location where the object was created."
+msgstr ""
+"Das Kennzeichen des Landes/ersten Ortes an dem das Objekt erstellt wurde."
+
+#: libiptcdata/iptc-tag.c:281
+msgid "Country Name"
+msgstr "Name des Landes"
+
+#: libiptcdata/iptc-tag.c:282
+msgid "The name of the country/primary location where the object was created."
+msgstr "Der Name des Landes/ersten Ortes, an dem das Objekt erstellt wurde."
+
+#: libiptcdata/iptc-tag.c:286
+msgid "Original Transmission Reference"
+msgstr "Orginale Versand-Referenz"
+
+#: libiptcdata/iptc-tag.c:287
+msgid "A code representing the location of original transmission."
+msgstr "Ein Code der den Ort des Orginalversandes angibt."
+
+#: libiptcdata/iptc-tag.c:291
+msgid "Headline"
+msgstr "Kopfzeile"
+
+#: libiptcdata/iptc-tag.c:292
+msgid "A publishable entry providing a synopsis of the contents of the object."
+msgstr ""
+"Ein veröffentlichbarer Eintrag, der eine Übersicht des Objekt-Inhaltes zur "
+"Verfügung stellt"
+
+#: libiptcdata/iptc-tag.c:296
+msgid "Credit"
+msgstr "Danksagung"
+
+#: libiptcdata/iptc-tag.c:297
+msgid ""
+"Identifies the provider of the object, not necessarily the owner/creator."
+msgstr ""
+"Gibt den Anbieter des Objektes an, nicht unbedingt den Besitzer/Erzeuger."
+
+#: libiptcdata/iptc-tag.c:301
+msgid "Source"
+msgstr "Quelle"
+
+#: libiptcdata/iptc-tag.c:302
+msgid "The original owner of the intellectual content of the object."
+msgstr "Der ursprüngliche Inhaber der Urheberrechte des Objekts."
+
+#: libiptcdata/iptc-tag.c:306
+msgid "Copyright Notice"
+msgstr "Copyright-Hinweis"
+
+#: libiptcdata/iptc-tag.c:307
+msgid "Any necessary copyright notice."
+msgstr "Jeder notwendige Copyright-Hinweis"
+
+#: libiptcdata/iptc-tag.c:311
+msgid "Contact"
+msgstr "Kontakt"
+
+#: libiptcdata/iptc-tag.c:312
+msgid ""
+"The person or organization which can provide further background information "
+"on the object."
+msgstr ""
+"Die Person oder Organisation, die weitere Hintergrundinformationen zu dem "
+"Objekt anbieten kann."
+
+#: libiptcdata/iptc-tag.c:316
+msgid "Caption/Abstract"
+msgstr "Überschrift/Inhaltsangabe"
+
+#: libiptcdata/iptc-tag.c:317
+msgid "A textual description of the data"
+msgstr "Eine Beschreibung der Daten als Text"
+
+#: libiptcdata/iptc-tag.c:321
+msgid "Writer/Editor"
+msgstr "Schreiber/Redakteur"
+
+#: libiptcdata/iptc-tag.c:322
+msgid ""
+"The name of the person involved in the writing, editing or correcting the "
+"object or caption/abstract"
+msgstr ""
+"Der Name der Person, die am Schreiben, Bearbeiten oder Korrigieren des "
+"Objektes oder der Überschrift/Inhaltsangabe beteiligt war"
+
+#: libiptcdata/iptc-tag.c:326
+msgid "Rasterized Caption"
+msgstr "Gerasterte Überschrift"
+
+#: libiptcdata/iptc-tag.c:327
+msgid ""
+"Contains rasterized object description and is used where characters that "
+"have not been coded are required for the caption."
+msgstr ""
+"Enthält eine gerasterte Objektbeschreibung und wird benutzt, wo unkodierte "
+"Zeichen für die Überschrift benötigt werden."
+
+#: libiptcdata/iptc-tag.c:331
+msgid "Image Type"
+msgstr "Bildtyp"
+
+#: libiptcdata/iptc-tag.c:332
+msgid "Indicates the data format of the image object."
+msgstr "Gibt das Format des Bildobjektes an."
+
+#: libiptcdata/iptc-tag.c:336
+msgid "Image Orientation"
+msgstr "Bildausrichtung"
+
+#: libiptcdata/iptc-tag.c:337
+msgid ""
+"The layout of the image area: 'P' for portrait, 'L' for landscape, and 'S' "
+"for square."
+msgstr ""
+"Das Layout des Bildbereiches: »P« für Hochformat, »L« für Querformat und »S« "
+"für quadratisch."
+
+#: libiptcdata/iptc-tag.c:341
+msgid "Language Identifier"
+msgstr "Sprachbezeichnung"
+
+#: libiptcdata/iptc-tag.c:342
+msgid ""
+"The major national language of the object, according to the 2-letter codes "
+"of ISO 639:1988."
+msgstr ""
+"Die vorrangige Nationalsprache des Objektes, entsprechend der Zwei-Zeichen-"
+"Code aus ISO 639:1988."
+
+#: libiptcdata/iptc-tag.c:346
+msgid "Audio Type"
+msgstr "Audio-Typ"
+
+#: libiptcdata/iptc-tag.c:347
+msgid ""
+"The number of channels and type of audio (music, text, etc.) in the object."
+msgstr "Die Anzahl der Kanäle und der Audio-Typ (Musik, Text, usw.) im Objekt."
+
+#: libiptcdata/iptc-tag.c:351
+msgid "Audio Sampling Rate"
+msgstr "Audio-Abtastrate"
+
+#: libiptcdata/iptc-tag.c:352
+msgid "The sampling rate in Hz of the audio data."
+msgstr "Die Abtastrate in Hz der Audio-Daten."
+
+#: libiptcdata/iptc-tag.c:356
+msgid "Audio Sampling Resolution"
+msgstr "Auflösung der Audio-Abtastung"
+
+#: libiptcdata/iptc-tag.c:357
+msgid "The number of bits in each audio sample."
+msgstr "Die Anzahl der Bits in jedem Audio-Muster"
+
+#: libiptcdata/iptc-tag.c:361
+msgid "Audio Duration"
+msgstr "Audio-Dauer"
+
+#: libiptcdata/iptc-tag.c:362
+msgid "The running time of the audio data in the form HHMMSS."
+msgstr "Die Laufzeit der Audio-Daten im Format HHMMSS."
+
+#: libiptcdata/iptc-tag.c:366
+msgid "Audio Outcue"
+msgstr "Audio-Liedende"
+
+#: libiptcdata/iptc-tag.c:367
+msgid "The content at the end of the audio data."
+msgstr "Der Inhalt am Ende der Audio-Daten."
+
+#: libiptcdata/iptc-tag.c:371
+msgid "Preview File Format"
+msgstr "Vorschau des Datenformates"
+
+#: libiptcdata/iptc-tag.c:372
+msgid ""
+"Binary value indicating the file format of the object preview data in "
+"dataset 2:202."
+msgstr ""
+"Binärwert, der das Dateiformat der Objekt-Vorschaudaten in Datensatz 2:202 "
+"angibt."
+
+#: libiptcdata/iptc-tag.c:376
+msgid "Preview File Format Version"
+msgstr "Vorschau der Dateiformat-Version"
+
+#: libiptcdata/iptc-tag.c:377
+msgid "The version of the preview file format specified in 2:200."
+msgstr "Die Version des Vorschau-Dateiformates angegeben in 2:200."
+
+#: libiptcdata/iptc-tag.c:381
+msgid "Preview Data"
+msgstr "Datenvorschau"
+
+#: libiptcdata/iptc-tag.c:382
+msgid "The object preview data"
+msgstr "Die Objekt-Datenvorschau"
+
+#: libiptcdata/iptc-tag.c:386
+msgid "Size Mode"
+msgstr "Grössenmodus"
+
+#: libiptcdata/iptc-tag.c:387
+msgid "Set to 0 if the size of the object is known and 1 if not known."
+msgstr ""
+"Setzen Sie die Größe des Objektes auf 0, falls sie bekannt ist und auf 1, "
+"falls sie unbekannt ist."
+
+#: libiptcdata/iptc-tag.c:391
+msgid "Max Subfile Size"
+msgstr "Maximale Größe der Unterdatei"
+
+#: libiptcdata/iptc-tag.c:392
+msgid ""
+"The maximum size for a subfile dataset (8:10) containing a portion of the "
+"object data."
+msgstr ""
+"Die maximale Größe für einen Unterdatei-Datensatz (8:10) der einen Anteil "
+"der Objektdaten enthält."
+
+#: libiptcdata/iptc-tag.c:396
+msgid "Object Size Announced"
+msgstr "Angezeigte Objektgröße"
+
+#: libiptcdata/iptc-tag.c:397
+msgid "The total size of the object data if it is known."
+msgstr "Die Gesamtgröße der Objektdaten, falls sie bekannt ist."
+
+#: libiptcdata/iptc-tag.c:401
+msgid "Maximum Object Size"
+msgstr "Maximale Objektgröße"
+
+#: libiptcdata/iptc-tag.c:402
+msgid "The largest possible size of the object if the size is not known."
+msgstr "Die grösstmögliche Größe des Objekts, falls seine Größe unbekannt ist."
+
+#: libiptcdata/iptc-tag.c:406
+msgid "Subfile"
+msgstr "Unterdatei"
+
+#: libiptcdata/iptc-tag.c:407
+msgid ""
+"The object data itself.  Subfiles must be sequential so that the subfiles "
+"may be reassembled."
+msgstr ""
+"Die Objektdaten selbst. Unterdateien müssen fortlaufend sein, damit die "
+"Unterdateien wieder zusammengesetzt werden können."
+
+#: libiptcdata/iptc-tag.c:411
+msgid "Confirmed Data Size"
+msgstr "Bestätigte Datengröße"
+
+#: libiptcdata/iptc-tag.c:412
+msgid "Total size of the object data."
+msgstr "Totale Größe der Objektdaten."
+
+#: libiptcdata/iptc-tag.c:585
+msgid "Binary"
+msgstr "binär"
+
+#: libiptcdata/iptc-tag.c:587
+msgid "Byte"
+msgstr "Byte"
+
+#: libiptcdata/iptc-tag.c:589
+msgid "Short"
+msgstr "Short"
+
+#: libiptcdata/iptc-tag.c:591
+msgid "Long"
+msgstr "Long"
+
+#: libiptcdata/iptc-tag.c:593
+msgid "String"
+msgstr "Zeichenkette"
+
+#: libiptcdata/iptc-tag.c:595
+msgid "NumString"
+msgstr "NumString"
+
+#: libiptcdata/iptc-tag.c:597
+msgid "Date"
+msgstr "Datum"
+
+#: libiptcdata/iptc-tag.c:599
+msgid "Time"
+msgstr "Zeit"
+
+#: libiptcdata/iptc-tag.c:601
+msgid "Unknown"
+msgstr "Unbekannt"
+
+#: libiptcdata/iptc-log.c:41
+msgid "Debugging information"
+msgstr "Information zur Fehlersuche"
+
+#: libiptcdata/iptc-log.c:42
+msgid "Debugging information is available."
+msgstr "Es sind Informationen zur Fehlersuche verfügbar."
+
+#: libiptcdata/iptc-log.c:43
+msgid "Not enough memory"
+msgstr "Zu wenig Speicher"
+
+#: libiptcdata/iptc-log.c:44
+msgid "The system cannot provide enough memory."
+msgstr "Das System kann nicht genug Speicher zur Verfügung stellen."
+
+#: libiptcdata/iptc-log.c:45
+msgid "Corrupt data"
+msgstr "Fehlerhafte Daten"
+
+#: libiptcdata/iptc-log.c:46
+msgid "The data provided does not follow the specification."
+msgstr "Die angeboten Daten erfüllen nicht die Spezifikation."

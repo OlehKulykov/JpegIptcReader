@@ -1,0 +1,58 @@
+rm -rf JpegIptcReader.framework
+rm -f *.a
+
+xcodebuild -configuration Release -project JpegIptcReader.xcodeproj -target JpegIptcReader -arch i386 -sdk iphonesimulator OBJROOT=obj SYMROOT=sym clean build
+mv sym/Release-iphonesimulator/libJpegIptcReader.a libJpegIptcReader-iphonesimulator.a
+cd obj
+find . -type f -iregex '.*\.o$' | xargs -I @ ar -q -v ../all-i386.a @
+cd ..
+rm -rf obj
+rm -rf sym
+
+xcodebuild -configuration Release -project JpegIptcReader.xcodeproj -target JpegIptcReader -arch armv7 -sdk iphoneos OBJROOT=obj SYMROOT=sym clean build
+mv sym/Release-iphoneos/libJpegIptcReader.a libJpegIptcReader-armv7.a
+cd obj
+find . -type f -iregex '.*\.o$' | xargs -I @ ar -q -v ../all-armv7.a @
+cd ..
+rm -rf obj
+rm -rf sym
+
+xcodebuild -configuration Release -project JpegIptcReader.xcodeproj -target JpegIptcReader -arch armv7s -sdk iphoneos OBJROOT=obj SYMROOT=sym clean build
+mv sym/Release-iphoneos/libJpegIptcReader.a libJpegIptcReader-armv7s.a
+cd obj
+find . -type f -iregex '.*\.o$' | xargs -I @ ar -q -v ../all-armv7s.a @
+cd ..
+rm -rf obj
+rm -rf sym
+
+
+lipo -create libJpegIptcReader-iphonesimulator.a libJpegIptcReader-armv7.a libJpegIptcReader-armv7s.a -output libJpegIptcReader.a
+rm -f libJpegIptcReader-iphonesimulator.a
+rm -f libJpegIptcReader-armv7.a
+rm -f libJpegIptcReader-armv7s.a
+
+
+
+lipo -create all-i386.a all-armv7.a all-armv7s.a -output all.a
+rm -f all-i386.a
+rm -f all-armv7.a
+rm -f all-armv7s.a
+
+
+
+rm -rf JpegIptcReader.framework
+mkdir -p JpegIptcReader.framework/Versions/A/Headers
+
+cp JpegIptcReader/*.h JpegIptcReader.framework/Versions/A/Headers/
+
+
+mkdir -p JpegIptcReader.framework/Versions/A/Resources
+
+cp all.a JpegIptcReader.framework/Versions/A/JpegIptcReader
+
+ln -s A JpegIptcReader.framework/Versions/Current
+ln -s Versions/Current/Headers JpegIptcReader.framework/Headers
+ln -s Versions/Current/Resources JpegIptcReader.framework/Resources
+ln -s Versions/Current/JpegIptcReader JpegIptcReader.framework/JpegIptcReader
+
+rm -f all.a

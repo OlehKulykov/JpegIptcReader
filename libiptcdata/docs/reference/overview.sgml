@@ -1,0 +1,450 @@
+<refentry id="iptc-overview" revision="23 Feb 2005">
+<refmeta>
+	<refentrytitle>libiptcdata Overview</refentrytitle>
+	<manvolnum>3</manvolnum>
+	<refmiscinfo>libiptcdata Library</refmiscinfo>
+</refmeta>
+
+<refnamediv>
+	<refname>libiptcdata Overview</refname>
+	<refpurpose>how to use libiptcdata in an application</refpurpose>
+</refnamediv>
+
+<refsect1 id="jpeg-loading">
+	<title>Extracting IPTC data from a JPEG file</title>
+
+	<para>
+	 When using libiptcdata, the first task you are probably interested in
+	 is reading the IPTC metadata from an existing file.  At present, JPEG is
+	 the only format supported by libiptcdata.  The API is designed in
+	 a multi-level fashion so that if your application already does some form
+	 of JPEG decoding, you can integrate libiptcdata without having to parse
+	 the file twice.
+	</para>
+
+	<para>
+	 The <ulink url="http://www.iptc.org/IIM/">IPTC IIM standard</ulink>
+	 was originally conceived so that the JPEG file itself
+	 would be encapsulated inside an IPTC wrapper.  Since this is not backward
+	 compatable with regular JPEGs, Adobe devised its own standard where an IPTC
+	 data block is placed inside the Adobe Photoshop application-specific header.
+	 This Photoshop
+	 metadata is stored in the APP13 header section of a JPEG file.  So reading
+	 the IPTC data block is a two-step process:  First, extract Photoshop metadata
+	 from the APP13 header, and second, extract the IPTC data block from the
+	 Photoshop metadata.
+	</para>
+
+	<para>
+	 <ulink url="http://controlledvocabulary.com/imagedatabases/iptc_naa.html">More
+	 information about the history of IPTC metadata</ulink> is available at
+	 controlledvocabulary.com.
+	</para>
+
+	<para>
+	 For the impatient, the IPTC data can be extracted with a single
+	 line of code using the <function><link linkend="iptc-data-new-from-jpeg">iptc_data_new_from_jpeg</link>()</function>
+	 function if you have no need for fine-grained error checking or you don't
+	 want to share code with a pre-existing JPEG decoding routine in your
+	 application.  Here's an example:
+	</para>
+
+	<programlisting>
+IptcData * d;
+char * filename = "foo.jpg";
+
+d = iptc_data_new_from_jpeg (filename);
+if (!d) {
+	fprintf (stderr, "Error reading IPTC data\n");
+	return 1;
+}
+	</programlisting>
+
+	<para>
+	 However, for all but the most simplistic of applications, you will probably
+	 want finer control of the process.  For that, you use three functions.
+	 The first, <function><link linkend="iptc-jpeg-read-ps3">iptc_jpeg_read_ps3</link>()</function>
+	 extracts the
+	 Photoshop metadata from the APP13 header.  If your application already
+	 decodes the JPEG file, you don't need this function:  Simply store the
+	 contents of the APP13 header as you decode the JPEG.  See
+	 <link linkend="iptc-libjpeg">libjpeg Interoperability</link> for
+	 an example.
+	</para>
+
+	<para>
+	 The second function,
+	 <function><link linkend="iptc-jpeg-ps3-find-iptc">iptc_jpeg_ps3_find_iptc</link>()</function>
+	 extracts the IPTC data block from the Photoshop metadata.
+	</para>
+
+	<para>
+	 The third function, <function><link linkend="iptc-data-new-from-data">iptc_data_new_from_data</link>()</function>
+	 takes the IPTC data block and decodes it into a data structure of type
+	 <structname><link linkend="IptcData">IptcData</link></structname> which you can use with the rest of the
+	 libiptcdata API.  Here's an example of all three functions in use:
+	</para>
+
+	<programlisting>
+FILE * infile;
+int ps3_len, iptc_off, iptc_len;
+IptcData * d;
+char * filename = "foo.jpg";
+unsigned char buf[256*256];
+
+infile = fopen (filename, "r");
+if (!infile) {
+	fprintf (stderr, "Error opening %s\n", filename);
+	return 1;
+}
+
+ps3_len = iptc_jpeg_read_ps3 (infile, buf, sizeof(buf));
+fclose (infile);
+if (ps3_len &lt; 0) {
+	fprintf (stderr, "Error parsing JPEG file\n");
+	return 1;
+}
+
+if (ps3_len == 0) {
+	fprintf (stderr, "File contains no PS3 header\n");
+	return 1;
+}
+
+iptc_off = iptc_jpeg_ps3_find_iptc (buf, ps3_len, &amp;iptc_len);
+if (iptc_off &lt; 0) {
+	fprintf (stderr, "Error parsing PS3 header\n");
+	return 1;
+}
+
+if (iptc_off == 0) {
+	fprintf (stderr, "PS3 header contains no IPTC data\n");
+	return 1;
+}
+
+d = iptc_data_new_from_data (buf + iptc_off, iptc_len);
+if (!d) {
+	fprintf (stderr, "Error parsing IPTC data\n");
+	return 1;
+}
+	</programlisting>
+
+</refsect1>
+
+<refsect1 id="creating-iptc">
+	<title>Creating IPTC data from scratch</title>
+
+	<para>
+	 If you want to create an empty <structname><link linkend="IptcData">IptcData</link></structname> structure from scratch without
+	 reading it from a preexisting file, use the <function><link linkend="iptc-data-new">iptc_data_new</link>()</function> function:
+	</para>
+
+	<programlisting>
+IptcData * d;
+
+d = iptc_data_new ();
+	</programlisting>
+</refsect1>
+
+<refsect1 id="viewing-iptc">
+	<title>Viewing IPTC data</title>
+
+	<para>
+	 IPTC metadata is simply a list of "datasets."  Each dataset contains a
+	 record number, dataset number, and the data itself.  The record number
+	 and dataset number, taken together, determine the purpose of the dataset,
+	 according to the IPTC IIM specification.  For example, dataset 2:120 (record 2,
+	 dataset 120) contains an image caption.  Some datasets can be repeated, such
+	 as dataset 2:25, which contains a single image keyword.  Each repeated dataset
+	 would contain a separate keyword.  The IPTC IIM specification determines
+	 the content of each dataset, the type (string, byte, short, etc.), and any
+	 restrictions such as minimum/maximum length, repeatability, etc.
+	</para>
+
+	<para>
+	 The following code snippet shows how to iterate through all the datasets in
+	 an <structname><link linkend="IptcData">IptcData</link></structname> object
+	 and print their contents.  The <function><link linkend="iptc-tag-get-title">iptc_tag_get_title</link>()</function>
+	 function gets the string name of a dataset from its record and dataset numbers.
+	 <function><link linkend="iptc-dataset-get-format">iptc_dataset_get_format</link>()</function>
+	 retrieves the type of the data contained in the dataset.  For datasets with
+	 integer types, <function><link linkend="iptc-dataset-get-value">iptc_dataset_get_value</link>()</function>
+	 gets the contents of the tag, and for datasets with string types,
+	 <function><link linkend="iptc-dataset-get-data">iptc_dataset_get_data</link>()</function>
+	 will do the same.
+	 <function><link linkend="iptc-dataset-get-as-str">iptc_dataset_get_as_str</link>()</function>
+	 formats the data as a string regardless of its type.
+	</para>
+
+	<programlisting>
+int i;
+
+printf("%6.6s %-20.20s %-9.9s %6s  %s\n", "Tag", "Name", "Type",
+		"Size", "Value");
+printf(" ----- -------------------- --------- ------  -----\n");
+
+for (i=0; i &lt; d-&gt;count; i++) {
+	IptcDataSet * e = d-&gt;datasets[i];
+	char buf[256];
+
+	printf("%2d:%03d %-20.20s %-9.9s %6d  ",
+			e-&gt;record, e-&gt;tag,
+			iptc_tag_get_title (e-&gt;record, e-&gt;tag),
+			iptc_format_get_name (iptc_dataset_get_format (e)),
+			e-&gt;size);
+	switch (iptc_dataset_get_format (e)) {
+		case IPTC_FORMAT_BYTE:
+		case IPTC_FORMAT_SHORT:
+		case IPTC_FORMAT_LONG:
+			printf("%d\n", iptc_dataset_get_value (e));
+			break;
+		case IPTC_FORMAT_BINARY:
+			iptc_dataset_get_as_str (e, buf, sizeof(buf));
+			printf("%s\n", buf);
+			break;
+		default:
+			iptc_dataset_get_data (e, buf, sizeof(buf));
+			printf("%s\n", buf);
+			break;
+	}
+}
+	</programlisting>
+
+	<para>
+	 This next code snippet prints out the list of keywords stored in the
+	 IPTC metadata.  First, in case we don't know the record and dataset
+	 numbers for the "Keywords" tag, the
+	 <function><link linkend="iptc-tag-find-by-name">iptc_tag_find_by_name</link>()</function>
+	 function retrieves them from the IPTC specification.  Next, the
+	 <function><link linkend="iptc-data-get-next-dataset">iptc_data_get_next_dataset</link>()</function>
+	 function iterates through each Keyword tag, printing out the contents.
+	</para>
+
+	<para>
+	 Another important concept presented in this example is the use of reference
+	 counts.  Whenever a function, such as <function><link linkend="iptc-data-get-next-dataset">iptc_data_get_next_dataset</link>()</function>
+	 returns a pointer, the reference count for the associated object is incremented by one.
+	 It is the application's responsibility to later unreference that pointer
+	 so that the count does not keep growing.  When the count reaches zero, the
+	 object is automatically freed.  This must be done for both
+	 <structname><link linkend="IptcData">IptcData</link></structname>
+	 (with <function><link linkend="iptc-data-unref">iptc_data_unref</link></function>) and
+	 <structname><link linkend="IptcDataSet">IptcDataSet</link></structname> (with
+	 <function><link linkend="iptc-dataset-unref">iptc_dataset_unref</link></function>) objects.
+	</para>
+
+	<programlisting>
+IptcDataSet * ds = NULL;
+IptcRecord record;
+IptcTag tag;
+char buf[256];
+
+if (iptc_tag_find_by_name ("Keywords", &amp;record, &amp;tag) &lt; 0) {
+	fprintf (stderr, "Invalid tag name\n");
+	return 1;
+}
+
+while (1) {
+	ds = iptc_data_get_next_dataset (d, ds, record, tag);
+	if (!ds)
+		break;
+	iptc_dataset_get_data (ds, buf, sizeof(buf));
+	printf("%s\n", buf);
+	iptc_dataset_unref(ds);
+}
+	</programlisting>
+</refsect1>
+
+<refsect1 id="adding-tag">
+	<title>Adding a new tag</title>
+
+	<para>
+	 New tags can be added to an
+	 <structname><link linkend="IptcData">IptcData</link></structname>
+	 object with the <function><link linkend="iptc-data-add-dataset">iptc_data_add_dataset</link>()</function> function.
+	 This new dataset can be obtained from another
+	 <structname><link linkend="IptcData">IptcData</link></structname> object,
+	 or it can be created from scratch with the
+	 <function><link linkend="iptc-dataset-new">iptc_dataset_new</link>()</function> function.
+	 If created from scratch,
+	 <function><link linkend="iptc-dataset-set-tag">iptc_dataset_set_tag</link>()</function>
+	 is first used to set the record and dataset number for the tag.  Next,
+	 <function><link linkend="iptc-dataset-set-tag">iptc_dataset_set_data</link>()</function>
+	 is used to set the actual contents of the tag.  The following code snippet
+	 demonstrates adding a new keyword, "travel" to an existing set of IPTC
+	 data:
+	</para>
+
+	<programlisting>
+IptcDataSet * ds;
+IptcRecord record;
+IptcTag tag;
+
+if (iptc_tag_find_by_name ("Keywords", &amp;record, &amp;tag) &lt; 0) {
+	fprintf (stderr, "Invalid tag name\n");
+	return 1;
+}
+
+ds = iptc_dataset_new ();
+iptc_dataset_set_tag (ds, record, tag);
+iptc_dataset_set_data (ds, "travel", 6, IPTC_DONT_VALIDATE);
+iptc_data_add_dataset (d, ds);
+iptc_dataset_unref (ds);
+	</programlisting>
+</refsect1>
+
+<refsect1 id="modifying-tag">
+	<title>Modifying an existing tag</title>
+
+	<para>
+	 Combining the functions we have seen above, the following code
+	 snippet modifies an existing caption in the IPTC data.  It first
+	 finds the Caption tag with the
+	 <function><link linkend="iptc-data-get-dataset">iptc_data_get_dataset</link>()</function>
+	 function and then changes the data with
+	 <function><link linkend="iptc-dataset-set-data">iptc_dataset_set_data</link>()</function>:
+	</para>
+
+	<programlisting>
+IptcDataSet * ds;
+IptcRecord record;
+IptcTag tag;
+char * str = "This is a caption";
+
+if (iptc_tag_find_by_name ("Caption", &amp;record, &amp;tag) &lt; 0) {
+	fprintf (stderr, "Invalid tag name\n");
+	return 1;
+}
+
+ds = iptc_data_get_dataset (d, record, tag);
+if (!ds) {
+	fprintf (stderr, "Tag not found\n");
+	return 1;
+}
+iptc_dataset_set_data (ds, str, strlen (str), IPTC_DONT_VALIDATE);
+iptc_dataset_unref (ds);
+	</programlisting>
+</refsect1>
+
+<refsect1 id="deleting-tag">
+	<title>Deleting a tag</title>
+
+	<para>
+	 A dataset can be deleted using the
+	 <function><link linkend="iptc-data-remove-dataset">iptc_data_remove_dataset</link>()</function> function, as seen in this example, which deletes the Caption from the
+	 IPTC data:
+	</para>
+
+	<programlisting>
+IptcDataSet * ds;
+IptcRecord record;
+IptcTag tag;
+
+if (iptc_tag_find_by_name ("Caption", &amp;record, &amp;tag) &lt; 0) {
+	fprintf (stderr, "Invalid tag name\n");
+	return 1;
+}
+
+ds = iptc_data_get_dataset (d, record, tag);
+if (!ds) {
+	fprintf (stderr, "Tag not found\n");
+	return 1;
+}
+iptc_data_remove_dataset (d, ds);
+iptc_dataset_unref (ds);
+	</programlisting>
+</refsect1>
+
+<refsect1 id="jpeg-saving">
+	<title>Saving IPTC data to a JPEG file</title>
+
+	<para>
+	 Saving an <structname><link linkend="IptcData">IptcData</link></structname>
+	 object back to a JPEG file is a multi-step process requiring several
+	 different function calls.  Although this may seem cumbersome at first,
+	 it allows you to integrate the process into any existing JPEG-saving
+	 code already written in your application.
+	</para>
+
+	<para>
+	 First, a call to
+	 <function><link linkend="iptc-data-sort">iptc_data_sort</link>()</function>
+	 sorts the datasets by tag number prior to saving.  This step
+     is optional.
+	</para>
+
+	<para>
+	 Next, by calling
+	 <function><link linkend="iptc-data-save">iptc_data_save</link>()</function>
+	 we convert the
+	 <structname><link linkend="IptcData">IptcData</link></structname>
+	 object into a bytestream.  This IPTC data block is then encapsulated
+	 inside a Photoshop header using
+	 <function><link linkend="iptc-jpeg-ps3-save-iptc">iptc_jpeg_ps3_save_iptc</link>()</function>.
+	 This function will use an existing Photoshop header, if available, so that
+	 all unrelated portions of the Photoshop header are preserved.  If no
+	 pre-existing Photoshop header is provided, a new one will be created from
+	 scratch.
+	</para>
+
+	<para>
+	 The new Photoshop header can be saved inside the APP13 header of the JPEG
+	 file using your application code, or you can use
+	 <function><link linkend="iptc-jpeg-save-with-ps3">iptc_jpeg_save_with_ps3</link>()</function> to do the same thing.
+	</para>
+
+	<para>
+	 The following example code demonstrates the entire process:
+	</para>
+
+	<programlisting>
+unsigned char * iptc_buf = NULL;
+unsigned char outbuf[256*256];
+char tmpfile[strlen(filename)+8];
+int v;
+
+iptc_data_sort (d);
+
+if (iptc_data_save (d, &amp;iptc_buf, &amp;iptc_len) &lt; 0) {
+	fprintf (stderr, "Failed to generate IPTC bytestream\n");
+	return 1;
+}
+ps3_len = iptc_jpeg_ps3_save_iptc (buf, ps3_len,
+		iptc_buf, iptc_len, outbuf, sizeof(outbuf));
+iptc_data_free_buf (d, iptc_buf);
+if (ps3_len &lt; 0) {
+	fprintf (stderr, "Failed to generate PS3 header\n");
+	return 1;
+}
+
+infile = fopen (filename, "r");
+if (!infile) {
+	fprintf (stderr, "Can't reopen input file\n");
+	return 1;
+}
+sprintf (tmpfile, "%s.%d", filename, getpid());
+outfile = fopen (tmpfile, "w");
+if (!outfile) {
+	fprintf (stderr, "Can't open temporary file for writing\n");
+	return 1;
+}
+
+v = iptc_jpeg_save_with_ps3 (infile, outfile, outbuf, ps3_len);
+fclose (infile);
+fclose (outfile);
+if (v &lt; 0) {
+	unlink (tmpfile);
+	fprintf (stderr, "Failed to save image\n");
+	return 1;
+}
+
+if (rename (tmpfile, filename) &lt; 0) {
+	fprintf (stderr, "Failed to save image\n");
+	unlink (tmpfile);
+	return 1;
+}
+fprintf (stderr, "Image saved\n");
+	</programlisting>
+
+</refsect1>
+
+</refentry>

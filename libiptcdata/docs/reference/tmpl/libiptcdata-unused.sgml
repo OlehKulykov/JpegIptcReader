@@ -1,0 +1,75 @@
+<!-- ##### SECTION ./tmpl/i18n.sgml:Long_Description ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### SECTION ./tmpl/i18n.sgml:See_Also ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### SECTION ./tmpl/i18n.sgml:Short_Description ##### -->
+
+
+
+<!-- ##### SECTION ./tmpl/i18n.sgml:Title ##### -->
+i18n
+
+
+<!-- ##### SECTION ./tmpl/iptc-loader.sgml:Long_Description ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### SECTION ./tmpl/iptc-loader.sgml:See_Also ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### SECTION ./tmpl/iptc-loader.sgml:Short_Description ##### -->
+
+
+
+<!-- ##### SECTION ./tmpl/iptc-loader.sgml:Title ##### -->
+iptc-loader
+
+
+<!-- ##### MACRO IPTC_TAG_MARKER ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### STRUCT IptcDataPrivate ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### STRUCT IptcDataSetPrivate ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### MACRO iptc_data_get_value ##### -->
+<para>
+
+</para>
+
+@c: 
+@r: 
+@t: 
+@v: 
+@m: 
+
+<!-- ##### FUNCTION iptc_dataset_fart ##### -->
+<para>
+
+</para>
+
+

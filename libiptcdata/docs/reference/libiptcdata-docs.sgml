@@ -1,0 +1,82 @@
+<?xml version="1.0"?>
+<!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN" 
+               "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
+<!ENTITY iptc-overview SYSTEM "overview.sgml">
+<!ENTITY iptc-about SYSTEM "about.sgml">
+<!ENTITY iptc-commandline SYSTEM "commandline.sgml">
+<!ENTITY iptc-i18n SYSTEM "i18n.sgml">
+<!ENTITY iptc-libjpeg SYSTEM "libjpeg.sgml">
+<!ENTITY version SYSTEM "version.xml">
+]>
+<book id="index" xmlns:xi="http://www.w3.org/2003/XInclude">
+  <bookinfo>
+    <title>libiptcdata Reference Manual</title>
+    <releaseinfo>for libiptcdata &version;</releaseinfo>
+    <authorgroup>
+      <author>
+        <firstname>David</firstname>
+	<surname>Moore</surname>
+	<affiliation>
+	  <address>
+	    <email>dcm@acm.org</email>
+	  </address>
+	</affiliation>
+      </author>
+    </authorgroup>
+
+    <copyright>
+      <year>2005</year>
+      <holder>David Moore</holder>
+    </copyright>
+
+    <legalnotice id="legalnotice">
+      <para>Permission is granted to copy, distribute and/or modify
+      this document under the terms of the <citetitle>GNU Free
+      Documentation License</citetitle>, Version 1.1 or any later
+      version published by the Free Software Foundation with no
+      Invariant Sections, no Front-Cover Texts, and no Back-Cover
+      Texts. You may obtain a copy of the <citetitle>GNU Free
+      Documentation License</citetitle> from the Free Software
+      Foundation by visiting <ulink type="http"
+      url="http://www.fsf.org">their Web site</ulink> or by writing
+      to: Free Software Foundation, Inc., 59 Temple Place - Suite 330,
+      Boston, MA 02111-1307, USA.</para>
+
+      <para>Many of the names used by companies to distinguish their
+      products and services are claimed as trademarks. Where those
+      names appear in this documentation, and those trademarks
+      are made aware to the documentation author, the names have been
+      printed in caps or initial caps.</para>
+    </legalnotice>
+
+    <abstract>
+      <para>This manual documents the interfaces of the libiptcdata
+      library and has some notes to help get you up to speed
+      with using the library.</para>
+    </abstract>
+  </bookinfo>
+
+  &iptc-about;
+  &iptc-commandline;
+  &iptc-overview;
+  &iptc-libjpeg;
+  &iptc-i18n;
+  <chapter id="ch01">
+    <title>IPTC Data Manipulation</title>
+    <xi:include href="xml/iptc-data.xml"/>
+    <xi:include href="xml/iptc-dataset.xml"/>
+    <xi:include href="xml/iptc-tag.xml"/>
+  </chapter>
+
+  <chapter id="ch02">
+    <title>Format-specific Functions</title>
+    <xi:include href="xml/iptc-jpeg.xml"/>
+  </chapter>
+
+  <chapter id="ch03">
+    <title>Helper Functions</title>
+    <xi:include href="xml/iptc-utils.xml"/>
+    <xi:include href="xml/iptc-mem.xml"/>
+    <xi:include href="xml/iptc-log.xml"/>
+  </chapter>
+</book>

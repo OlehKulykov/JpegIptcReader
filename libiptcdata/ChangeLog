@@ -1,0 +1,239 @@
+2009-07-05  David Moore  <dcm@acm.org>
+
+	* NEWS, configure.in, libiptcdata.spec.in: Updated for release of 1.0.4
+
+2009-06-27  David Moore  <dcm@acm.org>
+
+	* docs/reference/libiptcdata-docs.sgml: Fix multilib -devel rpm conflict
+	* iptc/po/it.po: Additional Italian translation from Milo Casagrande.
+
+2009-06-10  David Moore  <dcm@acm.org>
+
+	* po/it.po: Added Italian translation from Milo Casagrande.
+
+2009-03-24  David Moore  <dcm@acm.org>
+
+	* NEWS, configure.in, libiptcdata.spec.in: Updated for release of 1.0.3
+	* Makefile.am: Fix "make distcheck"
+	* python/pyiptcdata.c: Updated save patch from Chris Mayo.
+	* po/de.po, iptc/po/de.po: Added German translation, submitted by
+	Chris Leick.
+	* libiptcdata/iptc-dataset.c: Check for NULL tag name in
+	iptc_dataset_dump.  From Roger Hakansson.
+
+2008-12-08  Ian Wienand  <ianw@debian.org>
+
+	* python/pyiptcdataset.c: Don't poke around inside datastructures
+	for title/description info.
+
+2007-09-04  David Moore  <dcm@acm.org>
+
+	* python/pyiptcdata.c: Fix for saving when /tmp is on different
+	filesystem.  Patch from Chris Mayo.
+
+2007-05-15  David Moore  <dcm@acm.org>
+
+	* NEWS, configure.in: Updated for release of 1.0.2
+
+2007-05-15  Ian Wienand  <ianw@debian.org>
+
+	* python/Makefile.am, python/pyiptcdata.h : fix to use headers
+	out of build tree
+
+2007-05-15  David Moore  <dcm@acm.org>
+
+	* libiptcdata/iptc-jpeg.c: Store APP13 section closer to the start of
+	the file, necessary for Picasa compatability.
+	* iptc/main.c: Don't set version and encoding by default since it hurts
+	Picasa compatability.  Added two options to set them manually.
+	* python/pyiptcdata.c: Don't set version and encoding by default.
+	* Documentation updates for these new recommendations
+
+2007-03-23  David Moore  <dcm@acm.org>
+
+	* NEWS, configure.in: Updated for release of 1.0.1
+	* python/pyiptcdatamod.c: Fixed buffer overflow
+	* python/Makefile.am: added -avoid-version argument to libtool
+	* README: converted from ISO-8859-1 to UTF-8
+	* configure.in: fixed build on systems without Python
+	* libiptcdata.spec.in: More updates for Fedora guidelines
+
+2007-03-21  David Moore  <dcm@acm.org>
+
+	* NEWS, configure.in: Updated for release of 1.0.0.
+	* libiptcdata.spec.in: Spec file adjusted for Fedora guidelines
+	* win/stdint.h: Updated windows stdint.h per suggestion from
+	Michael Dillon.
+
+2007-02-21  David Moore  <dcm@acm.org>
+
+	* docs/reference/Makefile.am: fix missing doc files in 'make dist'
+
+2007-02-08  David Moore  <dcm@acm.org>
+
+	* Fixed python typo (from Ian Wienand)
+
+2007-01-28  David Moore  <dcm@acm.org>
+
+	* Added python wrapper, courtesy of Ian Wienand.
+	* Fixed compile warnings in python wrapper.
+	* Added libiptcdata-python package to spec file.
+
+2007-01-27  David Moore  <dcm@acm.org>
+
+	* iptc/Makefile.am, INSTALL: Compile fix for when gettext is in libintl
+	instead of libc, as is often the case for Mac OS (reported by Mark
+	Hunte).
+
+2006-10-24  David Moore  <dcm@acm.org>
+
+	* libiptcdata.ebuild: Added Gentoo ebuild file, courtesy of Dirk Göttel.
+
+2006-05-23  David Moore  <dcm@acm.org>
+
+	* iptc-data.c: Changed fopen() to use "rb" instead of "r" for windows
+	compatability.  Noticed by Ralph Heidelberg.
+
+2006-04-12  David Moore  <dcm@acm.org>
+
+	* libiptcdata.spec.in: Fixed spec file to remove errors under Fedora
+	Core 5.
+
+2005-10-04  David Moore  <dcm@acm.org>
+
+	* iptc-tag.c: Changed "Category" dataset from repeatable to
+	not-repeatable (Patch from Grigory Entin).
+
+2005-09-29  David Moore  <dcm@acm.org>
+
+	* NEWS, configure.in: updated for version 0.2.1.
+	* docs/reference: added new section for the command-line utility
+	* docs/reference: updated the synopsis for the command-line utility
+	and added a description of its return values.
+	* iptc/main.c: added the special dataset number "all" which means
+	all datasets of the given tag should be operated on.
+	* iptc/main.c: changed the return value of the program to be
+	success whenever at least one command succeeds, and failure if
+	no command succeeds.
+
+2005-09-17  David Moore  <dcm@acm.org>
+
+	* iptc/main.c: modified command syntax to allow specification of
+	dataset number (for duplicates) along with the tag name.
+
+2005-09-16  David Moore  <dcm@acm.org>
+
+	* iptc/main.c: print dataset numbers of duplicate tags
+
+2005-09-15  David Moore  <dcm@acm.org>
+
+	* docs/reference: Documentation updates
+
+2005-09-14  David Moore  <dcm@acm.org>
+
+	* configure.in, iptc/main.c: Mac OS X compile fixes for libiconv
+
+2005-09-10  David Moore  <dcm@acm.org>
+
+	* iptc-data.[ch]: added new functions iptc_data_set_version(),
+	iptc_data_add_dataset_with_value(), and
+	iptc_data_add_dataset_with_contents().
+	* iptc/main.c: removed -s option, instead sorting the datasets
+	by default unless the --no-sort option is specified
+	* iptc/main.c: call iptc_data_set_version() before saving
+
+2005-09-07  David Moore  <dcm@acm.org>
+
+	* iptc-data.h: compile fix
+	* NEWS, configure.in: updated for release 0.2.0
+	* docs/reference: documentation updates
+
+2005-09-06  David Moore  <dcm@acm.org>
+
+	* iptc/main.c: -m option will add dataset if not present
+
+2005-08-29  David Moore  <dcm@acm.org>
+
+	* iptc/main.c: allow running on multiple files at once
+
+2005-08-28  David Moore  <dcm@acm.org>
+
+	* iptc-dataset.[ch]: added new function iptc_dataset_copy()
+	* iptc/main.c: preserve file permissions when saving
+	* iptc/main.c: added character set conversion depending on locale
+	* iptc/main.c, iptc/i18n.h: marked up sources for translation
+	* docs/reference: documentation updates
+	* configure.in, iptc/main.c: Mac OS X compile fixes
+
+2005-08-27  David Moore  <dcm@acm.org>
+
+	* various files: removed included libintl, added po/ directory for the
+	iptc utility, eliminated autopoint from build scripts
+
+2005-08-25  David Moore  <dcm@acm.org>
+
+	* iptc-data.c, iptc-data.h: added iptc_data_get_encoding() and
+	iptc_data_set_encoding_utf8() functions.
+	* iptc/main.c: character encoding is saved when strings added
+
+2005-08-23  David Moore  <dcm@acm.org>
+
+	* iptc/main.c: added -l and -L arguments to list tag names
+	* iptc-data.c, iptc-data.h: added iptc_data_sort() function
+	* iptc/main.c: added -s argument to sort datasets
+
+2005-08-18  David Moore  <dcm@acm.org>
+
+	* iptc/main.c: fields longer than 256 bytes will print correctly
+	* various files: fixed compile warnings with gcc 4.0
+
+2005-06-07  David Moore  <dcm@acm.org>
+
+	* TODO: added new desired features
+	* libiptcdata/Makefile.am: make sure _stdint.h gets installed
+
+2005-05-31  David Moore  <dcm@acm.org>
+
+	* NEWS, configure.in: Updated for release 0.1.2.
+
+2005-04-14  David Moore  <dcm@acm.org>
+
+	* win: Added new Visual Studio project and changes necessary to build
+	libiptcdata in Windows.
+	Contributed by Luka Renko <luka.renko@gmail.com>
+	* win: Windows build fixes
+
+2005-04-13  David Moore  <dcm@acm.org>
+
+	* iptc-jpeg.c: Skip over all headers in search of APP13 to improve
+	compatability with some applications.
+	* TODO: Updated
+	* iptc-*.c: Removed some unnecessary header references.
+
+2005-03-09  David Moore  <dcm@acm.org>
+
+	* iptc-dataset.c: Improved the handling of datasets with zero-length
+	data.
+
+2005-03-07  David Moore  <dcm@acm.org>
+
+	* iptc-jpeg.c (iptc_jpeg_seek_to_ps3): Fixed parsing error for some
+	jpeg files.
+	* NEWS: Updated for new release
+
+2005-03-06  David Moore  <dcm@acm.org>
+
+	* iptc-dataset.c, iptc-dataset.h: added date/time manipulation
+	functions iptc_dataset_get_date(), iptc_dataset_get_time(),
+	iptc_dataset_set_date(), and iptc_dataset_set_time().
+	* configure.in: bumped version number to 0.1.1 and library
+	current:revision:age to 1:0:1.
+
+2005-03-02  David Moore  <dcm@acm.org>
+
+	* iptc-dataset.h: Fixed copyright notice
+
+2005-02-28  David Moore  <dcm@acm.org>
+
+	* Initial version
+

@@ -1,0 +1,1083 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>IPTC Data</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.74.0">
+<link rel="home" href="index.html" title="libiptcdata Reference Manual">
+<link rel="up" href="ch01.html" title="IPTC Data Manipulation">
+<link rel="prev" href="ch01.html" title="IPTC Data Manipulation">
+<link rel="next" href="libiptcdata-dataset.html" title="Datasets">
+<meta name="generator" content="GTK-Doc V1.10 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+<link rel="chapter" href="ch01.html" title="IPTC Data Manipulation">
+<link rel="chapter" href="ch02.html" title="Format-specific Functions">
+<link rel="chapter" href="ch03.html" title="Helper Functions">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
+<tr valign="middle">
+<td><a accesskey="p" href="ch01.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="ch01.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">libiptcdata Reference Manual</th>
+<td><a accesskey="n" href="libiptcdata-dataset.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+</tr>
+<tr><td colspan="5" class="shortcuts"><nobr><a href="#libiptcdata-data.synopsis" class="shortcut">Top</a>
+                   | 
+                  <a href="#libiptcdata-data.description" class="shortcut">Description</a></nobr></td></tr>
+</table>
+<div class="refentry" lang="en">
+<a name="libiptcdata-data"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2><span class="refentrytitle"><a name="libiptcdata-data.top_of_page"></a>IPTC Data</span></h2>
+<p>IPTC Data — creating, loading, saving, and editing a collection of IPTC datasets</p>
+</td>
+<td valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsynopsisdiv">
+<a name="libiptcdata-data.synopsis"></a><h2>Synopsis</h2>
+<pre class="synopsis">
+                    <a class="link" href="libiptcdata-data.html#IptcData" title="IptcData">IptcData</a>;
+<a class="link" href="libiptcdata-data.html#IptcData" title="IptcData">IptcData</a>*           <a class="link" href="libiptcdata-data.html#iptc-data-new" title="iptc_data_new ()">iptc_data_new</a>                       (void);
+<a class="link" href="libiptcdata-data.html#IptcData" title="IptcData">IptcData</a>*           <a class="link" href="libiptcdata-data.html#iptc-data-new-mem" title="iptc_data_new_mem ()">iptc_data_new_mem</a>                   (<a class="link" href="libiptcdata-mem.html#IptcMem" title="IptcMem">IptcMem</a> *mem);
+void                <a class="link" href="libiptcdata-data.html#iptc-data-ref" title="iptc_data_ref ()">iptc_data_ref</a>                       (<a class="link" href="libiptcdata-data.html#IptcData" title="IptcData">IptcData</a> *data);
+void                <a class="link" href="libiptcdata-data.html#iptc-data-unref" title="iptc_data_unref ()">iptc_data_unref</a>                     (<a class="link" href="libiptcdata-data.html#IptcData" title="IptcData">IptcData</a> *data);
+void                <a class="link" href="libiptcdata-data.html#iptc-data-free" title="iptc_data_free ()">iptc_data_free</a>                      (<a class="link" href="libiptcdata-data.html#IptcData" title="IptcData">IptcData</a> *data);
+
+<a class="link" href="libiptcdata-data.html#IptcData" title="IptcData">IptcData</a>*           <a class="link" href="libiptcdata-data.html#iptc-data-new-from-jpeg" title="iptc_data_new_from_jpeg ()">iptc_data_new_from_jpeg</a>             (const char *path);
+<a class="link" href="libiptcdata-data.html#IptcData" title="IptcData">IptcData</a>*           <a class="link" href="libiptcdata-data.html#iptc-data-new-from-data" title="iptc_data_new_from_data ()">iptc_data_new_from_data</a>             (unsigned char *buf,
+                                                         unsigned int size);
+
+int                 <a class="link" href="libiptcdata-data.html#iptc-data-load" title="iptc_data_load ()">iptc_data_load</a>                      (<a class="link" href="libiptcdata-data.html#IptcData" title="IptcData">IptcData</a> *data,
+                                                         unsigned char *buf,
+                                                         unsigned int size);
+int                 <a class="link" href="libiptcdata-data.html#iptc-data-save" title="iptc_data_save ()">iptc_data_save</a>                      (<a class="link" href="libiptcdata-data.html#IptcData" title="IptcData">IptcData</a> *data,
+                                                         unsigned char **buf,
+                                                         unsigned int *size);
+void                <a class="link" href="libiptcdata-data.html#iptc-data-free-buf" title="iptc_data_free_buf ()">iptc_data_free_buf</a>                  (<a class="link" href="libiptcdata-data.html#IptcData" title="IptcData">IptcData</a> *data,
+                                                         unsigned char *buf);
+
+<a class="link" href="libiptcdata-dataset.html#IptcDataSet" title="IptcDataSet">IptcDataSet</a>*        <a class="link" href="libiptcdata-data.html#iptc-data-get-dataset" title="iptc_data_get_dataset ()">iptc_data_get_dataset</a>               (<a class="link" href="libiptcdata-data.html#IptcData" title="IptcData">IptcData</a> *data,
+                                                         <a class="link" href="libiptcdata-tag.html#IptcRecord" title="enum IptcRecord">IptcRecord</a> record,
+                                                         <a class="link" href="libiptcdata-tag.html#IptcTag" title="enum IptcTag">IptcTag</a> tag);
+<a class="link" href="libiptcdata-dataset.html#IptcDataSet" title="IptcDataSet">IptcDataSet</a>*        <a class="link" href="libiptcdata-data.html#iptc-data-get-next-dataset" title="iptc_data_get_next_dataset ()">iptc_data_get_next_dataset</a>          (<a class="link" href="libiptcdata-data.html#IptcData" title="IptcData">IptcData</a> *data,
+                                                         <a class="link" href="libiptcdata-dataset.html#IptcDataSet" title="IptcDataSet">IptcDataSet</a> *ds,
+                                                         <a class="link" href="libiptcdata-tag.html#IptcRecord" title="enum IptcRecord">IptcRecord</a> record,
+                                                         <a class="link" href="libiptcdata-tag.html#IptcTag" title="enum IptcTag">IptcTag</a> tag);
+int                 <a class="link" href="libiptcdata-data.html#iptc-data-add-dataset" title="iptc_data_add_dataset ()">iptc_data_add_dataset</a>               (<a class="link" href="libiptcdata-data.html#IptcData" title="IptcData">IptcData</a> *data,
+                                                         <a class="link" href="libiptcdata-dataset.html#IptcDataSet" title="IptcDataSet">IptcDataSet</a> *ds);
+int                 <a class="link" href="libiptcdata-data.html#iptc-data-add-dataset-before" title="iptc_data_add_dataset_before ()">iptc_data_add_dataset_before</a>        (<a class="link" href="libiptcdata-data.html#IptcData" title="IptcData">IptcData</a> *data,
+                                                         <a class="link" href="libiptcdata-dataset.html#IptcDataSet" title="IptcDataSet">IptcDataSet</a> *ds,
+                                                         <a class="link" href="libiptcdata-dataset.html#IptcDataSet" title="IptcDataSet">IptcDataSet</a> *newds);
+int                 <a class="link" href="libiptcdata-data.html#iptc-data-add-dataset-after" title="iptc_data_add_dataset_after ()">iptc_data_add_dataset_after</a>         (<a class="link" href="libiptcdata-data.html#IptcData" title="IptcData">IptcData</a> *data,
+                                                         <a class="link" href="libiptcdata-dataset.html#IptcDataSet" title="IptcDataSet">IptcDataSet</a> *ds,
+                                                         <a class="link" href="libiptcdata-dataset.html#IptcDataSet" title="IptcDataSet">IptcDataSet</a> *newds);
+int                 <a class="link" href="libiptcdata-data.html#iptc-data-remove-dataset" title="iptc_data_remove_dataset ()">iptc_data_remove_dataset</a>            (<a class="link" href="libiptcdata-data.html#IptcData" title="IptcData">IptcData</a> *data,
+                                                         <a class="link" href="libiptcdata-dataset.html#IptcDataSet" title="IptcDataSet">IptcDataSet</a> *ds);
+
+void                (<a class="link" href="libiptcdata-data.html#IptcDataForeachDataSetFunc" title="IptcDataForeachDataSetFunc ()">*IptcDataForeachDataSetFunc</a>)       (<a class="link" href="libiptcdata-dataset.html#IptcDataSet" title="IptcDataSet">IptcDataSet</a> *dataset,
+                                                         void *user_data);
+void                <a class="link" href="libiptcdata-data.html#iptc-data-foreach-dataset" title="iptc_data_foreach_dataset ()">iptc_data_foreach_dataset</a>           (<a class="link" href="libiptcdata-data.html#IptcData" title="IptcData">IptcData</a> *data,
+                                                         <a class="link" href="libiptcdata-data.html#IptcDataForeachDataSetFunc" title="IptcDataForeachDataSetFunc ()">IptcDataForeachDataSetFunc</a> func,
+                                                         void *user_data);
+
+void                <a class="link" href="libiptcdata-data.html#iptc-data-sort" title="iptc_data_sort ()">iptc_data_sort</a>                      (<a class="link" href="libiptcdata-data.html#IptcData" title="IptcData">IptcData</a> *data);
+
+enum                <a class="link" href="libiptcdata-data.html#IptcEncoding" title="enum IptcEncoding">IptcEncoding</a>;
+<a class="link" href="libiptcdata-data.html#IptcEncoding" title="enum IptcEncoding">IptcEncoding</a>        <a class="link" href="libiptcdata-data.html#iptc-data-get-encoding" title="iptc_data_get_encoding ()">iptc_data_get_encoding</a>              (<a class="link" href="libiptcdata-data.html#IptcData" title="IptcData">IptcData</a> *data);
+int                 <a class="link" href="libiptcdata-data.html#iptc-data-set-encoding-utf8" title="iptc_data_set_encoding_utf8 ()">iptc_data_set_encoding_utf8</a>         (<a class="link" href="libiptcdata-data.html#IptcData" title="IptcData">IptcData</a> *data);
+
+#define             <a class="link" href="libiptcdata-data.html#IPTC-IIM-VERSION:CAPS" title="IPTC_IIM_VERSION">IPTC_IIM_VERSION</a>
+int                 <a class="link" href="libiptcdata-data.html#iptc-data-set-version" title="iptc_data_set_version ()">iptc_data_set_version</a>               (<a class="link" href="libiptcdata-data.html#IptcData" title="IptcData">IptcData</a> *data,
+                                                         unsigned int version);
+
+int                 <a class="link" href="libiptcdata-data.html#iptc-data-add-dataset-with-value" title="iptc_data_add_dataset_with_value ()">iptc_data_add_dataset_with_value</a>    (<a class="link" href="libiptcdata-data.html#IptcData" title="IptcData">IptcData</a> *data,
+                                                         <a class="link" href="libiptcdata-tag.html#IptcRecord" title="enum IptcRecord">IptcRecord</a> record,
+                                                         <a class="link" href="libiptcdata-tag.html#IptcTag" title="enum IptcTag">IptcTag</a> tag,
+                                                         unsigned int value,
+                                                         <a class="link" href="libiptcdata-dataset.html#IptcValidate" title="enum IptcValidate">IptcValidate</a> validate);
+int                 <a class="link" href="libiptcdata-data.html#iptc-data-add-dataset-with-contents" title="iptc_data_add_dataset_with_contents ()">iptc_data_add_dataset_with_contents</a> (<a class="link" href="libiptcdata-data.html#IptcData" title="IptcData">IptcData</a> *data,
+                                                         <a class="link" href="libiptcdata-tag.html#IptcRecord" title="enum IptcRecord">IptcRecord</a> record,
+                                                         <a class="link" href="libiptcdata-tag.html#IptcTag" title="enum IptcTag">IptcTag</a> tag,
+                                                         unsigned char *buf,
+                                                         unsigned int size,
+                                                         <a class="link" href="libiptcdata-dataset.html#IptcValidate" title="enum IptcValidate">IptcValidate</a> validate);
+
+void                <a class="link" href="libiptcdata-data.html#iptc-data-dump" title="iptc_data_dump ()">iptc_data_dump</a>                      (<a class="link" href="libiptcdata-data.html#IptcData" title="IptcData">IptcData</a> *data,
+                                                         unsigned int indent);
+void                <a class="link" href="libiptcdata-data.html#iptc-data-log" title="iptc_data_log ()">iptc_data_log</a>                       (<a class="link" href="libiptcdata-data.html#IptcData" title="IptcData">IptcData</a> *data,
+                                                         <a class="link" href="libiptcdata-log.html#IptcLog" title="IptcLog">IptcLog</a> *log);
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="libiptcdata-data.description"></a><h2>Description</h2>
+<p>
+The <a class="link" href="libiptcdata-data.html#IptcData" title="IptcData"><span class="type">IptcData</span></a> object is the top-level container for a collection of IPTC metadata tags.
+Each of these tags is stored in an <a class="link" href="libiptcdata-dataset.html#IptcDataSet" title="IptcDataSet"><span class="type">IptcDataSet</span></a> object.
+</p>
+</div>
+<div class="refsect1" lang="en">
+<a name="libiptcdata-data.details"></a><h2>Details</h2>
+<div class="refsect2" lang="en">
+<a name="IptcData"></a><h3>IptcData</h3>
+<pre class="programlisting">typedef struct {
+        IptcDataSet **datasets;
+        unsigned int count;
+
+	IptcDataPrivate *priv;
+} IptcData;
+</pre>
+<p>
+Represents the collection of datasets that make up a IPTC data block.
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><a class="link" href="libiptcdata-dataset.html#IptcDataSet" title="IptcDataSet">IptcDataSet</a> **<em class="structfield"><code>datasets</code></em>;</span></p></td>
+<td>array of pointers to the datasets in the collection
+</td>
+</tr>
+<tr>
+<td><p><span class="term">unsigned int <em class="structfield"><code>count</code></em>;</span></p></td>
+<td>the number of datasets in the collection
+</td>
+</tr>
+<tr>
+<td><p><span class="term">IptcDataPrivate *<em class="structfield"><code>priv</code></em>;</span></p></td>
+<td>private data
+
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="iptc-data-new"></a><h3>iptc_data_new ()</h3>
+<pre class="programlisting"><a class="link" href="libiptcdata-data.html#IptcData" title="IptcData">IptcData</a>*           iptc_data_new                       (void);</pre>
+<p>
+Allocates a new collection of datasets, which is initialized to be
+empty.  The default memory allocation functions (malloc, etc.) are
+used.  If you need custom memory management functions, use
+<a class="link" href="libiptcdata-data.html#iptc-data-new-mem" title="iptc_data_new_mem ()"><code class="function">iptc_data_new_mem()</code></a> instead.  This allocation will set the <a class="link" href="libiptcdata-data.html#IptcData" title="IptcData"><span class="type">IptcData</span></a>
+refcount to 1, so use <a class="link" href="libiptcdata-data.html#iptc-data-unref" title="iptc_data_unref ()"><code class="function">iptc_data_unref()</code></a> when finished with the pointer.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> pointer to the new <a class="link" href="libiptcdata-data.html#IptcData" title="IptcData"><span class="type">IptcData</span></a> object, NULL on error
+</td>
+</tr></tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="iptc-data-new-mem"></a><h3>iptc_data_new_mem ()</h3>
+<pre class="programlisting"><a class="link" href="libiptcdata-data.html#IptcData" title="IptcData">IptcData</a>*           iptc_data_new_mem                   (<a class="link" href="libiptcdata-mem.html#IptcMem" title="IptcMem">IptcMem</a> *mem);</pre>
+<p>
+Allocates a new collection of datasets, which is initialized to be
+empty, using custom memory management functions.  This allocation
+will set the <a class="link" href="libiptcdata-data.html#IptcData" title="IptcData"><span class="type">IptcData</span></a> refcount to 1, so use <a class="link" href="libiptcdata-data.html#iptc-data-unref" title="iptc_data_unref ()"><code class="function">iptc_data_unref()</code></a> when
+finished with the object.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>mem</code></em> :</span></p></td>
+<td> Pointer to an <a class="link" href="libiptcdata-mem.html#IptcMem" title="IptcMem"><span class="type">IptcMem</span></a> object that defines custom memory managment
+functions.  The refcount of <em class="parameter"><code>mem</code></em> will be incremented.  It is decremented
+when the returned <a class="link" href="libiptcdata-data.html#IptcData" title="IptcData"><span class="type">IptcData</span></a> object is freed.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> pointer to the new <a class="link" href="libiptcdata-data.html#IptcData" title="IptcData"><span class="type">IptcData</span></a> object, NULL on error
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="iptc-data-ref"></a><h3>iptc_data_ref ()</h3>
+<pre class="programlisting">void                iptc_data_ref                       (<a class="link" href="libiptcdata-data.html#IptcData" title="IptcData">IptcData</a> *data);</pre>
+<p>
+Increments the reference count of an <a class="link" href="libiptcdata-data.html#IptcData" title="IptcData"><span class="type">IptcData</span></a> object.  This function
+should be called whenever a copy of a pointer is made by the application.
+<a class="link" href="libiptcdata-data.html#iptc-data-unref" title="iptc_data_unref ()"><code class="function">iptc_data_unref()</code></a> can then be used when the pointer is no longer needed
+to ensure that the object is freed once the object is completely unused.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><em class="parameter"><code>data</code></em> :</span></p></td>
+<td> the referenced pointer
+</td>
+</tr></tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="iptc-data-unref"></a><h3>iptc_data_unref ()</h3>
+<pre class="programlisting">void                iptc_data_unref                     (<a class="link" href="libiptcdata-data.html#IptcData" title="IptcData">IptcData</a> *data);</pre>
+<p>
+Decrements the reference count of an <a class="link" href="libiptcdata-data.html#IptcData" title="IptcData"><span class="type">IptcData</span></a> object.  The object will
+automatically be freed when the count reaches 0.  This function should
+be called whenever a pointer is no longer needed by an application.  It
+is also good practice to set the local copy of the pointer to NULL to
+shield against accidently reusing the value.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><em class="parameter"><code>data</code></em> :</span></p></td>
+<td> the unreferenced pointer
+</td>
+</tr></tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="iptc-data-free"></a><h3>iptc_data_free ()</h3>
+<pre class="programlisting">void                iptc_data_free                      (<a class="link" href="libiptcdata-data.html#IptcData" title="IptcData">IptcData</a> *data);</pre>
+<p>
+Frees an <a class="link" href="libiptcdata-data.html#IptcData" title="IptcData"><span class="type">IptcData</span></a> object.  This function should be used only for error
+handling since <a class="link" href="libiptcdata-data.html#iptc-data-unref" title="iptc_data_unref ()"><code class="function">iptc_data_unref()</code></a> provides a safer mechanism for freeing
+that allows multiple components to have access to an object.  This
+function decrements the reference count of any datasets contained by the
+object.  This will generally cause them to be freed as well unless other
+parts of the application are referencing them individually.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><em class="parameter"><code>data</code></em> :</span></p></td>
+<td> the object to free
+</td>
+</tr></tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="iptc-data-new-from-jpeg"></a><h3>iptc_data_new_from_jpeg ()</h3>
+<pre class="programlisting"><a class="link" href="libiptcdata-data.html#IptcData" title="IptcData">IptcData</a>*           iptc_data_new_from_jpeg             (const char *path);</pre>
+<p>
+Allocates a new collection of datasets which is initialized by decoding
+the IPTC data in JPEG file <em class="parameter"><code>path</code></em>.  This allocation will set the <a class="link" href="libiptcdata-data.html#IptcData" title="IptcData"><span class="type">IptcData</span></a>
+refcount to 1, so use <a class="link" href="libiptcdata-data.html#iptc-data-unref" title="iptc_data_unref ()"><code class="function">iptc_data_unref()</code></a> when finished with the object.
+This is a convenience function that reads the contents of the file,
+creates a new <a class="link" href="libiptcdata-data.html#IptcData" title="IptcData"><span class="type">IptcData</span></a> object, parses the file with
+<a class="link" href="libiptcdata-jpeg.html#iptc-jpeg-read-ps3" title="iptc_jpeg_read_ps3 ()"><code class="function">iptc_jpeg_read_ps3()</code></a> and <a class="link" href="libiptcdata-jpeg.html#iptc-jpeg-ps3-find-iptc" title="iptc_jpeg_ps3_find_iptc ()"><code class="function">iptc_jpeg_ps3_find_iptc()</code></a>, and loads the
+data with <a class="link" href="libiptcdata-data.html#iptc-data-load" title="iptc_data_load ()"><code class="function">iptc_data_load()</code></a>.  If more fine-grained error detection
+is needed, those functions should be used individually.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>path</code></em> :</span></p></td>
+<td> filesystem path of the jpeg file to be read
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> pointer to the new <a class="link" href="libiptcdata-data.html#IptcData" title="IptcData"><span class="type">IptcData</span></a> object.  NULL on error (including
+parsing errors or if the file did not include IPTC data).
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="iptc-data-new-from-data"></a><h3>iptc_data_new_from_data ()</h3>
+<pre class="programlisting"><a class="link" href="libiptcdata-data.html#IptcData" title="IptcData">IptcData</a>*           iptc_data_new_from_data             (unsigned char *buf,
+                                                         unsigned int size);</pre>
+<p>
+Allocates a new collection of datasets which is initialized by decoding
+the contents of <em class="parameter"><code>buf</code></em>.  This allocation will set the <a class="link" href="libiptcdata-data.html#IptcData" title="IptcData"><span class="type">IptcData</span></a>
+refcount to 1, so use <a class="link" href="libiptcdata-data.html#iptc-data-unref" title="iptc_data_unref ()"><code class="function">iptc_data_unref()</code></a> when finished with the object.
+This is simply a convenience function that can be duplicated by calling
+<a class="link" href="libiptcdata-data.html#iptc-data-new" title="iptc_data_new ()"><code class="function">iptc_data_new()</code></a> followed by <a class="link" href="libiptcdata-data.html#iptc-data-load" title="iptc_data_load ()"><code class="function">iptc_data_load()</code></a>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>buf</code></em> :</span></p></td>
+<td> the buffer of IPTC data to be decoded
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>size</code></em> :</span></p></td>
+<td> the length to be read in bytes
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> pointer to the new <a class="link" href="libiptcdata-data.html#IptcData" title="IptcData"><span class="type">IptcData</span></a> object.  NULL on error (including
+parsing errors in the contents of <em class="parameter"><code>buf</code></em>).
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="iptc-data-load"></a><h3>iptc_data_load ()</h3>
+<pre class="programlisting">int                 iptc_data_load                      (<a class="link" href="libiptcdata-data.html#IptcData" title="IptcData">IptcData</a> *data,
+                                                         unsigned char *buf,
+                                                         unsigned int size);</pre>
+<p>
+Parses a buffer containing raw IPTC data and adds the datasets
+to the <a class="link" href="libiptcdata-data.html#IptcData" title="IptcData"><span class="type">IptcData</span></a> object <em class="parameter"><code>data</code></em>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>data</code></em> :</span></p></td>
+<td> object to be populated with the loaded datasets
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>buf</code></em> :</span></p></td>
+<td> data buffer to be parsed, containing IPTC data
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>size</code></em> :</span></p></td>
+<td> length of data buffer to be parsed
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> 0 on success, -1 on failure.  Note that in the failure
+case, some datasets may still have been added to <em class="parameter"><code>data</code></em>.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="iptc-data-save"></a><h3>iptc_data_save ()</h3>
+<pre class="programlisting">int                 iptc_data_save                      (<a class="link" href="libiptcdata-data.html#IptcData" title="IptcData">IptcData</a> *data,
+                                                         unsigned char **buf,
+                                                         unsigned int *size);</pre>
+<p>
+Outputs a collection of datasets as an IPTC bytestream.  No memory allocation
+is required in advance.  <em class="parameter"><code>buf</code></em> should point to a NULL pointer that will be set
+to the address of the output buffer by this function.  <em class="parameter"><code>size</code></em> will contain
+this buffer's length after completion.  The object <em class="parameter"><code>data</code></em> is unmodified by this
+function.  The application should free the output buffer using
+<a class="link" href="libiptcdata-data.html#iptc-data-free-buf" title="iptc_data_free_buf ()"><code class="function">iptc_data_free_buf()</code></a> when it is no longer needed.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>data</code></em> :</span></p></td>
+<td> collection of datasets to be saved
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>buf</code></em> :</span></p></td>
+<td> pointer to a pointer that will hold the address of the output buffer
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>size</code></em> :</span></p></td>
+<td> pointer to an integer that will hold the length of the output buffer
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> 0 on success, -1 on failure.  In the failure case, <em class="parameter"><code>buf</code></em> should still
+be checked for a non-NULL value, and freed using <a class="link" href="libiptcdata-data.html#iptc-data-free-buf" title="iptc_data_free_buf ()"><code class="function">iptc_data_free_buf()</code></a> if
+necessary.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="iptc-data-free-buf"></a><h3>iptc_data_free_buf ()</h3>
+<pre class="programlisting">void                iptc_data_free_buf                  (<a class="link" href="libiptcdata-data.html#IptcData" title="IptcData">IptcData</a> *data,
+                                                         unsigned char *buf);</pre>
+<p>
+Frees a temporary buffer created from an <a class="link" href="libiptcdata-data.html#IptcData" title="IptcData"><span class="type">IptcData</span></a> object by the
+<a class="link" href="libiptcdata-data.html#iptc-data-save" title="iptc_data_save ()"><code class="function">iptc_data_save()</code></a> function.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>data</code></em> :</span></p></td>
+<td> the <a class="link" href="libiptcdata-data.html#IptcData" title="IptcData"><span class="type">IptcData</span></a> object that allocated the buffer
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>buf</code></em> :</span></p></td>
+<td> the buffer to free
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="iptc-data-get-dataset"></a><h3>iptc_data_get_dataset ()</h3>
+<pre class="programlisting"><a class="link" href="libiptcdata-dataset.html#IptcDataSet" title="IptcDataSet">IptcDataSet</a>*        iptc_data_get_dataset               (<a class="link" href="libiptcdata-data.html#IptcData" title="IptcData">IptcData</a> *data,
+                                                         <a class="link" href="libiptcdata-tag.html#IptcRecord" title="enum IptcRecord">IptcRecord</a> record,
+                                                         <a class="link" href="libiptcdata-tag.html#IptcTag" title="enum IptcTag">IptcTag</a> tag);</pre>
+<p>
+Finds the first occurence of a dataset inside a collection with
+the specified record and tag identifiers.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>data</code></em> :</span></p></td>
+<td> collection to search
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>record</code></em> :</span></p></td>
+<td> record identifier of dataset
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>tag</code></em> :</span></p></td>
+<td> tag identifier (dataset number) of dataset
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> pointer to dataset if found, NULL if no matching dataset found
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="iptc-data-get-next-dataset"></a><h3>iptc_data_get_next_dataset ()</h3>
+<pre class="programlisting"><a class="link" href="libiptcdata-dataset.html#IptcDataSet" title="IptcDataSet">IptcDataSet</a>*        iptc_data_get_next_dataset          (<a class="link" href="libiptcdata-data.html#IptcData" title="IptcData">IptcData</a> *data,
+                                                         <a class="link" href="libiptcdata-dataset.html#IptcDataSet" title="IptcDataSet">IptcDataSet</a> *ds,
+                                                         <a class="link" href="libiptcdata-tag.html#IptcRecord" title="enum IptcRecord">IptcRecord</a> record,
+                                                         <a class="link" href="libiptcdata-tag.html#IptcTag" title="enum IptcTag">IptcTag</a> tag);</pre>
+<p>
+Finds the next occurence of a dataset inside a collection with
+the specified record and tag identifiers following <em class="parameter"><code>ds</code></em>.  This is useful
+when a collection contains more than one dataset with the same record
+and tag identifier (for example, the keywords tag appears once for
+each keyword in the IPTC metadata).  When <em class="parameter"><code>ds</code></em> is NULL, this function
+is equivalent to <a class="link" href="libiptcdata-data.html#iptc-data-get-dataset" title="iptc_data_get_dataset ()"><code class="function">iptc_data_get_dataset()</code></a>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>data</code></em> :</span></p></td>
+<td> collection to search
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>ds</code></em> :</span></p></td>
+<td> dataset where the search should originate (can be NULL)
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>record</code></em> :</span></p></td>
+<td> record identifier of dataset
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>tag</code></em> :</span></p></td>
+<td> tag identifier (dataset number) of dataset
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> pointer to dataset if found, NULL if no matching dataset found
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="iptc-data-add-dataset"></a><h3>iptc_data_add_dataset ()</h3>
+<pre class="programlisting">int                 iptc_data_add_dataset               (<a class="link" href="libiptcdata-data.html#IptcData" title="IptcData">IptcData</a> *data,
+                                                         <a class="link" href="libiptcdata-dataset.html#IptcDataSet" title="IptcDataSet">IptcDataSet</a> *ds);</pre>
+<p>
+Adds an <a class="link" href="libiptcdata-dataset.html#IptcDataSet" title="IptcDataSet"><span class="type">IptcDataSet</span></a> at the end of an existing collection.  A
+dataset can only be a member of a single collection.  This
+function will increment the reference count of <em class="parameter"><code>dataset</code></em>, so if
+the application no longer intends to use <em class="parameter"><code>dataset</code></em> directly, it
+should call <a class="link" href="libiptcdata-dataset.html#iptc-dataset-unref" title="iptc_dataset_unref ()"><code class="function">iptc_dataset_unref()</code></a> immediately following this call.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>data</code></em> :</span></p></td>
+<td> the collection to which the dataset will be added
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>ds</code></em> :</span></p></td>
+<td> dataset to add
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> 0 on success, -1 on error
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="iptc-data-add-dataset-before"></a><h3>iptc_data_add_dataset_before ()</h3>
+<pre class="programlisting">int                 iptc_data_add_dataset_before        (<a class="link" href="libiptcdata-data.html#IptcData" title="IptcData">IptcData</a> *data,
+                                                         <a class="link" href="libiptcdata-dataset.html#IptcDataSet" title="IptcDataSet">IptcDataSet</a> *ds,
+                                                         <a class="link" href="libiptcdata-dataset.html#IptcDataSet" title="IptcDataSet">IptcDataSet</a> *newds);</pre>
+<p>
+Same as <a class="link" href="libiptcdata-data.html#iptc-data-add-dataset" title="iptc_data_add_dataset ()"><code class="function">iptc_data_add_dataset()</code></a>, except the <em class="parameter"><code>dataset</code></em> will be added
+before an existing dataset <em class="parameter"><code>ds</code></em>, so that if they are enumerated,
+<em class="parameter"><code>newds</code></em> will appear before <em class="parameter"><code>ds</code></em> in the collection.  <em class="parameter"><code>ds</code></em> must be
+a dataset already present in the collection.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>data</code></em> :</span></p></td>
+<td> the collection to which the dataset will be added
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>ds</code></em> :</span></p></td>
+<td> existing dataset before which <em class="parameter"><code>newds</code></em> will be added
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>newds</code></em> :</span></p></td>
+<td> dataset to add
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> 0 on success, -1 on error
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="iptc-data-add-dataset-after"></a><h3>iptc_data_add_dataset_after ()</h3>
+<pre class="programlisting">int                 iptc_data_add_dataset_after         (<a class="link" href="libiptcdata-data.html#IptcData" title="IptcData">IptcData</a> *data,
+                                                         <a class="link" href="libiptcdata-dataset.html#IptcDataSet" title="IptcDataSet">IptcDataSet</a> *ds,
+                                                         <a class="link" href="libiptcdata-dataset.html#IptcDataSet" title="IptcDataSet">IptcDataSet</a> *newds);</pre>
+<p>
+Same as <a class="link" href="libiptcdata-data.html#iptc-data-add-dataset" title="iptc_data_add_dataset ()"><code class="function">iptc_data_add_dataset()</code></a>, except the <em class="parameter"><code>dataset</code></em> will be added
+after an existing dataset <em class="parameter"><code>ds</code></em>, so that if they are enumerated,
+<em class="parameter"><code>newds</code></em> will appear after <em class="parameter"><code>ds</code></em> in the collection.  <em class="parameter"><code>ds</code></em> must be a
+dataset already present in the collection.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>data</code></em> :</span></p></td>
+<td> the collection to which the dataset will be added
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>ds</code></em> :</span></p></td>
+<td> existing dataset after which <em class="parameter"><code>newds</code></em> will be added
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>newds</code></em> :</span></p></td>
+<td> dataset to add
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> 0 on success, -1 on error
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="iptc-data-remove-dataset"></a><h3>iptc_data_remove_dataset ()</h3>
+<pre class="programlisting">int                 iptc_data_remove_dataset            (<a class="link" href="libiptcdata-data.html#IptcData" title="IptcData">IptcData</a> *data,
+                                                         <a class="link" href="libiptcdata-dataset.html#IptcDataSet" title="IptcDataSet">IptcDataSet</a> *ds);</pre>
+<p>
+Removes a dataset from a collection.  This function also calls
+<a class="link" href="libiptcdata-dataset.html#iptc-dataset-unref" title="iptc_dataset_unref ()"><code class="function">iptc_dataset_unref()</code></a> on <em class="parameter"><code>ds</code></em>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>data</code></em> :</span></p></td>
+<td> the collection from which to remove an entry
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>ds</code></em> :</span></p></td>
+<td> the dataset to remove from the collection
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> 0 on success, -1 on error
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="IptcDataForeachDataSetFunc"></a><h3>IptcDataForeachDataSetFunc ()</h3>
+<pre class="programlisting">void                (*IptcDataForeachDataSetFunc)       (<a class="link" href="libiptcdata-dataset.html#IptcDataSet" title="IptcDataSet">IptcDataSet</a> *dataset,
+                                                         void *user_data);</pre>
+<p>
+Application callback executed for each dataset from
+<a class="link" href="libiptcdata-data.html#iptc-data-foreach-dataset" title="iptc_data_foreach_dataset ()"><code class="function">iptc_data_foreach_dataset()</code></a>.
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>dataset</code></em> :</span></p></td>
+<td>the dataset
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>user_data</code></em> :</span></p></td>
+<td>the same <em class="parameter"><code>user_data</code></em> passed to <a class="link" href="libiptcdata-data.html#iptc-data-foreach-dataset" title="iptc_data_foreach_dataset ()"><code class="function">iptc_data_foreach_dataset()</code></a>
+
+
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="iptc-data-foreach-dataset"></a><h3>iptc_data_foreach_dataset ()</h3>
+<pre class="programlisting">void                iptc_data_foreach_dataset           (<a class="link" href="libiptcdata-data.html#IptcData" title="IptcData">IptcData</a> *data,
+                                                         <a class="link" href="libiptcdata-data.html#IptcDataForeachDataSetFunc" title="IptcDataForeachDataSetFunc ()">IptcDataForeachDataSetFunc</a> func,
+                                                         void *user_data);</pre>
+<p>
+Iterates through each dataset in the collection and calls the
+callback function on that dataset.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>data</code></em> :</span></p></td>
+<td> collection through which to iterate
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>func</code></em> :</span></p></td>
+<td> callback function
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>user_data</code></em> :</span></p></td>
+<td> arbitrary user data to be passed to the callback
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="iptc-data-sort"></a><h3>iptc_data_sort ()</h3>
+<pre class="programlisting">void                iptc_data_sort                      (<a class="link" href="libiptcdata-data.html#IptcData" title="IptcData">IptcData</a> *data);</pre>
+<p>
+Sorts a collection of datasets in ascending order first by record
+number and second by tag number.  It can be useful to call this
+function before saving IPTC data in order to maintain a more
+organized file.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody><tr>
+<td><p><span class="term"><em class="parameter"><code>data</code></em> :</span></p></td>
+<td> collection of datasets to sort
+</td>
+</tr></tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="IptcEncoding"></a><h3>enum IptcEncoding</h3>
+<pre class="programlisting">typedef enum {
+	IPTC_ENCODING_UNKNOWN = 0,
+	IPTC_ENCODING_UNSPECIFIED = 1,
+	IPTC_ENCODING_UTF8 = 2
+} IptcEncoding;
+</pre>
+<p>
+
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="iptc-data-get-encoding"></a><h3>iptc_data_get_encoding ()</h3>
+<pre class="programlisting"><a class="link" href="libiptcdata-data.html#IptcEncoding" title="enum IptcEncoding">IptcEncoding</a>        iptc_data_get_encoding              (<a class="link" href="libiptcdata-data.html#IptcData" title="IptcData">IptcData</a> *data);</pre>
+<p>
+Identifies the character encoding of the collection of datasets as
+specified by the "character set" dataset (1:90).  The specification
+allows this dataset to contain control sequences from the ISO 2022
+standard.  Unfortunately, this standard is very complicated and
+generally not used by application writers.  Thus, rather than
+attempt to decode any possible any possible control sequence, this
+function only attempts to recognize the control sequence that identifies
+the UTF-8 character set.  If found, this function will return
+<span class="type">IPTC_ENCODING_UTF8</span>.  All character-based datasets in record 2 and
+higher are then expected to contain data encoded in the UTF-8
+character set.  Otherwise, this function will return
+<span class="type">IPTC_ENCODING_UNKNOWN</span>, meaning that any other character set
+might be used, including ISO 2022 control sequences that have not
+been decoded.  If dataset 1:90 is not present, this function returns
+<span class="type">IPTC_ENCODING_UNSPECIFIED</span>, in which case character-based datasets
+will usually be plain ASCII, although broken applications may have
+used some other encoding.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>data</code></em> :</span></p></td>
+<td> collection of datasets
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> <span class="type">IPTC_ENCODING_UTF8</span>, <span class="type">IPTC_ENCODING_UNKNOWN</span>, or
+<span class="type">IPTC_ENCODING_UNSPECIFIED</span>.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="iptc-data-set-encoding-utf8"></a><h3>iptc_data_set_encoding_utf8 ()</h3>
+<pre class="programlisting">int                 iptc_data_set_encoding_utf8         (<a class="link" href="libiptcdata-data.html#IptcData" title="IptcData">IptcData</a> *data);</pre>
+<p>
+Sets the contents of the "character set" dataset (1:90) to contain
+the control sequence that indicates UTF-8 as the character encoding
+for any character-based datasets in record 2 or higher.  If dataset
+1:90 is not present, it will be added to the collection.  Any prior
+value of dataset 1:90 will be overwritten by this function.
+Note that some third-party applications (notably Picasa) will ignore
+all your IPTC data if this option is set.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>data</code></em> :</span></p></td>
+<td> collection of datasets for which to specify the encoding
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> 0 on success, -1 on failure.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="IPTC-IIM-VERSION:CAPS"></a><h3>IPTC_IIM_VERSION</h3>
+<pre class="programlisting">#define IPTC_IIM_VERSION	4
+</pre>
+<p>
+The version of the IPTC IIM specification implemented by this library.
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="iptc-data-set-version"></a><h3>iptc_data_set_version ()</h3>
+<pre class="programlisting">int                 iptc_data_set_version               (<a class="link" href="libiptcdata-data.html#IptcData" title="IptcData">IptcData</a> *data,
+                                                         unsigned int version);</pre>
+<p>
+Specifies the version of the IIM specification used by this library by
+setting the value of datasets 1:00 and 2:00.  It is recommended to set the
+version number to <a class="link" href="libiptcdata-data.html#IPTC-IIM-VERSION:CAPS" title="IPTC_IIM_VERSION"><span class="type">IPTC_IIM_VERSION</span></a>, which specifies the version
+implemented by this library (currently 4).  If datasets 1:00 or 2:00 are
+not present, they will be added to the collection.  Any prior value of
+the datasets will be overwritten by this function.  To ensure strict
+compliance with the standard, this function should be called before
+saving a collection of datasets.  However, in practice, some applications
+(notably Picasa) will ignore all your IPTC data if this option is set.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>data</code></em> :</span></p></td>
+<td> collection of datasets for which to specify the version
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>version</code></em> :</span></p></td>
+<td> version number to write
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> 0 on success, -1 on failure.
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="iptc-data-add-dataset-with-value"></a><h3>iptc_data_add_dataset_with_value ()</h3>
+<pre class="programlisting">int                 iptc_data_add_dataset_with_value    (<a class="link" href="libiptcdata-data.html#IptcData" title="IptcData">IptcData</a> *data,
+                                                         <a class="link" href="libiptcdata-tag.html#IptcRecord" title="enum IptcRecord">IptcRecord</a> record,
+                                                         <a class="link" href="libiptcdata-tag.html#IptcTag" title="enum IptcTag">IptcTag</a> tag,
+                                                         unsigned int value,
+                                                         <a class="link" href="libiptcdata-dataset.html#IptcValidate" title="enum IptcValidate">IptcValidate</a> validate);</pre>
+<p>
+This is a convenience function that creates a new dataset with the given
+record and tag, adds it to the specified collection of datasets, and
+stores the given numeric value as the contents of the dataset.  It is
+equivalent to calling this sequence of functions: <a class="link" href="libiptcdata-dataset.html#iptc-dataset-new" title="iptc_dataset_new ()"><code class="function">iptc_dataset_new()</code></a>,
+<a class="link" href="libiptcdata-dataset.html#iptc-dataset-set-tag" title="iptc_dataset_set_tag ()"><code class="function">iptc_dataset_set_tag()</code></a>, <a class="link" href="libiptcdata-data.html#iptc-data-add-dataset" title="iptc_data_add_dataset ()"><code class="function">iptc_data_add_dataset()</code></a>,
+and <a class="link" href="libiptcdata-dataset.html#iptc-dataset-set-value" title="iptc_dataset_set_value ()"><code class="function">iptc_dataset_set_value()</code></a>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>data</code></em> :</span></p></td>
+<td> collection to which the new dataset should be added
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>record</code></em> :</span></p></td>
+<td> record number of the dataset to be added
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>tag</code></em> :</span></p></td>
+<td> tag (dataset number) of the dataset to be added
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>value</code></em> :</span></p></td>
+<td> value for the dataset
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>validate</code></em> :</span></p></td>
+<td> whether or not the passed value should be validated against
+the IPTC specification for this dataset's tag.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> -1 on error, 0 if validation failed, the number of bytes copied
+on success
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="iptc-data-add-dataset-with-contents"></a><h3>iptc_data_add_dataset_with_contents ()</h3>
+<pre class="programlisting">int                 iptc_data_add_dataset_with_contents (<a class="link" href="libiptcdata-data.html#IptcData" title="IptcData">IptcData</a> *data,
+                                                         <a class="link" href="libiptcdata-tag.html#IptcRecord" title="enum IptcRecord">IptcRecord</a> record,
+                                                         <a class="link" href="libiptcdata-tag.html#IptcTag" title="enum IptcTag">IptcTag</a> tag,
+                                                         unsigned char *buf,
+                                                         unsigned int size,
+                                                         <a class="link" href="libiptcdata-dataset.html#IptcValidate" title="enum IptcValidate">IptcValidate</a> validate);</pre>
+<p>
+This is a convenience function that creates a new dataset with the given
+record and tag, adds it to the specified collection of datasets, and
+stores a copy of the given data buffer as the contents of the dataset.
+It is equivalent to calling this sequence of functions: <a class="link" href="libiptcdata-dataset.html#iptc-dataset-new" title="iptc_dataset_new ()"><code class="function">iptc_dataset_new()</code></a>,
+<a class="link" href="libiptcdata-dataset.html#iptc-dataset-set-tag" title="iptc_dataset_set_tag ()"><code class="function">iptc_dataset_set_tag()</code></a>, <a class="link" href="libiptcdata-data.html#iptc-data-add-dataset" title="iptc_data_add_dataset ()"><code class="function">iptc_data_add_dataset()</code></a>,
+and <a class="link" href="libiptcdata-dataset.html#iptc-dataset-set-data" title="iptc_dataset_set_data ()"><code class="function">iptc_dataset_set_data()</code></a>.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>data</code></em> :</span></p></td>
+<td> collection to which the new dataset should be added
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>record</code></em> :</span></p></td>
+<td> record number of the dataset to be added
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>tag</code></em> :</span></p></td>
+<td> tag (dataset number) of the dataset to be added
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>buf</code></em> :</span></p></td>
+<td> buffer containing the value
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>size</code></em> :</span></p></td>
+<td> number of bytes to copy
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>validate</code></em> :</span></p></td>
+<td> whether or not the passed value should be validated against
+the IPTC specification for this dataset's tag.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td> -1 on error, 0 if validation failed, the number of bytes copied
+on success
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="iptc-data-dump"></a><h3>iptc_data_dump ()</h3>
+<pre class="programlisting">void                iptc_data_dump                      (<a class="link" href="libiptcdata-data.html#IptcData" title="IptcData">IptcData</a> *data,
+                                                         unsigned int indent);</pre>
+<p>
+A debugging aid that prints out the contents of a collection
+of datasets to standard output.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>data</code></em> :</span></p></td>
+<td> collection of datasets to print
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>indent</code></em> :</span></p></td>
+<td> indentation level of the printout
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="iptc-data-log"></a><h3>iptc_data_log ()</h3>
+<pre class="programlisting">void                iptc_data_log                       (<a class="link" href="libiptcdata-data.html#IptcData" title="IptcData">IptcData</a> *data,
+                                                         <a class="link" href="libiptcdata-log.html#IptcLog" title="IptcLog">IptcLog</a> *log);</pre>
+<p>
+Changes the logging object for a <a class="link" href="libiptcdata-data.html#IptcData" title="IptcData"><span class="type">IptcData</span></a> object.  The logging
+object determines how warning and error messages are relayed back
+to the application.  This function also calls <a class="link" href="libiptcdata-log.html#iptc-log-ref" title="iptc_log_ref ()"><code class="function">iptc_log_ref()</code></a> on
+the new log object and <a class="link" href="libiptcdata-log.html#iptc-log-unref" title="iptc_log_unref ()"><code class="function">iptc_log_unref()</code></a> on the previous log
+object.</p>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>data</code></em> :</span></p></td>
+<td> collection for which the log object should be changed.
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>log</code></em> :</span></p></td>
+<td> log object to use for the collection
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+</div>
+<div class="footer">
+<hr>
+          Generated by GTK-Doc V1.10</div>
+</body>
+</html>

@@ -1,0 +1,68 @@
+<refentry id="iptc-about" revision="29 Sep 2005">
+<refmeta>
+	<refentrytitle>About libiptcdata</refentrytitle>
+	<manvolnum>3</manvolnum>
+	<refmiscinfo>libiptcdata Library</refmiscinfo>
+</refmeta>
+
+<refnamediv>
+	<refname>About libiptcdata</refname>
+	<refpurpose>general information</refpurpose>
+</refnamediv>
+
+<refsect1 id="about">
+	<title>What is libiptcdata?</title>
+
+	<para>
+	 libiptcdata is a library for manipulating the International Press
+	 Telecommunications Council (IPTC) metadata stored within multimedia
+	 files such as images.  The library provides routines for parsing,
+	 viewing, modifying, and saving this metadata.  The library is licensed
+	 under the GNU Library General Public License (GNU LGPL).
+	</para>
+
+	<para>
+	 It was written by David Moore and is meant as a companion to the
+	 <ulink url="http://sourceforge.net/projects/libexif">libexif library</ulink>,
+	 forming
+	 a complete set of tools for manipulating image metadata.
+	</para>
+</refsect1>
+
+<refsect1 id="compiling">
+	<title>Compiling libiptcdata</title>
+
+	<para>
+        On UNIX, libiptcdata uses the standard GNU build system,
+        using <application>autoconf</application> for package
+        configuration and resolving portability issues,
+        <application>automake</application> for building makefiles
+        that comply with the GNU Coding Standards, and
+        <application>libtool</application> for building shared
+        libraries on multiple platforms.  The normal sequence for
+        compiling and installing the GLib library is thus:
+
+        <literallayout>
+          <userinput>./configure</userinput>
+          <userinput>make</userinput>
+          <userinput>make install</userinput>
+        </literallayout>
+      </para>
+
+      <note>
+        <title>Compiling on Mac OS X</title>
+	<para>
+	  On Mac OS X, it has been reported that internationalization support
+	  in libiptcdata is often disabled at configure time because the
+	  libintl library cannot be found.  However, this can usually be
+	  remedied by pointing the configure script at the true location of
+	  libintl by invoking it like this:
+	  <literallayout>
+	    <userinput>./configure --with-libintl-prefix=/sw --with-libiconv-prefix=/sw</userinput>
+	  </literallayout>
+	</para>
+      </note>
+
+</refsect1>
+
+</refentry>

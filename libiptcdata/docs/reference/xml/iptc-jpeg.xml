@@ -1,0 +1,199 @@
+<?xml version="1.0"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN" 
+               "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
+<!ENTITY iptc-overview SYSTEM "overview.sgml">
+<!ENTITY iptc-about SYSTEM "about.sgml">
+<!ENTITY iptc-commandline SYSTEM "commandline.sgml">
+<!ENTITY iptc-i18n SYSTEM "i18n.sgml">
+<!ENTITY iptc-libjpeg SYSTEM "libjpeg.sgml">
+<!ENTITY version SYSTEM "version.xml">
+]>
+<refentry id="libiptcdata-jpeg">
+<refmeta>
+<refentrytitle role="top_of_page" id="libiptcdata-jpeg.top_of_page">JPEG</refentrytitle>
+<manvolnum>3</manvolnum>
+<refmiscinfo>LIBIPTCDATA Library</refmiscinfo>
+</refmeta>
+
+<refnamediv>
+<refname>JPEG</refname>
+<refpurpose>functions for loading and saving IPTC data from JPEG files</refpurpose>
+<!--[<xref linkend="desc" endterm="desc.title"/>]-->
+</refnamediv>
+
+<refsynopsisdiv id="libiptcdata-jpeg.synopsis" role="synopsis">
+<title role="synopsis.title">Synopsis</title>
+
+<synopsis>
+<link linkend="int">int</link>                 <link linkend="iptc-jpeg-read-ps3">iptc_jpeg_read_ps3</link>                  (<link linkend="FILE:CAPS">FILE</link> *infile,
+                                                         unsigned <link linkend="char">char</link> *buf,
+                                                         unsigned <link linkend="int">int</link> size);
+<link linkend="int">int</link>                 <link linkend="iptc-jpeg-ps3-find-iptc">iptc_jpeg_ps3_find_iptc</link>             (unsigned <link linkend="char">char</link> *ps3,
+                                                         unsigned <link linkend="int">int</link> ps3_size,
+                                                         unsigned <link linkend="int">int</link> *iptc_len);
+<link linkend="int">int</link>                 <link linkend="iptc-jpeg-ps3-save-iptc">iptc_jpeg_ps3_save_iptc</link>             (unsigned <link linkend="char">char</link> *ps3,
+                                                         unsigned <link linkend="int">int</link> ps3_size,
+                                                         unsigned <link linkend="char">char</link> *iptc,
+                                                         unsigned <link linkend="int">int</link> iptc_size,
+                                                         unsigned <link linkend="char">char</link> *buf,
+                                                         unsigned <link linkend="int">int</link> size);
+<link linkend="int">int</link>                 <link linkend="iptc-jpeg-save-with-ps3">iptc_jpeg_save_with_ps3</link>             (<link linkend="FILE:CAPS">FILE</link> *infile,
+                                                         <link linkend="FILE:CAPS">FILE</link> *outfile,
+                                                         unsigned <link linkend="char">char</link> *ps3,
+                                                         unsigned <link linkend="int">int</link> ps3_size);
+</synopsis>
+</refsynopsisdiv>
+
+
+
+
+
+
+
+
+
+<refsect1 id="libiptcdata-jpeg.description" role="desc">
+<title role="desc.title">Description</title>
+<para>
+Convenience functions for loading and saving IPTC data blocks from JPEG files.
+</para>
+</refsect1>
+
+<refsect1 id="libiptcdata-jpeg.details" role="details">
+<title role="details.title">Details</title>
+<refsect2 id="iptc-jpeg-read-ps3" role="function">
+<title>iptc_jpeg_read_ps3 ()</title>
+<indexterm zone="iptc-jpeg-read-ps3"><primary>iptc_jpeg_read_ps3</primary></indexterm><programlisting><link linkend="int">int</link>                 iptc_jpeg_read_ps3                  (<link linkend="FILE:CAPS">FILE</link> *infile,
+                                                         unsigned <link linkend="char">char</link> *buf,
+                                                         unsigned <link linkend="int">int</link> size);</programlisting>
+<para>
+Scans the headers of a JPEG file looking for a "Photoshop 3.0" header, and if
+found, stores the raw contents of this header in the <parameter>buf</parameter> buffer.  The Photoshop
+3.0 header is a series of records found in the APP13 section of a JPEG file.
+If a JPEG file contains IPTC metadata, the metadata is stored in one of the
+Photoshop 3.0 records.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>infile</parameter>&nbsp;:</term>
+<listitem><simpara> an open JPEG file with the current position set to the start of the file
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>buf</parameter>&nbsp;:</term>
+<listitem><simpara> an output buffer to store the Photoshop 3.0 data
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>size</parameter>&nbsp;:</term>
+<listitem><simpara> the size of the output buffer
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> the number of bytes stored on success, 0 if the PS3 header was
+not found, or -1 if an error occurred.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="iptc-jpeg-ps3-find-iptc" role="function">
+<title>iptc_jpeg_ps3_find_iptc ()</title>
+<indexterm zone="iptc-jpeg-ps3-find-iptc"><primary>iptc_jpeg_ps3_find_iptc</primary></indexterm><programlisting><link linkend="int">int</link>                 iptc_jpeg_ps3_find_iptc             (unsigned <link linkend="char">char</link> *ps3,
+                                                         unsigned <link linkend="int">int</link> ps3_size,
+                                                         unsigned <link linkend="int">int</link> *iptc_len);</programlisting>
+<para>
+Parses a "Photoshop 3.0" header in search of IPTC metadata.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>ps3</parameter>&nbsp;:</term>
+<listitem><simpara> the data of a Photoshop 3.0 header to search
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>ps3_size</parameter>&nbsp;:</term>
+<listitem><simpara> size in bytes of <parameter>ps3</parameter>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>iptc_len</parameter>&nbsp;:</term>
+<listitem><simpara> output parameter, the size in bytes of any found IPTC data
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> the offset in bytes from the start of <parameter>ps3</parameter> where a block
+of IPTC metadata begins, 0 if no IPTC metadata was found, -1 on error.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="iptc-jpeg-ps3-save-iptc" role="function">
+<title>iptc_jpeg_ps3_save_iptc ()</title>
+<indexterm zone="iptc-jpeg-ps3-save-iptc"><primary>iptc_jpeg_ps3_save_iptc</primary></indexterm><programlisting><link linkend="int">int</link>                 iptc_jpeg_ps3_save_iptc             (unsigned <link linkend="char">char</link> *ps3,
+                                                         unsigned <link linkend="int">int</link> ps3_size,
+                                                         unsigned <link linkend="char">char</link> *iptc,
+                                                         unsigned <link linkend="int">int</link> iptc_size,
+                                                         unsigned <link linkend="char">char</link> *buf,
+                                                         unsigned <link linkend="int">int</link> size);</programlisting>
+<para>
+Takes a Photoshop 3.0 header, <parameter>ps3</parameter>, removes any existing IPTC data inside
+that header, and inserts the new IPTC data from <parameter>iptc</parameter>.  Any other non-IPTC
+portions of <parameter>ps3</parameter> are left unmodified.  If <parameter>ps3</parameter> is NULL, a blank PS3 header
+is created.  If <parameter>iptc</parameter> is NULL, the output PS3 header will contain no IPTC
+data, even if <parameter>ps3</parameter> originally contained some.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>ps3</parameter>&nbsp;:</term>
+<listitem><simpara> a template PS3 header in which to insert the
+new iptc data.  Any non-IPTC data in this template will be preserved
+in the output Photoshop 3.0 header.  If NULL, a PS3 header will be
+generated from scratch.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>ps3_size</parameter>&nbsp;:</term>
+<listitem><simpara> size in bytes of <parameter>ps3</parameter>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>iptc</parameter>&nbsp;:</term>
+<listitem><simpara> the IPTC bytestream to be encapsulated in the PS3 output.  The IPTC
+bytestream can be generated with <link linkend="iptc-data-save"><function>iptc_data_save()</function></link>.  If
+NULL, the output will still be a valid PS3 header, but without any
+contained IPTC data.
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>iptc_size</parameter>&nbsp;:</term>
+<listitem><simpara> size in bytes of <parameter>iptc</parameter>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>buf</parameter>&nbsp;:</term>
+<listitem><simpara> output buffer for the generated PS3 header
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>size</parameter>&nbsp;:</term>
+<listitem><simpara> size in bytes of <parameter>buf</parameter>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> the number of bytes written to <parameter>buf</parameter>; -1 on error.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="iptc-jpeg-save-with-ps3" role="function">
+<title>iptc_jpeg_save_with_ps3 ()</title>
+<indexterm zone="iptc-jpeg-save-with-ps3"><primary>iptc_jpeg_save_with_ps3</primary></indexterm><programlisting><link linkend="int">int</link>                 iptc_jpeg_save_with_ps3             (<link linkend="FILE:CAPS">FILE</link> *infile,
+                                                         <link linkend="FILE:CAPS">FILE</link> *outfile,
+                                                         unsigned <link linkend="char">char</link> *ps3,
+                                                         unsigned <link linkend="int">int</link> ps3_size);</programlisting>
+<para>
+Takes an existing JPEG file, <parameter>infile</parameter>, removes any existing Photoshop
+3.0 header from it, and adds a new PS3 header, writing the output
+to <parameter>outfile</parameter>.  <parameter>infile</parameter> must be open for reading and is expected to point
+to the beginning of the JPEG file, which should be different from <parameter>outfile</parameter>,
+which must be open for writing.  If <parameter>ps3</parameter> is NULL, the output will contain
+no PS3 header.  PS3 headers reside in the APP13 section of the JPEG file,
+which is created if necessary.  All other headers and data will be copied
+directly from <parameter>infile</parameter> without modification.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>infile</parameter>&nbsp;:</term>
+<listitem><simpara> the file stream from which the image data is copied
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>outfile</parameter>&nbsp;:</term>
+<listitem><simpara> the output file stream
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>ps3</parameter>&nbsp;:</term>
+<listitem><simpara> the Photoshop 3.0 header to add to the output file
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>ps3_size</parameter>&nbsp;:</term>
+<listitem><simpara> size in bytes of <parameter>ps3</parameter>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> 0 on success, -1 on error.  Note that even in error, some data
+may have been written to <parameter>outfile</parameter>, and its contents should be considered
+undefined.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+
+</refsect1>
+
+
+
+
+</refentry>

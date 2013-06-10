@@ -1,0 +1,351 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Byte ordering</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.74.0">
+<link rel="home" href="index.html" title="libiptcdata Reference Manual">
+<link rel="up" href="ch03.html" title="Helper Functions">
+<link rel="prev" href="ch03.html" title="Helper Functions">
+<link rel="next" href="libiptcdata-mem.html" title="Memory managment">
+<meta name="generator" content="GTK-Doc V1.10 (XML mode)">
+<link rel="stylesheet" href="style.css" type="text/css">
+<link rel="chapter" href="ch01.html" title="IPTC Data Manipulation">
+<link rel="chapter" href="ch02.html" title="Format-specific Functions">
+<link rel="chapter" href="ch03.html" title="Helper Functions">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
+<tr valign="middle">
+<td><a accesskey="p" href="ch03.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td><a accesskey="u" href="ch03.html"><img src="up.png" width="24" height="24" border="0" alt="Up"></a></td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">libiptcdata Reference Manual</th>
+<td><a accesskey="n" href="libiptcdata-mem.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
+</tr>
+<tr><td colspan="5" class="shortcuts"><nobr><a href="#libiptcdata-utils.synopsis" class="shortcut">Top</a>
+                   | 
+                  <a href="#libiptcdata-utils.description" class="shortcut">Description</a></nobr></td></tr>
+</table>
+<div class="refentry" lang="en">
+<a name="libiptcdata-utils"></a><div class="titlepage"></div>
+<div class="refnamediv"><table width="100%"><tr>
+<td valign="top">
+<h2><span class="refentrytitle"><a name="libiptcdata-utils.top_of_page"></a>Byte ordering</span></h2>
+<p>Byte ordering — functions for decoding integer types of different byte-orders</p>
+</td>
+<td valign="top" align="right"></td>
+</tr></table></div>
+<div class="refsynopsisdiv">
+<a name="libiptcdata-utils.synopsis"></a><h2>Synopsis</h2>
+<pre class="synopsis">
+enum                <a class="link" href="libiptcdata-utils.html#IptcByteOrder" title="enum IptcByteOrder">IptcByteOrder</a>;
+typedef             <a class="link" href="libiptcdata-utils.html#IptcByte" title="IptcByte">IptcByte</a>;
+typedef             <a class="link" href="libiptcdata-utils.html#IptcShort" title="IptcShort">IptcShort</a>;
+typedef             <a class="link" href="libiptcdata-utils.html#IptcLong" title="IptcLong">IptcLong</a>;
+typedef             <a class="link" href="libiptcdata-utils.html#IptcSLong" title="IptcSLong">IptcSLong</a>;
+<a class="link" href="libiptcdata-utils.html#IptcShort" title="IptcShort">IptcShort</a>           <a class="link" href="libiptcdata-utils.html#iptc-get-short" title="iptc_get_short ()">iptc_get_short</a>                      (unsigned char *b,
+                                                         <a class="link" href="libiptcdata-utils.html#IptcByteOrder" title="enum IptcByteOrder">IptcByteOrder</a> order);
+<a class="link" href="libiptcdata-utils.html#IptcLong" title="IptcLong">IptcLong</a>            <a class="link" href="libiptcdata-utils.html#iptc-get-long" title="iptc_get_long ()">iptc_get_long</a>                       (unsigned char *b,
+                                                         <a class="link" href="libiptcdata-utils.html#IptcByteOrder" title="enum IptcByteOrder">IptcByteOrder</a> order);
+<a class="link" href="libiptcdata-utils.html#IptcSLong" title="IptcSLong">IptcSLong</a>           <a class="link" href="libiptcdata-utils.html#iptc-get-slong" title="iptc_get_slong ()">iptc_get_slong</a>                      (unsigned char *b,
+                                                         <a class="link" href="libiptcdata-utils.html#IptcByteOrder" title="enum IptcByteOrder">IptcByteOrder</a> order);
+void                <a class="link" href="libiptcdata-utils.html#iptc-set-short" title="iptc_set_short ()">iptc_set_short</a>                      (unsigned char *b,
+                                                         <a class="link" href="libiptcdata-utils.html#IptcByteOrder" title="enum IptcByteOrder">IptcByteOrder</a> order,
+                                                         <a class="link" href="libiptcdata-utils.html#IptcShort" title="IptcShort">IptcShort</a> value);
+void                <a class="link" href="libiptcdata-utils.html#iptc-set-long" title="iptc_set_long ()">iptc_set_long</a>                       (unsigned char *b,
+                                                         <a class="link" href="libiptcdata-utils.html#IptcByteOrder" title="enum IptcByteOrder">IptcByteOrder</a> order,
+                                                         <a class="link" href="libiptcdata-utils.html#IptcLong" title="IptcLong">IptcLong</a> value);
+void                <a class="link" href="libiptcdata-utils.html#iptc-set-slong" title="iptc_set_slong ()">iptc_set_slong</a>                      (unsigned char *b,
+                                                         <a class="link" href="libiptcdata-utils.html#IptcByteOrder" title="enum IptcByteOrder">IptcByteOrder</a> order,
+                                                         <a class="link" href="libiptcdata-utils.html#IptcSLong" title="IptcSLong">IptcSLong</a> value);
+#define             <a class="link" href="libiptcdata-utils.html#MIN:CAPS" title="MIN()">MIN</a>                                 (a, b)
+#define             <a class="link" href="libiptcdata-utils.html#IPTC-TAG-SUBSEC-TIME:CAPS" title="IPTC_TAG_SUBSEC_TIME">IPTC_TAG_SUBSEC_TIME</a>
+</pre>
+</div>
+<div class="refsect1" lang="en">
+<a name="libiptcdata-utils.description"></a><h2>Description</h2>
+<p>
+
+</p>
+</div>
+<div class="refsect1" lang="en">
+<a name="libiptcdata-utils.details"></a><h2>Details</h2>
+<div class="refsect2" lang="en">
+<a name="IptcByteOrder"></a><h3>enum IptcByteOrder</h3>
+<pre class="programlisting">typedef enum {
+	IPTC_BYTE_ORDER_MOTOROLA,
+	IPTC_BYTE_ORDER_INTEL
+} IptcByteOrder;
+</pre>
+<p>
+
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="IptcByte"></a><h3>IptcByte</h3>
+<pre class="programlisting">typedef char		IptcByte;          /* 1 byte  */
+</pre>
+<p>
+
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="IptcShort"></a><h3>IptcShort</h3>
+<pre class="programlisting">typedef uint16_t	IptcShort;         /* 2 bytes */
+</pre>
+<p>
+
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="IptcLong"></a><h3>IptcLong</h3>
+<pre class="programlisting">typedef uint32_t	IptcLong;          /* 4 bytes */
+</pre>
+<p>
+
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="IptcSLong"></a><h3>IptcSLong</h3>
+<pre class="programlisting">typedef int32_t		IptcSLong;         /* 4 bytes */
+</pre>
+<p>
+
+</p>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="iptc-get-short"></a><h3>iptc_get_short ()</h3>
+<pre class="programlisting"><a class="link" href="libiptcdata-utils.html#IptcShort" title="IptcShort">IptcShort</a>           iptc_get_short                      (unsigned char *b,
+                                                         <a class="link" href="libiptcdata-utils.html#IptcByteOrder" title="enum IptcByteOrder">IptcByteOrder</a> order);</pre>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>b</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>order</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>
+
+
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="iptc-get-long"></a><h3>iptc_get_long ()</h3>
+<pre class="programlisting"><a class="link" href="libiptcdata-utils.html#IptcLong" title="IptcLong">IptcLong</a>            iptc_get_long                       (unsigned char *b,
+                                                         <a class="link" href="libiptcdata-utils.html#IptcByteOrder" title="enum IptcByteOrder">IptcByteOrder</a> order);</pre>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>b</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>order</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>
+
+
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="iptc-get-slong"></a><h3>iptc_get_slong ()</h3>
+<pre class="programlisting"><a class="link" href="libiptcdata-utils.html#IptcSLong" title="IptcSLong">IptcSLong</a>           iptc_get_slong                      (unsigned char *b,
+                                                         <a class="link" href="libiptcdata-utils.html#IptcByteOrder" title="enum IptcByteOrder">IptcByteOrder</a> order);</pre>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>b</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>order</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><span class="emphasis"><em>Returns</em></span> :</span></p></td>
+<td>
+
+
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="iptc-set-short"></a><h3>iptc_set_short ()</h3>
+<pre class="programlisting">void                iptc_set_short                      (unsigned char *b,
+                                                         <a class="link" href="libiptcdata-utils.html#IptcByteOrder" title="enum IptcByteOrder">IptcByteOrder</a> order,
+                                                         <a class="link" href="libiptcdata-utils.html#IptcShort" title="IptcShort">IptcShort</a> value);</pre>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>b</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>order</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>value</code></em> :</span></p></td>
+<td>
+
+
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="iptc-set-long"></a><h3>iptc_set_long ()</h3>
+<pre class="programlisting">void                iptc_set_long                       (unsigned char *b,
+                                                         <a class="link" href="libiptcdata-utils.html#IptcByteOrder" title="enum IptcByteOrder">IptcByteOrder</a> order,
+                                                         <a class="link" href="libiptcdata-utils.html#IptcLong" title="IptcLong">IptcLong</a> value);</pre>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>b</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>order</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>value</code></em> :</span></p></td>
+<td>
+
+
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="iptc-set-slong"></a><h3>iptc_set_slong ()</h3>
+<pre class="programlisting">void                iptc_set_slong                      (unsigned char *b,
+                                                         <a class="link" href="libiptcdata-utils.html#IptcByteOrder" title="enum IptcByteOrder">IptcByteOrder</a> order,
+                                                         <a class="link" href="libiptcdata-utils.html#IptcSLong" title="IptcSLong">IptcSLong</a> value);</pre>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>b</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>order</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>value</code></em> :</span></p></td>
+<td>
+
+
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="MIN:CAPS"></a><h3>MIN()</h3>
+<pre class="programlisting">#define MIN(a, b)  (((a) &lt; (b)) ? (a) : (b))
+</pre>
+<p>
+
+</p>
+<div class="variablelist"><table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>a</code></em> :</span></p></td>
+<td>
+</td>
+</tr>
+<tr>
+<td><p><span class="term"><em class="parameter"><code>b</code></em> :</span></p></td>
+<td>
+
+
+</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<hr>
+<div class="refsect2" lang="en">
+<a name="IPTC-TAG-SUBSEC-TIME:CAPS"></a><h3>IPTC_TAG_SUBSEC_TIME</h3>
+<pre class="programlisting">#define IPTC_TAG_SUBSEC_TIME IPTC_TAG_SUB_SEC_TIME
+</pre>
+<p>
+
+</p>
+</div>
+</div>
+</div>
+<div class="footer">
+<hr>
+          Generated by GTK-Doc V1.10</div>
+</body>
+</html>

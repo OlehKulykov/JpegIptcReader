@@ -1,0 +1,205 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR David Moore
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: dcm@acm.org\n"
+"POT-Creation-Date: 2007-05-15 02:36-0400\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: iptc/main.c:29
+msgid ""
+"Examples:\n"
+"  iptc image.jpg       # display the IPTC metadata contained in image.jpg\n"
+"  iptc -m Caption -v \"Foo\" *.jpg\n"
+"                       # set caption \"Foo\" in all jpegs of the curr. dir.\n"
+"  iptc -a Keywords -v \"vacation\" *.jpg\n"
+"  iptc -a 2:25 -v \"vacation\" *.jpg\n"
+"                       # either command adds keyword \"vacation\" to all "
+"jpegs\n"
+"  iptc -d Keywords:1 image.jpg\n"
+"                       # removes keyword number 1 (the 2nd) from image.jpg\n"
+"  iptc -d Keywords:all image.jpg\n"
+"                       # removes all keywords from image.jpg\n"
+"\n"
+"Operations:\n"
+"  -a, --add=TAG        add new tag with identifier TAG\n"
+"  -m, --modify=TAG     modify tag with identifier TAG (add if not present)\n"
+"  -v, --value=VALUE    value for added/modified tag\n"
+"  -d, --delete=TAG     delete tag with identifier TAG\n"
+"  -p, --print=TAG      print value of tag with identifier TAG\n"
+"      --add-version    add IPTC version number into the headers\n"
+"      --add-encoding   add text encoding specification (UTF-8) into headers\n"
+"\n"
+"Options:\n"
+"  -q, --quiet          produce less verbose output\n"
+"  -b, --backup         backup any modified files\n"
+"      --no-sort        do not sort tags before saving\n"
+"\n"
+"Informative output:\n"
+"  -l, --list           list the names of all known tags (i.e. Caption, "
+"etc.)\n"
+"  -L, --list-desc=TAG  print the name and description of TAG\n"
+"      --help           print this help, then exit\n"
+"      --version        print iptc program version number, then exit\n"
+msgstr ""
+
+#: iptc/main.c:67
+msgid ""
+"Utility for viewing and modifying the contents of IPTC metadata in images"
+msgstr ""
+
+#: iptc/main.c:69
+msgid "Usage"
+msgstr ""
+
+#: iptc/main.c:69
+msgid "OPTIONS"
+msgstr ""
+
+#: iptc/main.c:69
+msgid "FILE"
+msgstr ""
+
+#: iptc/main.c:77
+msgid "Written by David Moore <dcm@acm.org>"
+msgstr ""
+
+#: iptc/main.c:223 iptc/main.c:260
+msgid "Tag"
+msgstr ""
+
+#: iptc/main.c:223 iptc/main.c:260
+msgid "Name"
+msgstr ""
+
+#: iptc/main.c:261
+msgid "Type"
+msgstr ""
+
+#: iptc/main.c:261
+msgid "Size"
+msgstr ""
+
+#: iptc/main.c:261
+msgid "Value"
+msgstr ""
+
+#: iptc/main.c:376
+#, c-format
+msgid "%s: Could not find dataset %d:%d, adding it\n"
+msgstr ""
+
+#: iptc/main.c:383 iptc/main.c:394
+#, c-format
+msgid "%s: Could not find dataset %d:%d"
+msgstr ""
+
+#: iptc/main.c:421
+#, c-format
+msgid "%s: Could not find dataset %d:%d\n"
+msgstr ""
+
+#: iptc/main.c:586 iptc/main.c:610
+#, c-format
+msgid "\"%s\" is not a known tag\n"
+msgstr ""
+
+#: iptc/main.c:590
+#, c-format
+msgid "No information about tag\n"
+msgstr ""
+
+#: iptc/main.c:606 iptc/main.c:640
+#, c-format
+msgid "Must specify value for add/modify operation\n"
+msgstr ""
+
+#: iptc/main.c:636
+#, c-format
+msgid "Must specify tag to add or modify\n"
+msgstr ""
+
+#: iptc/main.c:655
+#, c-format
+msgid "Value must be an integer\n"
+msgstr ""
+
+#: iptc/main.c:702
+#, c-format
+msgid "Error: Must specify value for add/modify operation\n"
+msgstr ""
+
+#: iptc/main.c:708
+#, c-format
+msgid "Error: Must specify a file\n"
+msgstr ""
+
+#: iptc/main.c:725
+#, c-format
+msgid "Error opening %s\n"
+msgstr ""
+
+#: iptc/main.c:732
+#, c-format
+msgid "Error parsing %s\n"
+msgstr ""
+
+#: iptc/main.c:739
+#, c-format
+msgid "Error parsing headers of %s\n"
+msgstr ""
+
+#: iptc/main.c:752
+#, c-format
+msgid "%s: no changes to save\n"
+msgstr ""
+
+#: iptc/main.c:767
+#, c-format
+msgid ""
+"Warning: Strings encoded in UTF-8 have been added to the IPTC data, but\n"
+"pre-existing data may have been encoded with a different character set.\n"
+msgstr ""
+
+#: iptc/main.c:785
+msgid "No IPTC data found"
+msgstr ""
+
+#: iptc/main.c:797
+msgid "Failed to generate IPTC bytestream"
+msgstr ""
+
+#: iptc/main.c:806
+msgid "Failed to generate PS3 header"
+msgstr ""
+
+#: iptc/main.c:813
+msgid "Failed to reopen file"
+msgstr ""
+
+#: iptc/main.c:820
+msgid "Can't open temporary file for writing"
+msgstr ""
+
+#: iptc/main.c:836
+msgid "Failed to create backup file, aborting"
+msgstr ""
+
+#: iptc/main.c:844 iptc/main.c:858
+msgid "Failed to save image"
+msgstr ""
+
+#: iptc/main.c:854
+#, c-format
+msgid "%s: saved\n"
+msgstr ""

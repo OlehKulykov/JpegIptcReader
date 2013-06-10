@@ -1,0 +1,551 @@
+<?xml version="1.0"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN" 
+               "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
+<!ENTITY iptc-overview SYSTEM "overview.sgml">
+<!ENTITY iptc-about SYSTEM "about.sgml">
+<!ENTITY iptc-commandline SYSTEM "commandline.sgml">
+<!ENTITY iptc-i18n SYSTEM "i18n.sgml">
+<!ENTITY iptc-libjpeg SYSTEM "libjpeg.sgml">
+<!ENTITY version SYSTEM "version.xml">
+]>
+<refentry id="libiptcdata-tag">
+<refmeta>
+<refentrytitle role="top_of_page" id="libiptcdata-tag.top_of_page">Tag Specifications</refentrytitle>
+<manvolnum>3</manvolnum>
+<refmiscinfo>LIBIPTCDATA Library</refmiscinfo>
+</refmeta>
+
+<refnamediv>
+<refname>Tag Specifications</refname>
+<refpurpose>querying tag usage information from the IPTC IIM specification</refpurpose>
+<!--[<xref linkend="desc" endterm="desc.title"/>]-->
+</refnamediv>
+
+<refsynopsisdiv id="libiptcdata-tag.synopsis" role="synopsis">
+<title role="synopsis.title">Synopsis</title>
+
+<synopsis>
+enum                <link linkend="IptcRecord">IptcRecord</link>;
+enum                <link linkend="IptcTag">IptcTag</link>;
+
+                    <link linkend="IptcTagInfo">IptcTagInfo</link>;
+enum                <link linkend="IptcFormat">IptcFormat</link>;
+enum                <link linkend="IptcMandatory">IptcMandatory</link>;
+enum                <link linkend="IptcRepeatable">IptcRepeatable</link>;
+
+const <link linkend="char">char</link>*         <link linkend="iptc-tag-get-name">iptc_tag_get_name</link>                   (<link linkend="IptcRecord">IptcRecord</link> record,
+                                                         <link linkend="IptcTag">IptcTag</link> tag);
+<link linkend="char">char</link>*               <link linkend="iptc-tag-get-title">iptc_tag_get_title</link>                  (<link linkend="IptcRecord">IptcRecord</link> record,
+                                                         <link linkend="IptcTag">IptcTag</link> tag);
+<link linkend="char">char</link>*               <link linkend="iptc-tag-get-description">iptc_tag_get_description</link>            (<link linkend="IptcRecord">IptcRecord</link> record,
+                                                         <link linkend="IptcTag">IptcTag</link> tag);
+const <link linkend="IptcTagInfo">IptcTagInfo</link>*  <link linkend="iptc-tag-get-info">iptc_tag_get_info</link>                   (<link linkend="IptcRecord">IptcRecord</link> record,
+                                                         <link linkend="IptcTag">IptcTag</link> tag);
+<link linkend="char">char</link>*               <link linkend="iptc-format-get-name">iptc_format_get_name</link>                (<link linkend="IptcFormat">IptcFormat</link> format);
+<link linkend="int">int</link>                 <link linkend="iptc-tag-find-by-name">iptc_tag_find_by_name</link>               (const <link linkend="char">char</link> *name,
+                                                         <link linkend="IptcRecord">IptcRecord</link> *record,
+                                                         <link linkend="IptcTag">IptcTag</link> *tag);
+</synopsis>
+</refsynopsisdiv>
+
+
+
+
+
+
+
+
+
+<refsect1 id="libiptcdata-tag.description" role="desc">
+<title role="desc.title">Description</title>
+<para>
+These functions allow queries to the <ulink url="http://www.iptc.org/IIM">IPTC IIM
+specification</ulink> which contains information about the purpose of each IPTC
+tag, along with any requirements such as maximum/minimum data length, data type,
+repeatability and whether the tag is mandatory.
+</para>
+</refsect1>
+
+<refsect1 id="libiptcdata-tag.details" role="details">
+<title role="details.title">Details</title>
+<refsect2 id="IptcRecord" role="enum">
+<title>enum IptcRecord</title>
+<indexterm zone="IptcRecord"><primary>IptcRecord</primary></indexterm><programlisting>typedef enum {
+	IPTC_RECORD_OBJECT_ENV		= 1,
+	IPTC_RECORD_APP_2		= 2,
+	IPTC_RECORD_APP_3		= 3,
+	IPTC_RECORD_APP_4		= 4,
+	IPTC_RECORD_APP_5		= 5,
+	IPTC_RECORD_APP_6		= 6,
+	IPTC_RECORD_PREOBJ_DATA		= 7,
+	IPTC_RECORD_OBJ_DATA		= 8,
+	IPTC_RECORD_POSTOBJ_DATA	= 9
+} IptcRecord;
+</programlisting>
+<para>
+The record number that, together with the tag number (<link linkend="IptcTag"><type>IptcTag</type></link>),
+uniquely identifies the purpose of a tag.
+</para><variablelist role="enum">
+<varlistentry id="IPTC-RECORD-OBJECT-ENV:CAPS" role="constant">
+<term><literal>IPTC_RECORD_OBJECT_ENV</literal></term>
+<listitem><simpara>the record used for file information such
+as file format, version, unique identifier, etc.  This is often
+not used for photo-management applications.
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="IPTC-RECORD-APP-2:CAPS" role="constant">
+<term><literal>IPTC_RECORD_APP_2</literal></term>
+<listitem><simpara>the record used for application-specific tags
+such as Caption, Keywords, etc.
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="IPTC-RECORD-APP-3:CAPS" role="constant">
+<term><literal>IPTC_RECORD_APP_3</literal></term>
+<listitem><simpara>application-specific tags
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="IPTC-RECORD-APP-4:CAPS" role="constant">
+<term><literal>IPTC_RECORD_APP_4</literal></term>
+<listitem><simpara>application-specific tags
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="IPTC-RECORD-APP-5:CAPS" role="constant">
+<term><literal>IPTC_RECORD_APP_5</literal></term>
+<listitem><simpara>application-specific tags
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="IPTC-RECORD-APP-6:CAPS" role="constant">
+<term><literal>IPTC_RECORD_APP_6</literal></term>
+<listitem><simpara>application-specific tags
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="IPTC-RECORD-PREOBJ-DATA:CAPS" role="constant">
+<term><literal>IPTC_RECORD_PREOBJ_DATA</literal></term>
+<listitem><simpara>contains information about an encapsulated file
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="IPTC-RECORD-OBJ-DATA:CAPS" role="constant">
+<term><literal>IPTC_RECORD_OBJ_DATA</literal></term>
+<listitem><simpara>the encapsulated file data (usually not used)
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="IPTC-RECORD-POSTOBJ-DATA:CAPS" role="constant">
+<term><literal>IPTC_RECORD_POSTOBJ_DATA</literal></term>
+<listitem><simpara>followup information about an encapsulated file
+
+</simpara></listitem>
+</varlistentry>
+</variablelist></refsect2>
+<refsect2 id="IptcTag" role="enum">
+<title>enum IptcTag</title>
+<indexterm zone="IptcTag"><primary>IptcTag</primary></indexterm><programlisting>typedef enum {
+	IPTC_TAG_MODEL_VERSION		= 0,	/* Begin record 1 tags */
+	IPTC_TAG_DESTINATION		= 5,
+	IPTC_TAG_FILE_FORMAT		= 20,
+	IPTC_TAG_FILE_VERSION		= 22,
+	IPTC_TAG_SERVICE_ID		= 30,
+	IPTC_TAG_ENVELOPE_NUM		= 40,
+	IPTC_TAG_PRODUCT_ID		= 50,
+	IPTC_TAG_ENVELOPE_PRIORITY	= 60,
+	IPTC_TAG_DATE_SENT		= 70,
+	IPTC_TAG_TIME_SENT		= 80,
+	IPTC_TAG_CHARACTER_SET		= 90,
+	IPTC_TAG_UNO			= 100,
+	IPTC_TAG_ARM_ID			= 120,
+	IPTC_TAG_ARM_VERSION		= 122,	/* End record 1 tags */
+	IPTC_TAG_RECORD_VERSION		= 0,	/* Begin record 2 tags */
+	IPTC_TAG_OBJECT_TYPE		= 3,
+	IPTC_TAG_OBJECT_ATTRIBUTE	= 4,
+	IPTC_TAG_OBJECT_NAME		= 5,
+	IPTC_TAG_EDIT_STATUS		= 7,
+	IPTC_TAG_EDITORIAL_UPDATE	= 8,
+	IPTC_TAG_URGENCY		= 10,
+	IPTC_TAG_SUBJECT_REFERENCE	= 12,
+	IPTC_TAG_CATEGORY		= 15,
+	IPTC_TAG_SUPPL_CATEGORY		= 20,
+	IPTC_TAG_FIXTURE_ID		= 22,
+	IPTC_TAG_KEYWORDS		= 25,
+	IPTC_TAG_CONTENT_LOC_CODE	= 26,
+	IPTC_TAG_CONTENT_LOC_NAME	= 27,
+	IPTC_TAG_RELEASE_DATE		= 30,
+	IPTC_TAG_RELEASE_TIME		= 35,
+	IPTC_TAG_EXPIRATION_DATE	= 37,
+	IPTC_TAG_EXPIRATION_TIME	= 38,
+	IPTC_TAG_SPECIAL_INSTRUCTIONS	= 40,
+	IPTC_TAG_ACTION_ADVISED		= 42,
+	IPTC_TAG_REFERENCE_SERVICE	= 45,
+	IPTC_TAG_REFERENCE_DATE		= 47,
+	IPTC_TAG_REFERENCE_NUMBER	= 50,
+	IPTC_TAG_DATE_CREATED		= 55,
+	IPTC_TAG_TIME_CREATED		= 60,
+	IPTC_TAG_DIGITAL_CREATION_DATE	= 62,
+	IPTC_TAG_DIGITAL_CREATION_TIME	= 63,
+	IPTC_TAG_ORIGINATING_PROGRAM	= 65,
+	IPTC_TAG_PROGRAM_VERSION	= 70,
+	IPTC_TAG_OBJECT_CYCLE		= 75,
+	IPTC_TAG_BYLINE			= 80,
+	IPTC_TAG_BYLINE_TITLE		= 85,
+	IPTC_TAG_CITY			= 90,
+	IPTC_TAG_SUBLOCATION		= 92,
+	IPTC_TAG_STATE			= 95,
+	IPTC_TAG_COUNTRY_CODE		= 100,
+	IPTC_TAG_COUNTRY_NAME		= 101,
+	IPTC_TAG_ORIG_TRANS_REF		= 103,
+	IPTC_TAG_HEADLINE		= 105,
+	IPTC_TAG_CREDIT			= 110,
+	IPTC_TAG_SOURCE			= 115,
+	IPTC_TAG_COPYRIGHT_NOTICE	= 116,
+	IPTC_TAG_PICASA_UNKNOWN		= 117,
+	IPTC_TAG_CONTACT		= 118,
+	IPTC_TAG_CAPTION		= 120,
+	IPTC_TAG_WRITER_EDITOR		= 122,
+	IPTC_TAG_RASTERIZED_CAPTION	= 125,
+	IPTC_TAG_IMAGE_TYPE		= 130,
+	IPTC_TAG_IMAGE_ORIENTATION	= 131,
+	IPTC_TAG_LANGUAGE_ID		= 135,
+	IPTC_TAG_AUDIO_TYPE		= 150,
+	IPTC_TAG_AUDIO_SAMPLING_RATE	= 151,
+	IPTC_TAG_AUDIO_SAMPLING_RES	= 152,
+	IPTC_TAG_AUDIO_DURATION		= 153,
+	IPTC_TAG_AUDIO_OUTCUE		= 154,
+	IPTC_TAG_PREVIEW_FORMAT		= 200,
+	IPTC_TAG_PREVIEW_FORMAT_VER	= 201,
+	IPTC_TAG_PREVIEW_DATA		= 202,	/* End record 2 tags */
+	IPTC_TAG_SIZE_MODE		= 10,	/* Begin record 7 tags */
+	IPTC_TAG_MAX_SUBFILE_SIZE	= 20,
+	IPTC_TAG_SIZE_ANNOUNCED		= 90,
+	IPTC_TAG_MAX_OBJECT_SIZE	= 95,	/* End record 7 tags */
+	IPTC_TAG_SUBFILE		= 10,	/* Record 8 tags */
+	IPTC_TAG_CONFIRMED_DATA_SIZE	= 10	/* Record 9 tags */
+} IptcTag;
+</programlisting>
+<para>
+The tag number that, together with the record number (<link linkend="IptcRecord"><type>IptcRecord</type></link>),
+uniquely identifies the purpose of a tag.
+</para></refsect2>
+<refsect2 id="IptcTagInfo" role="struct">
+<title>IptcTagInfo</title>
+<indexterm zone="IptcTagInfo"><primary>IptcTagInfo</primary></indexterm><programlisting>typedef struct {
+	IptcRecord	record;
+	IptcTag		tag;
+	const char     *name;
+	const char     *title;
+	const char     *description;
+	IptcFormat	format;
+	IptcMandatory	mandatory;
+	IptcRepeatable	repeatable;
+	unsigned int	minbytes;
+	unsigned int	maxbytes;
+} IptcTagInfo;
+</programlisting>
+<para>
+Contains static information about a specific tag (identified by its
+record-tag pair) from the IPTC IIM specificiation.  This info is for
+reference only and should never be modified by an application.
+</para><variablelist role="struct">
+<varlistentry>
+<term><link linkend="IptcRecord">IptcRecord</link>&nbsp;<structfield>record</structfield>;</term>
+<listitem><simpara>record number of the tag
+</simpara></listitem>
+</varlistentry>
+<varlistentry>
+<term><link linkend="IptcTag">IptcTag</link>&nbsp;<structfield>tag</structfield>;</term>
+<listitem><simpara>dataset number of the tag
+</simpara></listitem>
+</varlistentry>
+<varlistentry>
+<term>const&nbsp;<link linkend="char">char</link>&nbsp;*<structfield>name</structfield>;</term>
+<listitem><simpara>English name of the tag (no spaces)
+</simpara></listitem>
+</varlistentry>
+<varlistentry>
+<term>const&nbsp;<link linkend="char">char</link>&nbsp;*<structfield>title</structfield>;</term>
+<listitem><simpara>English title of the tag (may contain spaces)
+</simpara></listitem>
+</varlistentry>
+<varlistentry>
+<term>const&nbsp;<link linkend="char">char</link>&nbsp;*<structfield>description</structfield>;</term>
+<listitem><simpara>English description of the tag
+</simpara></listitem>
+</varlistentry>
+<varlistentry>
+<term><link linkend="IptcFormat">IptcFormat</link>&nbsp;<structfield>format</structfield>;</term>
+<listitem><simpara>data format of the tag
+</simpara></listitem>
+</varlistentry>
+<varlistentry>
+<term><link linkend="IptcMandatory">IptcMandatory</link>&nbsp;<structfield>mandatory</structfield>;</term>
+<listitem><simpara>whether the specification says the tag
+is required
+</simpara></listitem>
+</varlistentry>
+<varlistentry>
+<term><link linkend="IptcRepeatable">IptcRepeatable</link>&nbsp;<structfield>repeatable</structfield>;</term>
+<listitem><simpara>whether the specification says the tag
+can appear more than once
+</simpara></listitem>
+</varlistentry>
+<varlistentry>
+<term>unsigned&nbsp;<link linkend="int">int</link>&nbsp;<structfield>minbytes</structfield>;</term>
+<listitem><simpara>minimum number of bytes in the tag value
+</simpara></listitem>
+</varlistentry>
+<varlistentry>
+<term>unsigned&nbsp;<link linkend="int">int</link>&nbsp;<structfield>maxbytes</structfield>;</term>
+<listitem><simpara>maximum number of bytes in the tag value
+
+</simpara></listitem>
+</varlistentry>
+</variablelist></refsect2>
+<refsect2 id="IptcFormat" role="enum">
+<title>enum IptcFormat</title>
+<indexterm zone="IptcFormat"><primary>IptcFormat</primary></indexterm><programlisting>typedef enum {
+	IPTC_FORMAT_UNKNOWN,
+	IPTC_FORMAT_BINARY,
+	IPTC_FORMAT_BYTE,
+	IPTC_FORMAT_SHORT,
+	IPTC_FORMAT_LONG,
+	IPTC_FORMAT_STRING,
+	IPTC_FORMAT_NUMERIC_STRING,
+	IPTC_FORMAT_DATE,
+	IPTC_FORMAT_TIME
+} IptcFormat;
+</programlisting>
+<para>
+The possible data formats for a tag's value, derived from the IPTC IIM
+specification.  Integer formats are always represented with the most
+significant byte first (big-endian) in the IPTC bytestream.
+</para><variablelist role="enum">
+<varlistentry id="IPTC-FORMAT-UNKNOWN:CAPS" role="constant">
+<term><literal>IPTC_FORMAT_UNKNOWN</literal></term>
+<listitem><simpara>Unknown format (for a tag not in the specification)
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="IPTC-FORMAT-BINARY:CAPS" role="constant">
+<term><literal>IPTC_FORMAT_BINARY</literal></term>
+<listitem><simpara>Binary data (variable length)
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="IPTC-FORMAT-BYTE:CAPS" role="constant">
+<term><literal>IPTC_FORMAT_BYTE</literal></term>
+<listitem><simpara>1-byte integer
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="IPTC-FORMAT-SHORT:CAPS" role="constant">
+<term><literal>IPTC_FORMAT_SHORT</literal></term>
+<listitem><simpara>2-byte integer (big-endian)
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="IPTC-FORMAT-LONG:CAPS" role="constant">
+<term><literal>IPTC_FORMAT_LONG</literal></term>
+<listitem><simpara>4-byte integer (big-endian)
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="IPTC-FORMAT-STRING:CAPS" role="constant">
+<term><literal>IPTC_FORMAT_STRING</literal></term>
+<listitem><simpara>String data (variable length, of any character set)
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="IPTC-FORMAT-NUMERIC-STRING:CAPS" role="constant">
+<term><literal>IPTC_FORMAT_NUMERIC_STRING</literal></term>
+<listitem><simpara>String containing only numerals (variable length)
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="IPTC-FORMAT-DATE:CAPS" role="constant">
+<term><literal>IPTC_FORMAT_DATE</literal></term>
+<listitem><simpara>String of the format "YYYYMMDD" (8 bytes)
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="IPTC-FORMAT-TIME:CAPS" role="constant">
+<term><literal>IPTC_FORMAT_TIME</literal></term>
+<listitem><simpara>String of the format "HHMMSS&plusmn;HHMM" where the second
+HHMM defines the timezone offset (11 bytes)
+
+</simpara></listitem>
+</varlistentry>
+</variablelist></refsect2>
+<refsect2 id="IptcMandatory" role="enum">
+<title>enum IptcMandatory</title>
+<indexterm zone="IptcMandatory"><primary>IptcMandatory</primary></indexterm><programlisting>typedef enum {
+	IPTC_OPTIONAL = 0,
+	IPTC_MANDATORY = 1
+} IptcMandatory;
+</programlisting>
+<para>
+Whether a tag is mandatory according to the IPTC IIM specification.
+Note that most applications ignore this aspect of the specification
+since the spec was designed to encapsulate the media file rather than
+the other way around (which is how nearly all applications use it).
+This renders most mandatory tags unnecessary.
+</para><variablelist role="enum">
+<varlistentry id="IPTC-OPTIONAL:CAPS" role="constant">
+<term><literal>IPTC_OPTIONAL</literal></term>
+<listitem><simpara>tag is allowed to be absent
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="IPTC-MANDATORY:CAPS" role="constant">
+<term><literal>IPTC_MANDATORY</literal></term>
+<listitem><simpara>tag must be present
+
+</simpara></listitem>
+</varlistentry>
+</variablelist></refsect2>
+<refsect2 id="IptcRepeatable" role="enum">
+<title>enum IptcRepeatable</title>
+<indexterm zone="IptcRepeatable"><primary>IptcRepeatable</primary></indexterm><programlisting>typedef enum {
+	IPTC_NOT_REPEATABLE = 0,
+	IPTC_REPEATABLE = 1
+} IptcRepeatable;
+</programlisting>
+<para>
+Whether a tag can occur more than once according to the IPTC IIM
+specification.  For example, the "Keywords" tag only contains a single
+keyword, but the tag itself is repeated for media that references more
+than one keyword.
+</para><variablelist role="enum">
+<varlistentry id="IPTC-NOT-REPEATABLE:CAPS" role="constant">
+<term><literal>IPTC_NOT_REPEATABLE</literal></term>
+<listitem><simpara>tag can only appear once
+</simpara></listitem>
+</varlistentry>
+<varlistentry id="IPTC-REPEATABLE:CAPS" role="constant">
+<term><literal>IPTC_REPEATABLE</literal></term>
+<listitem><simpara>tag can be repeated
+
+</simpara></listitem>
+</varlistentry>
+</variablelist></refsect2>
+<refsect2 id="iptc-tag-get-name" role="function">
+<title>iptc_tag_get_name ()</title>
+<indexterm zone="iptc-tag-get-name"><primary>iptc_tag_get_name</primary></indexterm><programlisting>const <link linkend="char">char</link>*         iptc_tag_get_name                   (<link linkend="IptcRecord">IptcRecord</link> record,
+                                                         <link linkend="IptcTag">IptcTag</link> tag);</programlisting>
+<para>
+Retrieves the name of a tag.  The name is derived from the IPTC
+IIM specification and gives an indication of the purpose of a
+particular tag.  The name will consist of ASCII characters with
+no spaces, for example "CopyrightNotice".</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>record</parameter>&nbsp;:</term>
+<listitem><simpara> record number of tag
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>tag</parameter>&nbsp;:</term>
+<listitem><simpara> dataset number of tag
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> a static string containing the tag name, NULL if none found
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="iptc-tag-get-title" role="function">
+<title>iptc_tag_get_title ()</title>
+<indexterm zone="iptc-tag-get-title"><primary>iptc_tag_get_title</primary></indexterm><programlisting><link linkend="char">char</link>*               iptc_tag_get_title                  (<link linkend="IptcRecord">IptcRecord</link> record,
+                                                         <link linkend="IptcTag">IptcTag</link> tag);</programlisting>
+<para>
+Retrieves the title of a tag.  The title is similar to
+the name, except it will be translated to the current
+locale (if available) and may contain spaces, for example
+"Copyright Notice".  It is appropriate for the title to appear
+in user interfaces.  The return value will be encoding using the UTF-8
+character set.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>record</parameter>&nbsp;:</term>
+<listitem><simpara> record number of tag
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>tag</parameter>&nbsp;:</term>
+<listitem><simpara> dataset number of tag
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> a static string containing the tag title, empty string
+if none found
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="iptc-tag-get-description" role="function">
+<title>iptc_tag_get_description ()</title>
+<indexterm zone="iptc-tag-get-description"><primary>iptc_tag_get_description</primary></indexterm><programlisting><link linkend="char">char</link>*               iptc_tag_get_description            (<link linkend="IptcRecord">IptcRecord</link> record,
+                                                         <link linkend="IptcTag">IptcTag</link> tag);</programlisting>
+<para>
+Retrieves the description of a tag, which explains the purpose
+of the tag from the IPTC IIM specification.  It is translated
+to the current locale if available.  The return value will
+be encoded using the UTF-8 character set.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>record</parameter>&nbsp;:</term>
+<listitem><simpara> record number of tag
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>tag</parameter>&nbsp;:</term>
+<listitem><simpara> dataset number of tag
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> a static string containing the tag desciption, empty
+string if none found
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="iptc-tag-get-info" role="function">
+<title>iptc_tag_get_info ()</title>
+<indexterm zone="iptc-tag-get-info"><primary>iptc_tag_get_info</primary></indexterm><programlisting>const <link linkend="IptcTagInfo">IptcTagInfo</link>*  iptc_tag_get_info                   (<link linkend="IptcRecord">IptcRecord</link> record,
+                                                         <link linkend="IptcTag">IptcTag</link> tag);</programlisting>
+<para>
+Retrieves the <link linkend="IptcTagInfo"><type>IptcTagInfo</type></link> structure containing information about the
+tag from the IPTC IIM specification such as purpose, data format,
+and minimum and maximum lengths.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>record</parameter>&nbsp;:</term>
+<listitem><simpara> record number of tag
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>tag</parameter>&nbsp;:</term>
+<listitem><simpara> dataset number of tag
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> a pointer to a static <link linkend="IptcTagInfo"><type>IptcTagInfo</type></link> structure or NULL if
+the tag is not found.
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="iptc-format-get-name" role="function">
+<title>iptc_format_get_name ()</title>
+<indexterm zone="iptc-format-get-name"><primary>iptc_format_get_name</primary></indexterm><programlisting><link linkend="char">char</link>*               iptc_format_get_name                (<link linkend="IptcFormat">IptcFormat</link> format);</programlisting>
+<para>
+Retrieves a string version of a data format.  For example,
+<link linkend="IPTC-FORMAT-STRING:CAPS"><literal>IPTC_FORMAT_STRING</literal></link> returns "String".</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>format</parameter>&nbsp;:</term>
+<listitem><simpara> the format to be retrieved
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> a static string in the native locale
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="iptc-tag-find-by-name" role="function">
+<title>iptc_tag_find_by_name ()</title>
+<indexterm zone="iptc-tag-find-by-name"><primary>iptc_tag_find_by_name</primary></indexterm><programlisting><link linkend="int">int</link>                 iptc_tag_find_by_name               (const <link linkend="char">char</link> *name,
+                                                         <link linkend="IptcRecord">IptcRecord</link> *record,
+                                                         <link linkend="IptcTag">IptcTag</link> *tag);</programlisting>
+<para>
+Looks up the record and tag numbers for a tag specified by name.  For
+example, searching for "Caption" would return 2:120 in the record and
+tag variables.</para>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>name</parameter>&nbsp;:</term>
+<listitem><simpara> the name to search for
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>record</parameter>&nbsp;:</term>
+<listitem><simpara> output variable to store the record number
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>tag</parameter>&nbsp;:</term>
+<listitem><simpara> output variable to store the tag number
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara> 0 on success, -1 on failure or if the tag name was not found
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+
+</refsect1>
+
+
+
+
+</refentry>

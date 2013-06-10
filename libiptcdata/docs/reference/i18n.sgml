@@ -1,0 +1,73 @@
+<refentry id="iptc-i18n" revision="6 Sep 2005">
+<refmeta>
+	<refentrytitle>Internationalization</refentrytitle>
+	<manvolnum>3</manvolnum>
+	<refmiscinfo>libiptcdata Library</refmiscinfo>
+</refmeta>
+
+<refnamediv>
+	<refname>Internationalization</refname>
+	<refpurpose>using extended character sets with a libiptcdata application</refpurpose>
+</refnamediv>
+
+<refsect1 id="i18n">
+	<title>Supporting Internationalization with libiptcdata</title>
+
+	<para>
+	 The IPTC IIM standard supports storing data with nearly any
+	 character set.  According to the standard, the data of
+	 Record 1 should be in plain ASCII, but data of the following
+	 records should follow the character set established by
+	 dataset 1:90, the "character set" dataset.  This dataset
+	 contains control functions according to the ISO 2022
+	 standard, which allow for switching between different
+	 character sets.  However, there are several problems with this
+	 approach:
+	 <itemizedlist>
+	   <listitem><para>
+	     Nearly all IPTC-aware applications written previously do not
+	     follow this standard.  They usually force all characters to
+	     ASCII or use the Latin-1 character set, without identifying
+	     it in dataset 1:90.
+	   </para></listitem>
+	   <listitem><para>
+	     The ISO 2022 standard is very complicated and lacks a free
+	     reference implementation.  In addition, the standard
+	     is rarely used since Unicode provides a superior
+	     alternative.
+	   </para></listitem>
+	 </itemizedlist>
+	</para>
+
+	<para>
+	 libiptcdata does not implement the complete ISO 2022 standard (in
+	 fact, it implements almost none of it), but can still be used
+	 successfully with multiple character sets.  Here's how:
+	 <orderedlist>
+	   <listitem><para>
+	     When IPTC data is added to an image file for the first time,
+	     always store data in the UTF-8 character set.  It is the
+	     responsibility of the application to make sure that the
+	     <link linkend="iptc-dataset-set-data"><function>iptc_dataset_set_data()</function></link>
+	     function is always called with UTF-8
+	     encoded data.  This generally happens automatically with
+	     modern toolkits such as gtk+.  The application should call
+	     <link linkend="iptc-data-set-encoding-utf8"><function>iptc_data_set_encoding_utf8()</function></link>
+	     which sets the value of dataset 1:90, indicating that UTF-8 is
+	     being used.
+	   </para></listitem>
+           <listitem><para>
+	     When reading or modifying IPTC data saved by another application,
+	     first use the
+	     <link linkend="iptc-data-get-encoding"><function>iptc_data_get_encoding()</function></link>
+	     function to find out what encoding the data has been stored in.
+	     If it's not UTF-8, it may be hard to identify the character set,
+	     since the ISO 2022 standard is generally not followed.  Often,
+	     a good guess is ISO-8859-1.  However, if new data is added, it is
+	     probably wise to start using the UTF-8 encoding.
+	   </para></listitem>
+	 </orderedlist>
+	</para>
+</refsect1>
+
+</refentry>

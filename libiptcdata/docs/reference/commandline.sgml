@@ -1,0 +1,74 @@
+<refentry id="iptc-commandline" revision="29 Sep 2005">
+<refmeta>
+	<refentrytitle>The IPTC Command-Line Utility</refentrytitle>
+	<manvolnum>1</manvolnum>
+	<refmiscinfo>libiptcdata Library</refmiscinfo>
+</refmeta>
+
+<refnamediv>
+	<refname>The IPTC Command-Line Utility</refname>
+	<refpurpose>how to modify IPTC data from the command-line</refpurpose>
+</refnamediv>
+
+<refsect1 id="command-line">
+	<title>The IPTC Command-Line Utility</title>
+
+	<para>
+	 libiptcdata ships with a companion utility, <application>iptc</application>,
+	 which provides a command-line interface for viewing and modifying the IPTC
+	 data of a JPEG file.  Its usage is as follows:
+
+	 <programlisting>
+Utility for viewing and modifying the contents of IPTC metadata in images
+
+Usage: iptc [OPTIONS] [FILE]...
+
+Examples:
+  iptc image.jpg       # display the IPTC metadata contained in image.jpg
+  iptc -m Caption -v "Foo" *.jpg
+                       # set caption "Foo" in all jpegs of the curr. dir.
+  iptc -a Keywords -v "vacation" *.jpg
+  iptc -a 2:25 -v "vacation" *.jpg
+                       # either command adds keyword "vacation" to all jpegs
+  iptc -d Keywords:1 image.jpg
+                       # removes keyword number 1 (the 2nd) from image.jpg
+  iptc -d Keywords:all image.jpg
+                       # removes all keywords from image.jpg
+
+Operations:
+  -a, --add=TAG        add new tag with identifier TAG
+  -m, --modify=TAG     modify tag with identifier TAG (add if not present)
+  -v, --value=VALUE    value for added/modified tag
+  -d, --delete=TAG     delete tag with identifier TAG
+  -p, --print=TAG      print value of tag with identifier TAG
+
+Options:
+  -q, --quiet          produce less verbose output
+  -b, --backup         backup any modified files
+      --no-sort        do not sort tags before saving
+
+Informative output:
+  -l, --list           list the names of all known tags (i.e. Caption, etc.)
+  -L, --list-desc=TAG  print the name and description of TAG
+      --help           print this help, then exit
+      --version        print iptc program version number, then exit
+	 </programlisting>
+	</para>
+
+	<para>
+	 The program returns success whenever at least one operation succeeds on
+	 at least one file.  The program returns failure when no operation succeeds
+	 on any file.  Thus, if you intend to use it in a script and need to know
+	 whether each operation succeeds, only one operation should be performed
+	 at a time so the return value is meaningful for that operation.
+	</para>
+
+	<para>
+	 iptc also serves as an easy way to test the features of the libiptcdata
+	 library, although the library itself has many more features than iptc
+	 exposes.  Lastly, the source code of iptc also serves as a reference
+	 for writing other applications that use libiptcdata.
+	</para>
+</refsect1>
+
+</refentry>

@@ -1,0 +1,235 @@
+<?xml version="1.0"?>
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN" 
+               "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
+<!ENTITY iptc-overview SYSTEM "overview.sgml">
+<!ENTITY iptc-about SYSTEM "about.sgml">
+<!ENTITY iptc-commandline SYSTEM "commandline.sgml">
+<!ENTITY iptc-i18n SYSTEM "i18n.sgml">
+<!ENTITY iptc-libjpeg SYSTEM "libjpeg.sgml">
+<!ENTITY version SYSTEM "version.xml">
+]>
+<refentry id="libiptcdata-mem">
+<refmeta>
+<refentrytitle role="top_of_page" id="libiptcdata-mem.top_of_page">Memory managment</refentrytitle>
+<manvolnum>3</manvolnum>
+<refmiscinfo>LIBIPTCDATA Library</refmiscinfo>
+</refmeta>
+
+<refnamediv>
+<refname>Memory managment</refname>
+<refpurpose>hooks for defining your own memory managment functions</refpurpose>
+<!--[<xref linkend="desc" endterm="desc.title"/>]-->
+</refnamediv>
+
+<refsynopsisdiv id="libiptcdata-mem.synopsis" role="synopsis">
+<title role="synopsis.title">Synopsis</title>
+
+<synopsis>
+<link linkend="void">void</link>*               (<link linkend="IptcMemAllocFunc">*IptcMemAllocFunc</link>)                 (<link linkend="IptcLong">IptcLong</link> );
+<link linkend="void">void</link>*               (<link linkend="IptcMemReallocFunc">*IptcMemReallocFunc</link>)               (<link linkend="void">void</link> *,
+                                                         <link linkend="IptcLong">IptcLong</link> );
+<link linkend="void">void</link>                (<link linkend="IptcMemFreeFunc">*IptcMemFreeFunc</link>)                  (<link linkend="void">void</link> *);
+                    <link linkend="IptcMem">IptcMem</link>;
+<link linkend="IptcMem">IptcMem</link>*            <link linkend="iptc-mem-new">iptc_mem_new</link>                        (<link linkend="IptcMemAllocFunc">IptcMemAllocFunc</link> ,
+                                                         <link linkend="IptcMemReallocFunc">IptcMemReallocFunc</link> ,
+                                                         <link linkend="IptcMemFreeFunc">IptcMemFreeFunc</link> );
+<link linkend="void">void</link>                <link linkend="iptc-mem-ref">iptc_mem_ref</link>                        (<link linkend="IptcMem">IptcMem</link> *);
+<link linkend="void">void</link>                <link linkend="iptc-mem-unref">iptc_mem_unref</link>                      (<link linkend="IptcMem">IptcMem</link> *);
+<link linkend="void">void</link>*               <link linkend="iptc-mem-alloc">iptc_mem_alloc</link>                      (<link linkend="IptcMem">IptcMem</link> *,
+                                                         <link linkend="IptcLong">IptcLong</link> );
+<link linkend="void">void</link>*               <link linkend="iptc-mem-realloc">iptc_mem_realloc</link>                    (<link linkend="IptcMem">IptcMem</link> *,
+                                                         <link linkend="void">void</link> *,
+                                                         <link linkend="IptcLong">IptcLong</link> );
+<link linkend="void">void</link>                <link linkend="iptc-mem-free">iptc_mem_free</link>                       (<link linkend="IptcMem">IptcMem</link> *,
+                                                         <link linkend="void">void</link> *);
+<link linkend="IptcMem">IptcMem</link>*            <link linkend="iptc-mem-new-default">iptc_mem_new_default</link>                (void);
+</synopsis>
+</refsynopsisdiv>
+
+
+
+
+
+
+
+
+
+<refsect1 id="libiptcdata-mem.description" role="desc">
+<title role="desc.title">Description</title>
+<para>
+
+</para>
+</refsect1>
+
+<refsect1 id="libiptcdata-mem.details" role="details">
+<title role="details.title">Details</title>
+<refsect2 id="IptcMemAllocFunc" role="function">
+<title>IptcMemAllocFunc ()</title>
+<indexterm zone="IptcMemAllocFunc"><primary>IptcMemAllocFunc</primary></indexterm><programlisting><link linkend="void">void</link>*               (*IptcMemAllocFunc)                 (<link linkend="IptcLong">IptcLong</link> );</programlisting>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>Param1</parameter>&nbsp;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara>
+
+
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="IptcMemReallocFunc" role="function">
+<title>IptcMemReallocFunc ()</title>
+<indexterm zone="IptcMemReallocFunc"><primary>IptcMemReallocFunc</primary></indexterm><programlisting><link linkend="void">void</link>*               (*IptcMemReallocFunc)               (<link linkend="void">void</link> *,
+                                                         <link linkend="IptcLong">IptcLong</link> );</programlisting>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>Param1</parameter>&nbsp;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>Param2</parameter>&nbsp;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara>
+
+
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="IptcMemFreeFunc" role="function">
+<title>IptcMemFreeFunc ()</title>
+<indexterm zone="IptcMemFreeFunc"><primary>IptcMemFreeFunc</primary></indexterm><programlisting><link linkend="void">void</link>                (*IptcMemFreeFunc)                  (<link linkend="void">void</link> *);</programlisting>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>Param1</parameter>&nbsp;:</term>
+<listitem><simpara>
+
+
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="IptcMem" role="struct">
+<title>IptcMem</title>
+<indexterm zone="IptcMem"><primary>IptcMem</primary></indexterm><programlisting>typedef struct _IptcMem IptcMem;</programlisting>
+<para>
+
+</para></refsect2>
+<refsect2 id="iptc-mem-new" role="function">
+<title>iptc_mem_new ()</title>
+<indexterm zone="iptc-mem-new"><primary>iptc_mem_new</primary></indexterm><programlisting><link linkend="IptcMem">IptcMem</link>*            iptc_mem_new                        (<link linkend="IptcMemAllocFunc">IptcMemAllocFunc</link> ,
+                                                         <link linkend="IptcMemReallocFunc">IptcMemReallocFunc</link> ,
+                                                         <link linkend="IptcMemFreeFunc">IptcMemFreeFunc</link> );</programlisting>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>Param1</parameter>&nbsp;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>Param2</parameter>&nbsp;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>Param3</parameter>&nbsp;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara>
+
+
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="iptc-mem-ref" role="function">
+<title>iptc_mem_ref ()</title>
+<indexterm zone="iptc-mem-ref"><primary>iptc_mem_ref</primary></indexterm><programlisting><link linkend="void">void</link>                iptc_mem_ref                        (<link linkend="IptcMem">IptcMem</link> *);</programlisting>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>Param1</parameter>&nbsp;:</term>
+<listitem><simpara>
+
+
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="iptc-mem-unref" role="function">
+<title>iptc_mem_unref ()</title>
+<indexterm zone="iptc-mem-unref"><primary>iptc_mem_unref</primary></indexterm><programlisting><link linkend="void">void</link>                iptc_mem_unref                      (<link linkend="IptcMem">IptcMem</link> *);</programlisting>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>Param1</parameter>&nbsp;:</term>
+<listitem><simpara>
+
+
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="iptc-mem-alloc" role="function">
+<title>iptc_mem_alloc ()</title>
+<indexterm zone="iptc-mem-alloc"><primary>iptc_mem_alloc</primary></indexterm><programlisting><link linkend="void">void</link>*               iptc_mem_alloc                      (<link linkend="IptcMem">IptcMem</link> *,
+                                                         <link linkend="IptcLong">IptcLong</link> );</programlisting>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>Param1</parameter>&nbsp;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>Param2</parameter>&nbsp;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara>
+
+
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="iptc-mem-realloc" role="function">
+<title>iptc_mem_realloc ()</title>
+<indexterm zone="iptc-mem-realloc"><primary>iptc_mem_realloc</primary></indexterm><programlisting><link linkend="void">void</link>*               iptc_mem_realloc                    (<link linkend="IptcMem">IptcMem</link> *,
+                                                         <link linkend="void">void</link> *,
+                                                         <link linkend="IptcLong">IptcLong</link> );</programlisting>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>Param1</parameter>&nbsp;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>Param2</parameter>&nbsp;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>Param3</parameter>&nbsp;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara>
+
+
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="iptc-mem-free" role="function">
+<title>iptc_mem_free ()</title>
+<indexterm zone="iptc-mem-free"><primary>iptc_mem_free</primary></indexterm><programlisting><link linkend="void">void</link>                iptc_mem_free                       (<link linkend="IptcMem">IptcMem</link> *,
+                                                         <link linkend="void">void</link> *);</programlisting>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><parameter>Param1</parameter>&nbsp;:</term>
+<listitem><simpara>
+</simpara></listitem></varlistentry>
+<varlistentry><term><parameter>Param2</parameter>&nbsp;:</term>
+<listitem><simpara>
+
+
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+<refsect2 id="iptc-mem-new-default" role="function">
+<title>iptc_mem_new_default ()</title>
+<indexterm zone="iptc-mem-new-default"><primary>iptc_mem_new_default</primary></indexterm><programlisting><link linkend="IptcMem">IptcMem</link>*            iptc_mem_new_default                (void);</programlisting>
+<para>
+
+</para><variablelist role="params">
+<varlistentry><term><emphasis>Returns</emphasis>&nbsp;:</term><listitem><simpara>
+
+
+</simpara></listitem></varlistentry>
+</variablelist></refsect2>
+
+</refsect1>
+
+
+
+
+</refentry>
